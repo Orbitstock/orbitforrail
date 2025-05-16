@@ -97,8 +97,8 @@ WSGI_APPLICATION = 'bankingsystem.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-"""
-DATABASE_URL = "postgresql://postgres.zbigkfdfdlzvimfljcsh:Firstwork51a51$@aws-0-us-west-1.pooler.supabase.com:6543/postgres"
+
+DATABASE_URL = "postgresql://postgres.zbigkfdfdlzvimfljcsh:[Firstwork51a51$@aws-0-us-west-1.pooler.supabase.com:6543/postgres"
 # Configure the default database using the DATABASE_URL
 DATABASES = {
     'default': dj_database_url.config(default=DATABASE_URL)
@@ -106,7 +106,7 @@ DATABASES = {
 
 
 
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -119,14 +119,14 @@ DATABASES = {
     }
 }
 
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
