@@ -1,0 +1,211 @@
+ {% extends 'core/base.html' %} {% block title %} Transactions | {{ block.super }}{% endblock title %} {% block content %} {% load static %} {% include "core/messages.html" %}
+
+<link rel="stylesheet" href="{% static 'assets/frontend/css/styles.css' %}?var=2.1" />
+
+<main id="main-container">
+    
+
+    <!-- Page Content -->
+    <div class="block block-rounded">
+        <div class="block-content block-content-full">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="site-card">
+                        
+                        <div class="site-card-header">
+                            
+                            <h3 class="title"><p>KYC VERIFICATION</p><br>Enter Details</h3>
+                            <div class="card-header-links">
+                                
+                            </div>
+                        </div>
+                        <div class="site-card-body">
+                            <div class="progress-steps">
+                                <div class="single-step current">
+                                    <div class="number">01</div>
+                                    <div class="content">
+                                        <h4>VERIFICATION STATUS</h4>
+                                        <p>{% if user.status == 'PENDING' %}</p>
+                                        <p class="link pending"><span style="color: lightseagreen;">{{ user.status }}</span> <em class="icon ni ni-info" style="color: lightseagreen;"></em></p>
+                                        {% elif user.status == 'UNVERIFIED' %}
+                                        <p class="link unverified"><span style="color: red;">{{ user.status }}</span> <em class="icon ni ni-alert" style="color: red;"></em></p>
+                                        {% elif user.status == 'VERIFIED' %}
+                                        <p class="link verified">
+                                            <strong><span style="color: green; font-weight: bold;">{{ user.status }}</span></strong> <em class="icon ni ni-check-circle" style="color: green;"></em>
+                                        </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="single-step">
+                                    <div class="number">02</div>
+                                    <div class="content">
+                                        <h4>STATUS</h4>
+                                        <p>{% if user.status == 'PENDING' %}</p>
+                                        <p class="link pending"><span style="color: lightseagreen;">{{ user.status }}</span> <em class="icon ni ni-info" style="color: lightseagreen;"></em></p>
+                                        {% elif user.status == 'UNVERIFIED' %}
+                                        <p class="link unverified"><span style="color: red;">{{ user.status }}</span> <em class="icon ni ni-alert" style="color: red;"></em></p>
+                                        {% elif user.status == 'VERIFIED' %}
+                                        <p class="link verified">
+                                            <strong><span style="color: green; font-weight: bold;">{{ user.status }}</span></strong> <em class="icon ni ni-check-circle" style="color: green;"></em>
+                                        </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="progress-steps-form">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="{{ form.full_name.id_for_label }}">Full Name</label> {{ form.full_name }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="{{ form.address.id_for_label }}">Address</label> {{ form.address }}
+                                    </div>
+
+                                    <div class="row">
+                                        <p> Upload your Driver’s License, Passport, or State ID card.</p>
+                                            <div class="col-xl-6">
+                                                <div class="mb-3">
+                                                    <label for="{{ form.drivers_license_front.id_for_label }}" class="body-title">Front </label>
+                                                    <div class="wrap-custom-file">
+                                                        <input type="file" name="{{ form.drivers_license_front.name }}" id="drivers_license_front" accept=".gif, .jpg, .png" onchange="previewImage(event, 'drivers_license_front_image')" />
+                                                        <label for="drivers_license_front" class="file-label">
+                                                            <div class="image-preview">
+                                                                <img id="drivers_license_front_image" src="https://cdn-icons-png.flaticon.com/128/13320/13320011.png" alt="Driver's License Front" />
+                                                            </div>
+                                                            <span>Front </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div  class="mb-3">
+                                                    <label for="{{ form.drivers_license_back.id_for_label }}" class="body-title">Back:</label>
+                                                    <div class="wrap-custom-file">
+                                                        <input type="file" name="{{ form.drivers_license_back.name }}" id="drivers_license_back" accept=".gif, .jpg, .png" onchange="previewImage(event, 'drivers_license_back_image')" />
+                                                        <label for="drivers_license_back" class="file-label">
+                                                            <div class="image-preview">
+                                                                <img id="drivers_license_back_image" src="https://cdn-icons-png.flaticon.com/128/13320/13320011.png" alt="State ID Card" />
+                                                            </div>
+                                                            <span>Back</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <!-- Add other fields as needed -->
+
+                                    <button style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" 
+                                                    class="site-btn blue-btn" 
+                                                    onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';">
+                                                Submit
+                                        <i class="anticon anticon-double-right"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Content -->
+
+        </div>
+    </div>
+
+</main>
+
+<style>
+    .wrap-custom-file {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .wrap-custom-file input[type="file"] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .wrap-custom-file label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        color: #555;
+        font-weight: normal;
+        border: 2px dashed #ccc;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        background-color: #f8f9fa;
+    }
+
+    .wrap-custom-file label:hover {
+        background-color: #e9ecef;
+    }
+
+    .wrap-custom-file .image-preview {
+        width: 100%;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .wrap-custom-file .image-preview img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .wrap-custom-file label span {
+        display: block;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function previewImage(event, imageId) {
+            const input = event.target;
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageElement = document.getElementById(imageId);
+                    imageElement.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Attach event listeners to file inputs
+        document.querySelectorAll('.wrap-custom-file input[type="file"]').forEach(function(input) {
+            input.addEventListener('change', function(event) {
+                previewImage(event, this.id + '_image');
+            });
+        });
+    });
+</script>
+
+
+
+
+{% endblock content %}

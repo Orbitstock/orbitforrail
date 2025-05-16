@@ -1,0 +1,134 @@
+{% extends 'core/base.html' %} {% block title %} Transactions | {{ block.super }}{% endblock title %} {% block content %} {% include "core/messages.html" %}
+{% load static %}
+{% load custom_filters %}
+    <link rel="stylesheet" href="{% static 'assets/frontend/css/styles.css' %}?var=2.1" />
+
+<style>
+    .page-container {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .container-fluid {
+        height: 100%;
+    }
+
+    .site-card {
+        height: 100%;
+    }
+
+    .site-datatable {
+        height: 100%;
+    }
+
+    #dataTable {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<div>
+    <div class="">
+        <div class="section-gap">
+            <div class="custom-container" style="width: 100%; height: 100%;">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="site-card">
+                            <div class="site-card-header">
+                                <h3 class="title">All Investment History</h3>
+                            </div>
+                            <div class="site-card-body">
+                                <div class="site-datatable">
+                                    <div class="row table-responsive">
+                                        <div class="col-xl-12">
+
+
+{% load custom_filters %}
+<table id="dataTable" class="display data-table">
+    <thead>
+        <tr>
+            <th>Schema</th>
+            <th>Investment Amount</th>
+            <th>ROI(%)</th>
+            <th>ROI($)</th>
+            <th>Duration</th>
+            <th>Created At</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for investment in investments reversed %}
+        <tr>
+            <td>{{ investment.get_schema_id_display }}</td>
+            <td>${{ investment.amount|floatformat:2 }}</td>
+            <td>
+                {% if investment.schema_id == 1 %}
+                    5%
+                {% elif investment.schema_id == 2 %}
+                    12%
+                {% elif investment.schema_id == 3 %}
+                    15%
+                {% elif investment.schema_id == 4 %}
+                    20%
+                {% elif investment.schema_id == 5 %}
+                    30%
+                {% elif investment.schema_id == 6 %}
+                    35%
+                {% else %}
+                    0%
+                {% endif %}
+            </td>
+            <td>${% if investment.schema_id == 1 %}{{ investment.amount|multiply:0.05|floatformat:2 }}{% elif investment.schema_id == 2 %}{{ investment.amount|multiply:0.12|floatformat:2 }}{% elif investment.schema_id == 3 %}{{ investment.amount|multiply:0.15|floatformat:2 }}{% elif investment.schema_id == 4 %}{{ investment.amount|multiply:0.20|floatformat:2 }}{% elif investment.schema_id == 5 %}{{ investment.amount|multiply:0.30|floatformat:2 }}{% elif investment.schema_id == 6 %}{{ investment.amount|multiply:0.35|floatformat:2 }}{% else %}0.00{% endif %}</td>
+            <td>
+                {% if investment.schema_id == 1 %}
+                    2 days
+                {% elif investment.schema_id == 2 %}
+                    4 days
+                {% elif investment.schema_id == 3 %}
+                    6 days
+                {% elif investment.schema_id == 4 %}
+                    9 days
+                {% elif investment.schema_id == 5 %}
+                    15 days
+                {% elif investment.schema_id == 6 %}
+                    21 days
+                {% else %}
+                    N/A
+                {% endif %}
+            </td>
+            <td>{{ investment.created_at|date:"F d, Y H:i" }}</td>
+            <td>
+                {% if investment.status == 'pending' %}
+                    <span class="badge bg-warning"><i class="fas fa-clock"></i> Pending</span>
+                {% elif investment.status == 'completed' %}   
+                    <span class="badge bg-success"><i class="fas fa-check-circle"></i> Completed</span>
+                {% elif investment.status == 'cancelled' %}
+                    <span class="badge bg-danger"><i class="fas fa-times-circle"></i> Cancelled</span>
+                {% elif investment.status == 'declined' %}
+                    <span class="badge bg-danger"><i class="fas fa-ban"></i> Declined</span>
+                {% elif investment.status == 'approved' %}
+                    <span class="badge bg-primary"><i class="fas fa-thumbs-up"></i> Approved</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

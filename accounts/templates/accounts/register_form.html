@@ -1,0 +1,221 @@
+{% include "core/messages.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <title>Orbit Stock Index - Your Trusted Crypto Investment Partner</title>
+    <meta name="description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="og:title" content="Orbit Stock Index - Your Trusted Crypto Investment Partner" />
+    <meta property="og:description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="twitter:title" content="Orbit Stock Index - Your Trusted Crypto Investment Partner" />
+    <meta property="twitter:description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="og:type" content="website" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Webflow" name="generator" />
+
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="icon" type="image/png" sizes="32x32" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="icon" type="image/png" sizes="16x16" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="manifest" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="mask-icon" color="#5bbad5" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+
+        <link rel="stylesheet" id="css-main" href="{% static 'assetina/css/oneui.min-5.9.css' %}" />
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-9HQDQJJYW7");
+        </script>
+
+        
+    </head>
+
+    <body>
+
+
+            <main id="main-container">
+               
+                                
+                            
+                            
+                        
+
+                            <div class="p-4 w-100 flex-grow-1 d-flex align-items-center">
+                                <div class="w-100">
+                                    <div class="text-center mb-5">
+                                        <p class="mb-3">
+                                            <img style="max-width:150px;" src="{% static 'images/ss1.png' %}" alt="Logo" class="logo-image">
+                                        </p>
+                                        <h1 class="fw-bold mb-2">
+                                            Create Account
+                                        </h1>
+                                        <p class="fw-medium text-muted">
+                                            Get your access today in one easy step
+                                        </p>
+                                    </div>
+                                    <div class="container">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-8 col-lg-6">
+                                                <form class="js-validation-signup" name="regform" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <input type="text" class="form-control" id="{{ user_form.first_name.id_for_label }}" name="{{ user_form.first_name.html_name }}" placeholder="First Name" required>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <input type="text" class="form-control" id="{{ user_form.last_name.id_for_label }}" name="{{ user_form.last_name.html_name }}" placeholder="Last Name" required>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <input type="text" class="form-control" id="{{ user_form.username.id_for_label }}" name="{{ user_form.username.html_name }}" placeholder="Username" required>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <input type="email" class="form-control" id="{{ user_form.email.id_for_label }}" name="{{ user_form.email.html_name }}" placeholder="Email" required>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <input type="password" class="form-control" id="{{ user_form.password1.id_for_label }}" name="{{ user_form.password1.html_name }}" placeholder="Password" required>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <input type="password" class="form-control" id="{{ user_form.password2.id_for_label }}" name="{{ user_form.password2.html_name }}" placeholder="Confirm Password" required>
+                                                    </div>
+                                                    
+                                                    
+
+
+
+                                                    
+                                                        <div class="mb-3">
+                                                            <label for="id_picture" class="form-label">Passport Photograph</label>
+                                                            <div class="input-group">
+                                                                <input type="file" class="form-control" id="id_picture" name="{{ account_form.picture.html_name }}" accept="image/*" required style="display: none;">
+                                                                <label class="input-group-text" for="id_picture"><i class="fas fa-camera"></i></label>
+                                                            </div>
+                                                            <div class="upload-container" id="upload_container">
+                                                                <img src="{% static 'sample.png' %}" class="img-fluid mt-2" id="output_image" alt="Passport Photo Preview" style="cursor: pointer;">
+                                                                <div class="upload-text">
+                                                                    <i class="fas fa-upload"></i> Click to upload
+                                                                </div>
+                                                            </div>
+                                                            {% if account_form.picture.errors %}
+                                                            <div class="invalid-feedback">{{ account_form.picture.errors }}</div>
+                                                            {% endif %}
+                                                        </div>
+
+                                                        <script>
+                                                            document.getElementById('upload_container').addEventListener('click', function() {
+                                                                document.getElementById('id_picture').click();
+                                                            });
+
+                                                            document.getElementById('id_picture').addEventListener('change', function(event) {
+                                                                if (event.target.files && event.target.files[0]) {
+                                                                    var reader = new FileReader();
+                                                                    reader.onload = function(e) {
+                                                                        document.getElementById('output_image').src = e.target.result;
+                                                                    };
+                                                                    reader.readAsDataURL(event.target.files[0]);
+                                                                }
+                                                            });
+                                                        </script>
+
+                                                        <style>
+                                                            .upload-container {
+                                                                position: relative;
+                                                                width: 150px;
+                                                                height: 150px;
+                                                                border: 2px dashed #ccc;
+                                                                display: flex;
+                                                                justify-content: center;
+                                                                align-items: center;
+                                                                cursor: pointer;
+                                                            }
+                                                            .upload-container img {
+                                                                max-width: 100%;
+                                                                max-height: 100%;
+                                                            }
+                                                            .upload-text {
+                                                                position: absolute;
+                                                                top: 50%;
+                                                                left: 50%;
+                                                                transform: translate(-50%, -50%);
+                                                                text-align: center;
+                                                                color: #666;
+                                                                font-size: 14px;
+                                                            }
+                                                            .upload-text i {
+                                                                display: block;
+                                                                margin-bottom: 5px;
+                                                                font-size: 24px;
+                                                            }
+                                                        </style>
+
+                                                    
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="recommended_by">Recommended By:</label>
+                                                        
+                                                        {% if profile %}
+                                                            <input type="text" id="recommended_by" name="recommended_by" class="form-control" value="{{ profile.user.username }}" readonly style="background-color: #f8f9fa; color: #495057; border: 1px solid #ced4da;">
+                                                        {% else %}
+                                                            <p class="text-muted" style="font-size: 14px; margin-top: 8px;">No referral found</p>
+                                                        {% endif %}
+                                                    </div>
+                                                    
+                                                    <div class="mb-3 form-check">
+                                                        <input type="checkbox" class="form-check-input" id="agree" name="agree" required>
+                                                        <label class="form-check-label" for="agree">I agree to <a href="{% url 'transactions:terms' %}" data-bs-toggle="modal" data-bs-target="#one-signup-terms">Terms &amp; Conditions</a></label>
+                                                    </div>
+                                                    
+                                                    <div class="d-grid gap-2">
+                                                        <button type="submit" class="btn btn-primary btn-lg" name="signin">
+                                                            <i class="fa fa-user-plus me-2"></i>Sign Up
+                                                        </button>
+                                                    </div>
+                                                    
+                                                    <p class="text-center mt-3">
+                                                        Already have an account? <a href="{% url 'accounts:login' %}">                        <button type="button" class="btn btn-sm btn-primary me-1 mb-3">
+                                                                <i class="fa fa-fw fa-archive me-1"></i> Sign In
+                                                              </button></a>
+                                                    </p>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+            </main>
+        </div>
+
+
+        <script type="text/javascript">
+            function googleTranslateElementInit2() {
+            new google.translate.TranslateElement({pageLanguage: 'en',autoDisplay: false}, 'google_translate_element2');}
+        </script>
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+        <script type="text/javascript">
+            eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('6 7(a,b){n{4(2.9){3 c=2.9("o");c.p(b,f,f);a.q(c)}g{3 c=2.r();a.s(\'t\'+b,c)}}u(e){}}6 h(a){4(a.8)a=a.8;4(a==\'\')v;3 b=a.w(\'|\')[1];3 c;3 d=2.x(\'y\');z(3 i=0;i<d.5;i++)4(d[i].A==\'B-C-D\')c=d[i];4(2.j(\'k\')==E||2.j(\'k\').l.5==0||c.5==0||c.l.5==0){F(6(){h(a)},G)}g{c.8=b;7(c,\'m\');7(c,\'m\')}}',43,43,'||document|var|if|length|function|GTranslateFireEvent|value|createEvent||||||true|else|doGTranslate||getElementById|google_translate_element2|innerHTML|change|try|HTMLEvents|initEvent|dispatchEvent|createEventObject|fireEvent|on|catch|return|split|getElementsByTagName|select|for|className|goog|te|combo|null|setTimeout|500'.split('|'),0,{}))
+            $(function(){
+                        $('.selectpicker').selectpicker();
+                    });
+        </script>
+        <script src="{% static 'assetina/js/plugins/jquery-validation/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'assetina/js/pages/op_auth_signup.min.js' %}"></script>
+    </body>
+</html>

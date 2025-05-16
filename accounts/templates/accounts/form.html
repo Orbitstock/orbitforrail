@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        {% include "core/messages.html" %} {% load static %}
+        <meta charset="utf-8" />
+        <title>Orbit Stock Index - Your Trusted Crypto Investment Partner</title>
+        <meta name="description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+        <meta property="og:title" content="Orbit Stock Index - Your Trusted Crypto Investment Partner" />
+        <meta property="og:description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+        <meta property="twitter:title" content="Orbit Stock Index - Your Trusted Crypto Investment Partner" />
+        <meta property="twitter:description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+        <meta property="og:type" content="website" />
+        <meta content="summary_large_image" name="twitter:card" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="Webflow" name="generator" />
+
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+        <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="apple-touch-icon" sizes="180x180" />
+        <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="icon" type="image/png" sizes="32x32" />
+        <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="icon" type="image/png" sizes="16x16" />
+        <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="manifest" />
+        <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="mask-icon" color="#5bbad5" />
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+
+        <link rel="stylesheet" id="css-main" href="{% static 'assetina/css/oneui.min-5.9.css' %}" />
+
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-9HQDQJJYW7");
+        </script>
+    </head>
+
+    <body>
+        <div id="page-container">
+            <main id="main-container">
+                <div class="p-4 w-100 flex-grow-1 d-flex align-items-center">
+                    <div class="w-100">
+                        <div class="text-center mb-5">
+                            <p class="mb-3">
+                                <img style="max-width: 190px;" src="{% static 'images/ss1.png' %}" alt="Logo" class="logo-image" />
+                            </p>
+                            <h1 class="fw-bold mb-2">
+                                Sign In
+                            </h1>
+                        </div>
+                        <div class="row g-0 justify-content-center">
+                            <div class="col-sm-8 col-xl-4">
+                                <!-- Flash Messages -->
+                                {% if messages %}
+                                <div class="alert alert-dismissible fade show" role="alert">
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                <div id="unique-flash-message">
+                                    <div class="icon"></div>
+                                    <div class="content">
+                                        <h4 class="title"></h4>
+                                        <p class="message"></p>
+                                    </div>
+                                    <button class="close">&times;</button>
+                                </div>
+
+                                <style>
+                                    #unique-flash-message {
+                                        display: none;
+                                        padding: 20px;
+                                        margin: 20px 0;
+                                        border-radius: 12px;
+                                        font-family: "Segoe UI", "Roboto", sans-serif;
+                                        font-size: 16px;
+                                        line-height: 1.5;
+                                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                                        position: fixed;
+                                        top: 30px;
+                                        right: 30px;
+                                        max-width: 400px;
+                                        width: calc(100% - 60px);
+                                        z-index: 9999;
+                                        opacity: 0;
+                                        transform: translateY(-30px) scale(0.95);
+                                        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+                                        display: flex;
+                                        align-items: flex-start;
+                                        overflow: hidden;
+                                    }
+
+                                    #unique-flash-message.show {
+                                        opacity: 1;
+                                        transform: translateY(0) scale(1);
+                                    }
+
+                                    #unique-flash-message .icon {
+                                        flex-shrink: 0;
+                                        width: 24px;
+                                        height: 24px;
+                                        margin-right: 15px;
+                                        background-repeat: no-repeat;
+                                        background-position: center;
+                                        background-size: contain;
+                                    }
+
+                                    #unique-flash-message .content {
+                                        flex-grow: 1;
+                                    }
+
+                                    #unique-flash-message .title {
+                                        margin: 0 0 5px;
+                                        font-size: 18px;
+                                        font-weight: 600;
+                                    }
+
+                                    #unique-flash-message .message {
+                                        margin: 0;
+                                    }
+
+                                    #unique-flash-message .close {
+                                        background: none;
+                                        border: none;
+                                        color: inherit;
+                                        font-size: 24px;
+                                        cursor: pointer;
+                                        opacity: 0.7;
+                                        transition: opacity 0.2s;
+                                    }
+
+                                    #unique-flash-message .close:hover {
+                                        opacity: 1;
+                                    }
+
+                                    #unique-flash-message.success {
+                                        color: #0a5d2c;
+                                        background-color: #e6f7ed;
+                                        border-left: 5px solid #0abb5d;
+                                    }
+
+                                    #unique-flash-message.error {
+                                        color: #7f1d1d;
+                                        background-color: #fef2f2;
+                                        border-left: 5px solid #ef4444;
+                                    }
+
+                                    #unique-flash-message.success .icon {
+                                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230a5d2c'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E");
+                                    }
+
+                                    #unique-flash-message.error .icon {
+                                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237f1d1d'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E");
+                                    }
+
+                                    @keyframes shake {
+                                        0%,
+                                        100% {
+                                            transform: translateX(0);
+                                        }
+                                        10%,
+                                        30%,
+                                        50%,
+                                        70%,
+                                        90% {
+                                            transform: translateX(-5px);
+                                        }
+                                        20%,
+                                        40%,
+                                        60%,
+                                        80% {
+                                            transform: translateX(5px);
+                                        }
+                                    }
+
+                                    #unique-flash-message.error.show {
+                                        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+                                    }
+                                </style>
+
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                    function showFlashMessage(message, type, title = "") {
+                                        const flashMessageDiv = $("#unique-flash-message");
+                                        flashMessageDiv.removeClass("success error show").addClass(type);
+
+                                        flashMessageDiv.find(".title").text(title || (type === "success" ? "Success" : "Error"));
+                                        flashMessageDiv.find(".message").text(message);
+
+                                        flashMessageDiv
+                                            .css("display", "flex")
+                                            .delay(10)
+                                            .queue(function (next) {
+                                                $(this).addClass("show");
+                                                next();
+                                            });
+
+                                        const hideMessage = () => {
+                                            flashMessageDiv.removeClass("show");
+                                            setTimeout(() => flashMessageDiv.css("display", "none"), 400);
+                                        };
+
+                                        flashMessageDiv.find(".close").off("click").on("click", hideMessage);
+
+                                        setTimeout(hideMessage, 5000);
+                                    }
+
+                                    // Example usage:
+                                    // showFlashMessage("Operation completed successfully!", "success", "Great job!");
+                                    // showFlashMessage("An error occurred. Please try again.", "error", "Oops!");
+                                </script>
+                                <!-- Login Form -->
+                                <form class="js-validation-signin" action="{% url 'accounts:login' %}" method="POST" name="mainform">
+                                    {% csrf_token %}
+                                    <div class="mb-4">
+                                        {{ form.username }} {% for error in form.username.errors %}
+                                        <div class="text-danger">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="mb-4">
+                                        {{ form.password }} {% for error in form.password.errors %}
+                                        <div class="text-danger">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                    {% if form.non_field_errors %}
+                                    <div class="text-danger mb-4">
+                                        {% for error in form.non_field_errors %}
+                                        <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <div>
+                                            <a id="forgot-password-link" class="text-muted fs-sm fw-medium d-block d-lg-inline-block mb-1" href="#">
+                                                Forgot Password?
+                                            </a>
+                                        </div>
+
+                                        <div id="flash-message" class="custom-flash-message">
+                                            <span class="custom-flash-message-text"><strong>Info:</strong> Contact support for help.</span>
+                                            <span class="custom-flash-message-close">&times;</span>
+                                        </div>
+
+                                        <script>
+                                            document.getElementById("forgot-password-link").addEventListener("click", function (event) {
+                                                event.preventDefault();
+                                                var flashMessage = document.getElementById("flash-message");
+                                                flashMessage.classList.add("show");
+
+                                                // Hide the flash message after 5 seconds (optional)
+                                                setTimeout(function () {
+                                                    flashMessage.classList.remove("show");
+                                                }, 3000);
+                                            });
+
+                                            document.querySelector(".custom-flash-message-close").addEventListener("click", function () {
+                                                document.getElementById("flash-message").classList.remove("show");
+                                            });
+                                        </script>
+
+                                        <style>
+                                            .custom-flash-message {
+                                                display: none;
+                                                position: fixed;
+                                                top: 20px;
+                                                left: 50%;
+                                                transform: translateX(-50%);
+                                                padding: 15px 20px;
+                                                background: linear-gradient(135deg, #1e90ff, #87cefa);
+                                                color: #fff;
+                                                border: 2px solid #1e90ff;
+                                                border-radius: 8px;
+                                                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                                                transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out;
+                                                opacity: 0;
+                                                z-index: 1000;
+                                                width: 90%;
+                                                max-width: 400px;
+                                                text-align: center;
+                                            }
+
+                                            .custom-flash-message.show {
+                                                display: block;
+                                                opacity: 1;
+                                                top: 30px;
+                                            }
+
+                                            @media (min-width: 768px) {
+                                                .custom-flash-message {
+                                                    top: 50px;
+                                                }
+
+                                                .custom-flash-message.show {
+                                                    top: 60px;
+                                                }
+                                            }
+
+                                            .custom-flash-message-text {
+                                                display: inline-block;
+                                                margin-right: 10px;
+                                            }
+
+                                            .custom-flash-message-close {
+                                                cursor: pointer;
+                                                font-size: 18px;
+                                                line-height: 1;
+                                                position: absolute;
+                                                right: 10px;
+                                                top: 10px;
+                                                transition: color 0.3s ease;
+                                            }
+
+                                            .custom-flash-message-close:hover {
+                                                color: #ff6f61;
+                                            }
+                                        </style>
+
+                                        <div>
+                                            <button type="submit" class="btn btn-lg btn-alt-primary"><i class="fa fa-fw fa-sign-in-alt me-1 opacity-50"></i> Sign In</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="text-center mt-3">
+                                    <p class="fw-medium text-muted">Sign In or <a href="{% url 'accounts:register' %}">Sign up</a> for a new account.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    function checkform() {
+                        if (document.mainform.username.value == "") {
+                            showFlashMessage("Please type your username!", "error");
+                            document.mainform.username.focus();
+                            return false;
+                        }
+                        if (document.mainform.password.value == "") {
+                            showFlashMessage("Please type your password!", "error");
+                            document.mainform.password.focus();
+                            return false;
+                        }
+                        return true;
+                    }
+
+                    $(document).ready(function () {
+                        $("form").on("submit", function (e) {
+                            e.preventDefault();
+                            if (checkform()) {
+                                $.getJSON("https://api.ipify.org?format=json", function (data) {
+                                    var formData = new FormData($("form")[0]);
+                                    formData.append("ip_address", data.ip);
+                                    $.ajax({
+                                        url: '{% url "accounts:login" %}',
+                                        type: "POST",
+                                        data: formData,
+                                        processData: false,
+                                        contentType: false,
+                                        success: function (response) {
+                                            if (response.status === "success") {
+                                                window.location.href = response.redirect;
+                                            } else {
+                                                showFlashMessage(response.message, "error");
+                                            }
+                                        },
+                                        error: function (xhr, status, error) {
+                                            showFlashMessage("An error occurred. Please try again.", "error");
+                                        },
+                                    });
+                                });
+                            }
+                        });
+                    });
+                </script>
+
+                <div class="px-4 py-3 w-100  d-flex flex-column flex-sm-row justify-content-between fs-sm text-center text-sm-start">
+                    <p class="fw-medium text-black-50 py-2 mb-0"><strong>Orbit Stock Index 5.9</strong> 2024</p>
+                    <ul class="list list-inline py-2 mb-0">
+                        <li class="list-inline-item">
+                            <a class="text-muted fw-medium" href="{% url 'privacy' %}">Legal</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="text-muted fw-medium" href="{% url 'contact_us' %}">Contact</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="text-muted fw-medium" href="{% url 'transactions:terms' %}">Terms</a>
+                        </li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+        <script src="{% static 'assetina/js/plugins/jquery-validation/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'assetina/js/pages/op_auth_signup.min.js' %}"></script>
+    </body>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit2() {
+            new google.translate.TranslateElement({ pageLanguage: "en", autoDisplay: false }, "google_translate_element2");
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+    <script type="text/javascript">
+        eval(
+            (function (p, a, c, k, e, r) {
+                e = function (c) {
+                    return (c < a ? "" : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36));
+                };
+                if (!"".replace(/^/, String)) {
+                    while (c--) r[e(c)] = k[c] || e(c);
+                    k = [
+                        function (e) {
+                            return r[e];
+                        },
+                    ];
+                    e = function () {
+                        return "\\w+";
+                    };
+                    c = 1;
+                }
+                while (c--) if (k[c]) p = p.replace(new RegExp("\\b" + e(c) + "\\b", "g"), k[c]);
+                return p;
+            })(
+                "6 7(a,b){n{4(2.9){3 c=2.9(\"o\");c.p(b,f,f);a.q(c)}g{3 c=2.r();a.s('t'+b,c)}}u(e){}}6 h(a){4(a.8)a=a.8;4(a=='')v;3 b=a.w('|')[1];3 c;3 d=2.x('y');z(3 i=0;i<d.5;i++)4(d[i].A=='B-C-D')c=d[i];4(2.j('k')==E||2.j('k').l.5==0||c.5==0||c.l.5==0){F(6(){h(a)},G)}g{c.8=b;7(c,'m');7(c,'m')}}",
+                43,
+                43,
+                "||document|var|if|length|function|GTranslateFireEvent|value|createEvent||||||true|else|doGTranslate||getElementById|google_translate_element2|innerHTML|change|try|HTMLEvents|initEvent|dispatchEvent|createEventObject|fireEvent|on|catch|return|split|getElementsByTagName|select|for|className|goog|te|combo|null|setTimeout|500".split(
+                    "|"
+                ),
+                0,
+                {}
+            )
+        );
+        $(function () {
+            $(".selectpicker").selectpicker();
+        });
+    </script>
+</html>

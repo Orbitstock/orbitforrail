@@ -1,0 +1,692 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% load static %}
+{% include "core/messages.html" %}
+{% load humanize %}
+
+            <main id="main-container">
+                <div class="bg-image" style="background-image: url('{% static 'images/photo12@2x.jpg' %}');">
+                    <div class="bg-black-50">
+                        <div class="content content-full text-center">
+                            <div class="my-3">
+                                <img class="img-avatar img-avatar-thumb proof-of-pay-link" src="{{ user.account.picture.url }}"  alt="Profile Picture" data-bs-toggle="tooltip" title="View Profile Picture" style="cursor: pointer;" /><br>
+                                <small style="font-size:10px; color: white;"><p>Click To View</p></small>
+                            </div>
+
+                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                const proofOfPayLinks = document.querySelectorAll(".proof-of-pay-link");
+                                                proofOfPayLinks.forEach((link) => {
+                                                    link.addEventListener("click", (e) => {
+                                                        e.preventDefault();
+                                                        const imageUrl = e.target.src;
+                                                        Swal.fire({
+                                                            html: `
+                                                                <div class="custom-image-modal">
+                                                                    <div class="image-wrapper">
+                                                                        <img src="${imageUrl}" alt="Profile Picture">
+                                                                    </div>
+                                                                    <div class="image-caption">
+                                                                        <p>Account Picture</p>
+                                                                    </div>
+                                                                </div>
+                                                            `,
+                                                            showConfirmButton: false,
+                                                            showCloseButton: true,
+                                                            customClass: {
+                                                                container: 'custom-swal-container',
+                                                                popup: 'custom-swal-popup',
+                                                                closeButton: 'custom-swal-close'
+                                                            },
+                                                            buttonsStyling: false,
+                                                            background: 'transparent',
+                                                            backdrop: `
+                                                                rgba(0,0,0,0.9)
+                                                                url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,100 100,0 100,100' fill='%23000000' fill-opacity='.1'/%3E%3C/svg%3E")
+                                                                right bottom
+                                                                no-repeat
+                                                            `,
+                                                            showClass: {
+                                                                popup: 'animate__animated animate__zoomIn animate__faster'
+                                                            },
+                                                            hideClass: {
+                                                                popup: 'animate__animated animate__zoomOut animate__faster'
+                                                            }
+                                                        });
+                                                    });
+                                                });
+                                            });
+                                        </script>
+
+                                        <style>
+                                            .custom-swal-container {
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+                                            }
+
+                                            .custom-swal-popup {
+                                                background: transparent !important;
+                                                box-shadow: none !important;
+                                            }
+
+                                            .custom-swal-close {
+                                                position: fixed;
+                                                top: 20px;
+                                                right: 20px;
+                                                width: 40px;
+                                                height: 40px;
+                                                font-size: 24px;
+                                                color: #fff;
+                                                background-color: rgba(255,255,255,0.2);
+                                                border: 2px solid #fff;
+                                                border-radius: 50%;
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+                                                transition: all 0.3s ease;
+                                                z-index: 10;
+                                            }
+
+                                            .custom-swal-close:hover {
+                                                background-color: rgba(255,255,255,0.4);
+                                                transform: rotate(90deg);
+                                            }
+
+                                            .custom-image-modal {
+                                                display: flex;
+                                                flex-direction: column;
+                                                align-items: center;
+                                                max-width: 90vw;
+                                                max-height: 90vh;
+                                            }
+
+                                            .image-wrapper {
+                                                position: relative;
+                                                overflow: hidden;
+                                                border-radius: 15px;
+                                                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                                                transition: transform 0.3s ease;
+                                            }
+
+                                            .image-wrapper:hover {
+                                                transform: scale(1.02);
+                                            }
+
+                                            .image-wrapper::after {
+                                                content: '';
+                                                position: absolute;
+                                                top: 0;
+                                                left: 0;
+                                                right: 0;
+                                                bottom: 0;
+                                                background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+                                                opacity: 0;
+                                                transition: opacity 0.3s ease;
+                                            }
+
+                                            .image-wrapper:hover::after {
+                                                opacity: 1;
+                                            }
+
+                                            .custom-image-modal img {
+                                                display: block;
+                                                max-width: 100%;
+                                                max-height: 70vh;
+                                                object-fit: contain;
+                                            }
+
+                                            .image-caption {
+                                                margin-top: 20px;
+                                                text-align: center;
+                                                color: #fff;
+                                            }
+
+                                            .image-caption h3 {
+                                                font-size: 24px;
+                                                margin-bottom: 5px;
+                                                text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+                                            }
+
+                                            .image-caption p {
+                                                font-size: 16px;
+                                                opacity: 0.8;
+                                            }
+
+                                            @media (max-width: 768px) {
+                                                .custom-image-modal {
+                                                    max-width: 95vw;
+                                                }
+                                                .image-caption h3 {
+                                                    font-size: 20px;
+                                                }
+                                                .image-caption p {
+                                                    font-size: 14px;
+                                                }
+                                            }
+                                        </style>
+                            <h1 class="h2 text-white mb-0"> {{ user.username }}</h1>
+                            <span class="text-white-75">{{ user.get_full_name }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-body-extra-light">
+                    <div class="content content-boxed">
+                        <div class="row items-push text-center">
+                            <div class="col-6 col-md-3">
+                                <div class="fs-sm fw-semibold text-muted text-uppercase">Main Wallet</div>
+                                <a class="link-fx fs-3" href="javascript:void(0)">{{ user.balance }}</a>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="fs-sm fw-semibold text-muted text-uppercase">Total Withdrawal</div>
+                                <a class="link-fx fs-3" href="javascript:void(0)"id="crypto-balance">$0.00</a>
+
+                                    <script>
+                                        document.addEventListener("DOMContentLoaded", function() {
+                                            // Retrieve the crypto balances from Django template variables
+                                            const ethereums = parseFloat("{{ total_withdrawal|floatformat:2 }}") || 0;
+                                            const bitcoins = parseFloat("{{ total_crypto_withdrawal|floatformat:2 }}") || 0;
+
+                                            // Calculate the total balance
+                                            const totalBalance = ethereums + bitcoins;
+
+                                            // Update the total balance display with a dollar sign
+                                            document.getElementById("crypto-balance").textContent = `$ ${totalBalance.toFixed(2)}`;
+                                        });
+                                    </script>
+
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="fs-sm fw-semibold text-muted text-uppercase">Total Earnings</div>
+                                <a class="link-fx fs-3" href="javascript:void(0)">{{ user.total_profit }}</a>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="fs-sm fw-semibold text-muted text-uppercase mb-2">739 Ratings</div>
+                                <span class="text-warning">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half"></i>
+                                </span>
+                                <span class="fs-sm text-muted">(4.9)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content content-boxed">
+                    <div class="row">
+                        <div class="col-md-7 col-xl-8">
+                            <ul class="timeline timeline-alt py-0">
+                                
+                                <li class="timeline-event">
+                                    <div class="timeline-event-icon bg-modern">
+                                        <i class="fa fa-briefcase"></i>
+                                    </div>
+                                    <div class="timeline-event-block block">
+                                        <div class="block-header">
+                                            <h3 class="block-title">Crypto</h3>
+                                            <div class="block-options">
+                                                <div class="timeline-event-time block-options-item fs-sm">
+                                                    1 Month ago
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="block-content block-content-full">
+                                            <p class="fw-semibold mb-2">
+                                                3 New Crypto were added!
+                                            </p>
+                                            <div class="d-flex">
+                                                <a class="item item-rounded bg-info me-2" href="javascript:void(0)">
+                                                    <img style="max-width: 30px;" src="https://cdn-icons-png.flaticon.com/128/6675/6675833.png"></i>
+                                                </a>
+                                                <a class="item item-rounded bg-amethyst me-2" href="javascript:void(0)">
+                                                    <img style="max-width: 30px;" src="https://cdn-icons-png.flaticon.com/128/15301/15301760.png"></i>
+                                                </a>
+                                                <a class="item item-rounded bg-city me-2" href="javascript:void(0)">
+                                                    <img style="max-width: 30px;" src="https://cdn-icons-png.flaticon.com/128/4934/4934826.png"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <div class="login-history-container">
+                                    <h2 class="login-history-title">Your Login History</h2>
+                                    <div class="timeline-wrapper">
+                                        <ul class="timeline" id="loginHistoryTimeline">
+                                            {% for history in login_history reversed %}
+                                            <li class="timeline-event">
+                                                <div class="timeline-event-icon">
+                                                    <i class="fas fa-user-clock"></i>
+                                                </div>
+                                                <div class="timeline-event-block">
+                                                    <div class="timeline-event-header">
+                                                        <h3 class="timeline-event-title">Login</h3>
+                                                        <div class="timeline-event-time">
+                                                            {{ history.timestamp }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="timeline-event-content">
+                                                        <div class="info-row">
+                                                            <i class="fas fa-desktop"></i>
+                                                            <span>{{ history.operating_system|default:"Unknown" }} {{ history.browser|default:"Unknown" }}</span>
+                                                        </div>
+                                                        <div class="info-row">
+                                                            <i class="fas fa-mobile-alt"></i>
+                                                            <span>Device: {{ history.device_type|default:"Unknown" }} {{ history.device_name|default:"" }}</span>
+                                                        </div>
+                                                        <div class="info-row">
+                                                            <i class="fas fa-network-wired"></i>
+                                                            <span>IP: <span class="sub-text ip-address">{{ history.ip_address|default:"Unknown" }}</span></span>
+                                                        </div>
+                                                        <div class="info-row">
+                                                            <i class="fas fa-map-marker-alt"></i>
+                                                            <span>Location: <span class="location-text">Loading...</span></span>
+                                                        </div>
+                                                        <div class="country-flag"></div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% empty %}
+                                            <li class="timeline-event">
+                                                <div class="timeline-event-icon">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </div>
+                                                <div class="timeline-event-block">
+                                                    <div class="timeline-event-header">
+                                                        <h3 class="timeline-event-title">No Login History</h3>
+                                                    </div>
+                                                    <div class="timeline-event-content">
+                                                        <p>No login history available.</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+                                <script>
+                                $(document).ready(function() {
+                                    $('.timeline-event').each(function() {
+                                        var $event = $(this);
+                                        var ipAddress = $event.find('.ip-address').text();
+                                        
+                                        if (ipAddress !== "Unknown") {
+                                            $.getJSON('https://ipapi.co/' + ipAddress + '/json/', function(data) {
+                                                $event.find('.location-text').text(data.country_name || "Unknown");
+                                                
+                                                if (data.country_name) {
+                                                    $.getJSON('https://restcountries.com/v3.1/name/' + data.country_name + '?fields=flags', function(flagData) {
+                                                        if (flagData && flagData[0] && flagData[0].flags) {
+                                                            var flagUrl = flagData[0].flags.png;
+                                                            $event.find('.country-flag').html('<img src="' + flagUrl + '" alt="' + data.country_name + '" title="' + data.country_name + '">');
+                                                        }
+                                                    });
+                                                }
+                                            }).fail(function() {
+                                                $event.find('.location-text').text("Unknown");
+                                            });
+                                        } else {
+                                            $event.find('.location-text').text("Unknown");
+                                        }
+                                    });
+                                });
+                                </script>
+
+                                <style>
+                                    .login-history-container {
+                                        max-width: 800px;
+                                        margin: 30px auto;
+                                        padding: 20px;
+                                        background-color: #f8f9fa;
+                                        border-radius: 15px;
+                                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                                    }
+
+                                    .login-history-title {
+                                        margin-bottom: 20px;
+                                        font-size: 2em;
+                                        font-weight: bold;
+                                        color: #333;
+                                        text-align: center;
+                                    }
+
+                                    .timeline-wrapper {
+                                        max-height: 600px;
+                                        overflow-y: auto;
+                                    }
+
+                                    .timeline {
+                                        list-style: none;
+                                        padding: 0;
+                                        position: relative;
+                                    }
+
+                                    .timeline::before {
+                                        content: '';
+                                        position: absolute;
+                                        top: 0;
+                                        bottom: 0;
+                                        width: 2px;
+                                        background: #ddd;
+                                        left: 31px;
+                                        margin-left: -1.5px;
+                                    }
+
+                                    .timeline-event {
+                                        margin-bottom: 30px;
+                                        position: relative;
+                                    }
+
+                                    .timeline-event-icon {
+                                        width: 60px;
+                                        height: 60px;
+                                        border-radius: 50%;
+                                        background-color: #007bff;
+                                        color: #fff;
+                                        text-align: center;
+                                        line-height: 60px;
+                                        font-size: 24px;
+                                        position: absolute;
+                                        left: 0;
+                                        top: 0;
+                                        z-index: 100;
+                                    }
+
+                                    .timeline-event-block {
+                                        margin-left: 80px;
+                                        background-color: #fff;
+                                        padding: 20px;
+                                        border-radius: 10px;
+                                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                                    }
+
+                                    .timeline-event-header {
+                                        display: flex;
+                                        justify-content: space-between;
+                                        align-items: flex-start;
+                                        flex-wrap: wrap;
+                                        margin-bottom: 15px;
+                                    }
+
+                                    .timeline-event-title {
+                                        font-size: 1.3em;
+                                        font-weight: bold;
+                                        color: #333;
+                                        margin: 0;
+                                        margin-right: 10px;
+                                    }
+
+                                    .timeline-event-time {
+                                        font-size: 0.9em;
+                                        color: #666;
+                                        white-space: nowrap;
+                                    }
+
+                                    .timeline-event-content .info-row {
+                                        display: flex;
+                                        align-items: center;
+                                        margin-bottom: 10px;
+                                    }
+
+                                    .timeline-event-content .info-row i {
+                                        width: 25px;
+                                        margin-right: 10px;
+                                        color: #007bff;
+                                    }
+
+                                    .country-flag img {
+                                        width: 30px;
+                                        height: auto;
+                                        margin-top: 10px;
+                                        border-radius: 3px;
+                                        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                                    }
+
+                                    /* Scrollbar Styles */
+                                    .timeline-wrapper::-webkit-scrollbar {
+                                        width: 8px;
+                                    }
+
+                                    .timeline-wrapper::-webkit-scrollbar-track {
+                                        background: #f1f1f1;
+                                        border-radius: 10px;
+                                    }
+
+                                    .timeline-wrapper::-webkit-scrollbar-thumb {
+                                        background: #888;
+                                        border-radius: 10px;
+                                    }
+
+                                    .timeline-wrapper::-webkit-scrollbar-thumb:hover {
+                                        background: #555;
+                                    }
+
+                                    /* Responsive Styles */
+                                    @media (max-width: 768px) {
+                                        .login-history-container {
+                                            padding: 15px;
+                                        }
+
+                                        .timeline-event-icon {
+                                            width: 50px;
+                                            height: 50px;
+                                            line-height: 50px;
+                                            font-size: 20px;
+                                        }
+
+                                        .timeline-event-block {
+                                            margin-left: 65px;
+                                            padding: 15px;
+                                        }
+
+                                        .timeline-event-header {
+                                            flex-direction: column;
+                                            align-items: flex-start;
+                                        }
+
+                                        .timeline-event-time {
+                                            margin-top: 5px;
+                                        }
+
+                                        .timeline-event-content .info-row {
+                                            flex-wrap: wrap;
+                                        }
+
+                                        .timeline-event-content .info-row i {
+                                            width: 20px;
+                                            margin-right: 5px;
+                                        }
+                                    }
+
+                                    @media (max-width: 480px) {
+                                        .login-history-title {
+                                            font-size: 1.5em;
+                                        }
+
+                                        .timeline-event-icon {
+                                            width: 40px;
+                                            height: 40px;
+                                            line-height: 40px;
+                                            font-size: 16px;
+                                        }
+
+                                        .timeline-event-block {
+                                            margin-left: 50px;
+                                            padding: 10px;
+                                        }
+
+                                        .timeline-event-title {
+                                            font-size: 1.1em;
+                                        }
+
+                                        .timeline-event-time {
+                                            font-size: 0.8em;
+                                        }
+                                    }
+                                </style>
+
+
+                                <li class="timeline-event">
+                                    <div class="timeline-event-icon bg-dark">
+                                        <i class="fa fa-cog"></i>
+                                    </div>
+                                    <div class="timeline-event-block block">
+                                        <div class="block-header">
+                                            <h3 class="block-title">System</h3>
+                                            <div class="block-options">
+                                                <div class="timeline-event-time block-options-item fs-sm">
+                                                    1 Month ago
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="block-content">
+                                            <p class="fw-semibold mb-2">
+                                                App updated to v2.02
+                                            </p>
+                                            <p>Check the complete changelog at the <a href="javascript:void(0)">activity page</a>.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-event">
+                                    <div class="timeline-event-icon bg-modern">
+                                        <i class="fa fa-briefcase"></i>
+                                    </div>
+                                    <div class="timeline-event-block block">
+                                        <div class="block-header">
+                                            <h3 class="block-title">System Update</h3>
+                                            <div class="block-options">
+                                                <div class="timeline-event-time block-options-item fs-sm">
+                                                    2 months ago
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="block-content block-content-full">
+                                            <p class="fw-semibold mb-2">
+                                                4 more Crypto will be added soon
+                                            </p>
+                                            <a class="item item-rounded bg-muted" href="javascript:void(0)">
+                                                <img style="max-width: 50px;" src="https://cdn-icons-png.flaticon.com/128/9041/9041216.png">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-5 col-xl-4">
+
+                            <div class="block block-rounded">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title"><i class="fa fa-briefcase text-muted me-1"></i> Notifications</h3>
+                                    <div class="block-options">
+                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                            <i class="si si-refresh"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="block-content">
+                                    <div class="p-2 bg-body-light border-bottom text-center rounded-top">
+                                        <h5 class="dropdown-header text-uppercase">Notifications</h5>
+                                    </div>
+                                    <ul id="notifications-list" class="nav-items mb-0">
+                                        {% for obj in notifications %}
+                                            <li class="notification-item">
+                                                <a class="text-dark d-flex py-2" href="javascript:void(0)">
+                                                    <div class="flex-shrink-0 me-2 ms-3">
+                                                        <span class="avatar flex-shrink-0">
+                                                            <img alt src="{{ obj.image.url }}" style="width: 32px; height: 32px;">
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex-grow-1 pe-2">
+                                                        <div class="fw-semibold">{{ obj.name }}</div>
+                                                        <span class="fw-medium text-muted">{{ obj.subject }}</span>
+                                                        <div>{{ obj.message }}</div>
+                                                        <span class="fw-medium text-muted">{{ obj.contact_date|naturaltime }}</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <style>
+                              #notifications-list {
+                                max-height: 300px;
+                                overflow-y: auto;
+                              }
+                            </style>
+
+
+
+                            
+                            <div class="block block-rounded">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title"><i class="fa fa-share-alt text-muted me-1"></i> Referrals</h3>
+                                    <div class="block-options">
+                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                            <i class="si si-refresh"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="block-content">
+                                    <ul class="nav-items fs-sm">
+                                        {% if my_recs %}
+                                            {% for recommended_user in my_recs %}
+                                                <li>
+                                                    <a class="d-flex py-2" href="javascript:void(0)">
+                                                        <div class="flex-shrink-0 me-3 ms-2 overlay-container overlay-bottom">
+                                                            <img class="img-avatar img-avatar48" src="{{ recommended_user.user.account.picture.url }}" alt="{{ recommended_user.user.username }}" />
+                                                            <span class="overlay-item item item-tiny item-circle border border-2 border-white bg-success"></span>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <div class="fw-semibold">{{ recommended_user.user.username }}</div>
+                                                            <div class="fw-normal text-muted">Verification Status:
+                                                                {% if recommended_user.user.account.status == "VERIFIED" %}
+                                                                    <span style="color: green;">
+                                                                        {{ recommended_user.user.account.status }}
+                                                                        <i class="fa fa-check-circle" style="color: green;"></i>
+                                                                    </span>
+                                                                {% elif recommended_user.user.account.status == "UNVERIFIED" %}
+                                                                    <span style="color: red;">
+                                                                        {{ recommended_user.user.account.status }}
+                                                                        <i class="fa fa-times-circle" style="color: red;"></i>
+                                                                    </span>
+                                                                {% elif recommended_user.user.account.status == "PENDING" %}
+                                                                    <span style="color: darkgreen;">
+                                                                        {{ recommended_user.user.account.status }}
+                                                                        <i class="fa fa-exclamation-circle" style="color: darkgreen;"></i>
+                                                                    </span>
+                                                                {% else %}
+                                                                    <span style="color: red;">
+                                                                        Unknown Status
+                                                                    </span>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        {% else %}
+                                            <p>You have not recommended anyone yet</p>
+                                        {% endif %}
+                                    </ul>
+
+                                    <div class="text-center push">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary"><img alt src="https://cdn-icons-png.flaticon.com/128/16817/16817945.png" style="width: 32px; height: 32px;"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+{% endblock %}
+v

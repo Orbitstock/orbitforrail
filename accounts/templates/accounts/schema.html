@@ -1,0 +1,145 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Transactions | {{ block.super }}{% endblock title %}
+
+{% block content %}
+{% include "core/messages.html" %}
+{% load static %}
+
+    <link rel="stylesheet" href="{% static 'assets/frontend/css/styles.css' %}?var=2.1" />
+
+
+<div >
+    <div >
+        <div >
+            <div>
+                <!--Page Content-->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="site-card">
+                            <div class="site-card-header">
+                                <h2 class="title">All The Schemas</h2>
+                            </div>
+                            <div class="site-card-body">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div style="border-color: #007bff;" class="single-investment-plan">
+                                            <img class="investment-plan-icon" src="https://cdn-icons-png.flaticon.com/128/2583/2583319.png" alt="" />
+                                            <h3 class="plan-title"> Silver Plan </h3>
+                                            <p class="plan-details">2 Days 5%</p>
+                                            <ul>
+                                                <li>Investment Amount <span style="background-color: #007bff; color: white;" class="special">$500-$999</span></li>
+                                                <li>Capital Back <span>Yes</span></li>
+                                                <li>Return Type <span>Period</span></li>
+                                                <li>Profit Percentage <span>5%</span></li>
+                                                <li>Profit Withdraw <span>Anytime</span></li>
+                                            </ul>
+                                            <div class="holidays"><span class="star">*</span> No Holidays</div>
+                                            <a  style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';" href="{% url 'accounts:invest_now' %}" class="site-btn  w-100 centered"><i class="fas fa-level-up-alt"></i></i>Invest Now</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div style="border-color: #007bff;" class="single-investment-plan">
+                                            <img class="investment-plan-icon" src="https://cdn-icons-png.flaticon.com/128/2583/2583448.png" alt="" />
+                                            <h3 class="plan-title"> Bronze Plan </h3>
+                                            <p class="plan-details">4 Days 12%</p>
+                                            <ul>
+                                                <li>Investment Amount <span  style="background-color: #007bff; color: white;" class="special">$1,000-$4999</span></li>
+                                                <li>Capital Back <span>Yes</span></li>
+                                                <li>Return Type <span>Period</span></li>
+                                                <li>Profit Percentage <span>12%</span></li>
+                                                <li>Profit Withdraw <span>Anytime</span></li>
+                                            </ul>
+                                            <div class="holidays"><span class="star">*</span> No Profit Holidays</div>
+                                            <a  style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';" href="{% url 'accounts:plan_b' %}" class="site-btn  w-100 centered"><i class="fas fa-level-up-alt"></i></i>Invest Now</a>
+                                        </div>
+                                    </div>
+
+                                    <div  class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div style="border-color: #007bff;" class="single-investment-plan">
+                                            <img class="investment-plan-icon" src="https://cdn-icons-png.flaticon.com/128/5406/5406792.png" alt="" />
+                                            <h3 class="plan-title"> Gold Plan </h3>
+                                            <p class="plan-details">6 Day 15%</p>
+                                            <ul>
+                                                <li>Investment Amount <span  style="background-color: #007bff; color: white;" class="special">$5000-$29,999</span></li>
+                                                <li>Capital Back <span>Yes</span></li>
+                                                <li>Return Type <span>Period</span></li>
+                                                <li>Profit Percentage <span>15%</span></li>
+                                                <li>Profit Withdraw <span>Anytime</span></li>
+                                            </ul>
+                                            <div class="holidays"><span class="star">*</span> No Profit Holidays</div>
+                                            <a  style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';" href="{% url 'accounts:plan_c' %}" class="site-btn  w-100 centered"><i class="fas fa-level-up-alt"></i></i>Invest Now</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div style="border-color: #007bff;" class="single-investment-plan">
+                                            <img class="investment-plan-icon" src="https://cdn-icons-png.flaticon.com/128/408/408472.png" alt="" />
+                                            <h3 class="plan-title"> Diamond Plan </h3>
+                                            <p class="plan-details">9 Days 20%</p>
+                                            <ul>
+                                                <li>Investment Amount <span  style="background-color: #007bff; color: white;" class="special">$30,000-$99,999</span></li>
+                                                <li>Capital Back <span>Yes</span></li>
+                                                <li>Return Type <span>Period</span></li>
+                                                <li>Profit Percentage <span>20%</span></li>
+                                                <li>Profit Withdraw <span>Anytime</span></li>
+                                            </ul>
+                                            <div class="holidays"><span class="star">*</span> No Profit Holidays</div>
+                                            <a  style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';" href="{% url 'accounts:plan_d' %}" class="site-btn  w-100 centered"><i class="fas fa-level-up-alt"></i></i>Invest Now</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div style="border-color: #007bff;" class="single-investment-plan">
+                                            <img class="investment-plan-icon" src="https://cdn-icons-png.flaticon.com/128/3707/3707965.png" alt="" />
+                                            <h3 class="plan-title"> COMPOUNDING ADVANCED PACKAGE PLAN </h3>
+                                            <p class="plan-details">15 Days 30%</p>
+                                            <ul>
+                                                <li>Investment Amount <span  style="background-color: #007bff; color: white;" class="special">$100,000-$499,000</span></li>
+                                                <li>Capital Back <span>Yes</span></li>
+                                                <li>Return Type <span>Period</span></li>
+                                                <li>Profit Percentage <span>30%</span></li>
+                                                <li>Profit Withdraw <span>Anytime</span></li>
+                                            </ul>
+                                            <div class="holidays"><span class="star">*</span> No Profit Holidays</div>
+                                            <a  style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';" href="{% url 'accounts:plan_e' %}" class="site-btn  w-100 centered"><i class="fas fa-level-up-alt"></i></i>Invest Now</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <div style="border-color: #007bff;" class="single-investment-plan">
+                                            <img class="investment-plan-icon" src="https://cdn-icons-png.flaticon.com/128/13540/13540635.png" alt="" />
+                                            <h3 class="plan-title"> FORTUNE ADVANCED PACKAGE Plan </h3>
+                                            <p class="plan-details">21 days 35%</p>
+                                            <ul>
+                                                <li>Investment Amount <span  style="background-color: #007bff; color: white;" class="special">$500,000-UNLIMITED</span></li>
+                                                <li>Capital Back <span>Yes</span></li>
+                                                <li>Return Type <span>Period</span></li>
+                                                <li>Profit Percentage <span>35%</span></li>
+                                                <li>Profit Withdraw <span>Anytime</span></li>
+                                            </ul>
+                                            <div class="holidays"><span class="star">*</span> No Profit Holidays</div>
+                                            <a  style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';" href="{% url 'accounts:plan_f' %}" class="site-btn  w-100 centered"><i class="fas fa-level-up-alt"></i></i>Invest Now</a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
