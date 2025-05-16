@@ -1,0 +1,1733 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Orbit Stock Index - Your Trusted Crypto Investment Partner</title>
+    <meta name="description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="og:title" content="Orbit Stock Index - Your Trusted Crypto Investment Partner" />
+    <meta property="og:description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="twitter:title" content="Orbit Stock Index - Your Trusted Crypto Investment Partner" />
+    <meta property="twitter:description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="og:type" content="website" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Webflow" name="generator" />
+    <link rel="stylesheet" href="{% static 'asseton/css/vendor.bundlef86ef86e.css' %}">
+    <link rel="stylesheet" href="{% static 'asseton/css/stylef86ef86e.css' %}">    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="icon" type="image/png" sizes="32x32" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="icon" type="image/png" sizes="16x16" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="manifest" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="mask-icon" color="#5bbad5" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="apple-touch-icon" />
+
+    
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = 'a6d859bc78e1dd7855b3860d122e62897dcd21b4';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+</head>
+
+
+
+
+
+<body class="nk-body body-wider bg-light">
+    <div class="nk-wrap">
+        <header class="nk-header page-header is-transparent is-sticky is-shrink">
+            <!-- Header @s -->
+            <div class="header-main">
+                <div class="header-container container">
+                    <div class="header-wrap">
+
+
+
+                        <!-- Logo @s -->
+                        <div class="header-logo logo animated fadeInDown" data-animate="fadeInDown" data-delay=".6" style="visibility: visible; animation-delay: 0.6s;">
+                            <a href="/" class="logo-link">
+                                <img class="logo-dark" src="{% static 'images/ss1.png' %}"   style='width:200px;height:auto; '>
+                                <img class="logo-light" src="{% static 'images/ss2.png' %}"  style='width:200px;height:auto; ' >
+                            </a>
+                        </div>
+
+                        <!-- Menu Toogle @s -->
+                        <div class="header-nav-toggle">
+                            <a href="#" class="navbar-toggle" data-menu-toggle="header-menu">
+                                <div class="toggle-line">
+                                    <span></span>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Menu @s -->
+                        <div class="header-navbar animated fadeInDown" data-animate="fadeInDown" data-delay=".75" style="visibility: visible; animation-delay: 0.75s;">
+                            <nav class="header-menu" id="header-menu">
+                                <ul class="menu">
+                                    <li class="menu-item ">
+                                        <a href="/">Home</a>
+
+                                    </li>
+
+                                    <li class="menu-item has-sub">
+                                        <a class="menu-link nav-link menu-toggle" href="{% url 'about' %}">About</a>
+                                        <ul class="menu-sub menu-drop menu-mega menu-mega-2clmn">
+                                            <div class="menu-mega-innr">
+                                                <ul class="menu-mega-list">
+                                                    <li class="menu-item">
+                                                        <a class="menu-link nav-link" href="{% url 'about' %}">About Us</a>
+                                                    </li>
+
+
+
+                                                    <li class="menu-item">
+                                                        <a class="menu-link nav-link" href="{% url 'security' %}">Security
+                                                            <span class="badge badge-dot"></span>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </ul>
+                                    </li>
+
+                                    <!-- <li class="menu-item ">
+                                        <a href="?a=pricing">Plans </a>
+
+                                    </li>-->
+
+                                    <li class="menu-item has-sub">
+                                        <a class="menu-link nav-link menu-toggle" href="#">Resources</a>
+                                        <div class="menu-sub menu-drop menu-mega menu-mega-2clmn">
+                                            <div class="menu-mega-innr">
+                                                <ul class="menu-mega-list">
+                                                    <li class="menu-item">
+                                                        <a href="{% url 'plan' %}">Online chart</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a href="{% url 'service' %}">Market</a>
+                                                    </li>
+
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="menu-item">
+                                        <a href="{% url 'faq' %}">FAQs</a>
+                                    </li>
+
+
+                                    <li class="menu-item">
+                                        <a href="{% url 'contact_us' %}">Contact</a>
+                                    </li>
+
+                                </ul>
+                                <ul class="menu-btns">
+                                    <li>
+                                        <a href="{% url 'accounts:login' %}" class="btn btn-md btn-auto btn-grad no-change">
+                                            <span>Sign In</span>
+                                        </a>
+
+                                        <a href="{% url 'accounts:register' %}" class="btn btn-md btn-auto btn-grad no-change">
+                                                <span>Signup</span>
+                                            </a>
+                                    </li>
+                                </ul>
+
+
+
+
+
+
+
+                            </nav>
+                            <div class="header-navbar-overlay"></div>
+                        </div>
+
+                        <!-- .header-navbar @e -->
+                    </div>
+                </div>
+            </div>
+            <!-- .header-main @e -->
+            <!-- Banner @s -->
+            <div class="header-banner bg-theme-grad">
+                <div class="nk-banner">
+                    <div class="banner banner-fs banner-single banner-gap-b2">
+                        <div class="banner-wrap">
+                            <div class="container">
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col-lg-5 order-lg-last">
+                                        <div class="banner-gfx banner-gfx-re-s1 animated" data-animate="fadeInUp" data-delay=".9">
+
+                                        </div>
+                                    </div>
+                                    <!-- .col -->
+                                    <div class="col-lg-7 col-sm-10 text-center text-lg-left">
+                                        <div class="banner-caption cpn tc-light">
+                                            <div class="cpn-head">
+                                                <h1 class="title animated" data-animate="fadeInUp" data-delay="1">The Home of
+                                                    <br class="d-none d-md-block"> Digital Asset Investment
+                                                </h1>
+                                            </div>
+                                            <div class="cpn-text">
+                                                <p class="animated" data-animate="fadeInUp" data-delay="1.1">Take charge of your tomorrow by starting your today with an investment with   Orbit Stock Index</p>
+                                            </div>
+                                            <div class="cpn-action">
+                                                <div class="cpn-btns animated" data-animate="fadeInUp" data-delay="1.2">
+                                                    <a class="btn btn-grad" href="{% url 'accounts:register' %}">Open an account</a>
+                                                </div>
+
+                                            </div>
+                                                                    
+                                            <br>
+                                        <div style="color: white;" id="google_translate_element"></div>
+                                        <script type="text/javascript">
+                                            function googleTranslateElementInit() {
+                                                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                                            }
+                                        </script>
+                                        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+     
+                                        </div>
+                                    </div>
+                                    <!-- .col -->
+                                </div>
+                                <!-- .row -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .nk-banner -->
+                <div class="nk-ovm mask-a shape-a"></div>
+                <!-- Place Particle Js -->
+                <div id="particles-bg" class="particles-container particles-bg"></div>
+            </div>
+            <!-- .header-banner @e -->
+        </header>
+
+
+
+
+
+
+        <main class="nk-pages">
+            <section class="section no-pd text-center over-up">
+                <h6 class="title title-xs tc-secondary pdb-s animated" data-animate="fadeInUp" data-delay=".8">Company Rating</h6>
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text"></span></a> </div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                        {
+                            "symbols": [{
+                                    "proName": "FOREXCOM:SPXUSD",
+                                    "title": "S&P 500"
+                                },
+                                {
+                                    "proName": "FOREXCOM:NSXUSD",
+                                    "title": "Nasdaq 100"
+                                },
+                                {
+                                    "proName": "FX_IDC:EURUSD",
+                                    "title": "EUR/USD"
+                                },
+                                {
+                                    "proName": "BITSTAMP:BTCUSD",
+                                    "title": "BTC/USD"
+                                },
+                                {
+                                    "proName": "BITSTAMP:ETHUSD",
+                                    "title": "ETH/USD"
+                                }
+                            ],
+                            "showSymbolLogo": true,
+                            "colorTheme": "light",
+                            "isTransparent": false,
+                            "displayMode": "adaptive",
+                            "locale": "en"
+                        }
+                    </script>
+                </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </section>
+                <!--================Choose Bitcoin Area =================-->
+
+    <main class="nk-pages">
+
+
+<section class="pric-sec1 section section-l section-pricing bg-light">
+    <div class="container">
+        <div class="main_title">
+            <h2>Plans</h2>
+        </div>
+        <h6 style="color: black;">Our Investment Plans</h6>
+        <br />
+        <div class="row pricing-cards">
+            <div class="row pricing-cards">
+                <div class="col-lg-4 animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="visibility: visible; animation-delay: 0.2s; /* background-color: blue; */">
+                    <div class="card mb-5 mb-lg-4" style="background-image: linear-gradient(#f9b81f, #c09328);">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted text-uppercase text-center">PLAN A</h5>
+                            <h2 class="card-price text-center">
+                                <span class="plan_currency">5</span>
+                                <span id="plan_advanced_price">%</span>
+                                <span class="period" style="font-size: 0.8rem;"> 2 DAYS</span>
+                            </h2>
+                            <hr />
+                            <ul class="fa-ul">
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <strong>Minimum </strong> : $500
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <strong>Maximum</strong> : $999
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <strong>Tenure</strong> : 2 DAYS
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    PRINCIPAL RETURN
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    Refertal Commission : 5%
+                                </li>
+
+                                <hr style="width: 215px; position: center; position: relative;" />
+                            </ul>
+                            <a href="?a=signup" class="btn btn-grad">Start Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="visibility: visible; animation-delay: 0.2s;">
+                    <div class="card mb-5 mb-lg-4">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted text-uppercase text-center">PLAN B</h5>
+                            <h2 class="card-price text-center">
+                                <span class="plan_currency">12</span>
+                                <span id="plan_advanced_price">%</span>
+                                <span class="period" style="font-size: 0.8rem;">3 DAYS</span>
+                            </h2>
+                            <hr />
+                            <ul class="fa-ul">
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <strong>Minimum </strong> : $1000
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <strong>Maximum</strong> : $4999
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <strong>Tenure</strong> : 4 DAYS
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    PRINCIPAL RETURN
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    Refertal Commission : 5%
+                                </li>
+
+                                <hr style="width: 215px; position: center; position: relative;" />
+                            </ul>
+                            <a href="?a=signup" class="btn btn-grad">Start Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="visibility: visible; animation-delay: 0.2s; /* background-color: blue; */">
+                    <div class="card mb-5 mb-lg-4" style="background-image: linear-gradient(#f9b81f, #c09328);">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted text-uppercase text-center">PLAN C</h5>
+                            <h2 class="card-price text-center">
+                                <span class="plan_currency">15</span>
+                                <span id="plan_advanced_price">%</span>
+                                <span class="period" style="font-size: 0.8rem;"> 6 DAYS </span>
+                            </h2>
+                            <hr />
+                            <ul class="fa-ul">
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <strong>Minimum </strong> : $5,000
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <strong>Maximum</strong> : $9999
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <strong>Tenure</strong> : 6 DAYS
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    PRINCIPAL RETURN
+                                </li>
+                                <li>
+                                    <span class="fa-li">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    Refertal Commission : 5%
+                                </li>
+
+                                <hr style="width: 215px; position: center; position: relative;" />
+                            </ul>
+                            <a href="?a=signup" class="btn btn-grad">Start Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        <div class="row pricing-cards">
+            <div class="col-lg-4 animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="visibility: visible; animation-delay: 0.2s; /* background-color: blue; */">
+                <div class="card mb-5 mb-lg-4" style="background-color: to right, #f9b81f 0%, #c09328 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted text-uppercase text-center">PLAN D</h5>
+                        <h2 class="card-price text-center">
+                            <span class="plan_currency">20 </span>
+                            <span id="plan_advanced_price">%</span>
+                            <span class="period" style="font-size: 0.8rem;"> 9 Days </span>
+                        </h2>
+                        <hr />
+                        <ul class="fa-ul">
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <strong>Minimum </strong> : $30,000
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <strong>Maximum</strong> : $99.999
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <strong>Tenure</strong> : 9 Days
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                PRINCIPAL RETURN
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                Refertal Commission : 5%
+                            </li>
+
+                            <hr style="width: 215px; position: center; position: relative;" />
+                        </ul>
+                        <a href="?a=signup" class="btn btn-grad">Start Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="visibility: visible; animation-delay: 0.2s; /* background-color: blue; */">
+                <div class="card mb-5 mb-lg-4" style="background-image: linear-gradient(#f9b81f, #c09328);">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted text-uppercase text-center">Compounding advanced package (I)</h5>
+                        <h2 class="card-price text-center">
+                            <span class="plan_currency">30</span>
+                            <span id="plan_advanced_price">%</span>
+                            <span class="period" style="font-size: 0.8rem;"> 15days </span>
+                        </h2>
+                        <hr />
+                        <ul class="fa-ul">
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <strong>Minimum </strong> : $100,000
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <strong>Maximum</strong> : $499,999
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <strong>Tenure</strong> : 15days
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                PRINCIPAL RETURN
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                Refertal Commission : 5%
+                            </li>
+
+                            <hr style="width: 215px; position: center; position: relative;" />
+                        </ul>
+                        <a href="?a=signup" class="btn btn-grad">Start Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="visibility: visible; animation-delay: 0.2s; /* background-color: blue; */">
+                <div class="card mb-5 mb-lg-4" style="background-color: to right, #f9b81f 0%, #c09328 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted text-uppercase text-center">Fortune Advanced package</h5>
+                        <h2 class="card-price text-center">
+                            <span class="plan_currency">35</span>
+                            <span id="plan_advanced_price">%</span>
+                            <span class="period" style="font-size: 0.8rem;"> 21 days </span>
+                        </h2>
+                        <hr />
+                        <ul class="fa-ul">
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <strong>Minimum </strong> : $500,000
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <strong>Maximum</strong> : UNLIMITED
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <strong>Tenure</strong> : 21 days
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                PRINCIPAL RETURN
+                            </li>
+                            <li>
+                                <span class="fa-li">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                Refertal Commission : 5%
+                            </li>
+
+                            <hr style="width: 215px; position: center; position: relative;" />
+                        </ul>
+                        <a href="?a=signup" class="btn btn-grad">Start Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div></div>
+</section>
+
+        <!--plan end -->
+
+
+
+
+
+
+
+
+
+
+
+        <section class="section section-features bg-white" id="why">
+            <div class="container">
+                <!-- Block @s -->
+                <div class="nk-block nk-block-features-s2">
+                    <div class="section-head">
+                        <h2 class="title animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="visibility: visible; animation-delay: 0.2s;">Key features of  Orbit Stock Index</h2>
+                        <p class="animated fadeInUp" data-animate="fadeInUp" data-delay=".3" style="visibility: visible; animation-delay: 0.3s;">We believe in a new world,  Orbit Stock Index is a perfect option for those who wants to earn massive income from trading account with very low risk. </p>
+                    </div>
+                    <div class="row align-items-center flex-row-reverse">
+
+                        <!-- .col -->
+                        <div class="col-lg-7">
+                            <!-- Section Head @s -->
+
+                            <!-- .section-head @e -->
+                            <div class="features-list mr-4 mgb-m30">
+                                <div class="feature feature-s2 animated fadeInUp" data-animate="fadeInUp" data-delay=".4" style="visibility: visible; animation-delay: 0.4s;">
+                                    <div class="feature-icon dot">
+                                        <em class="icon ikon ikon-data-server"></em>
+                                    </div>
+                                    <div class="feature-text">
+                                        <h5 class="title title-sm">EXPERIENCED TRADING & ANALYSIS TEAM</h5>
+                                        <p>Orbit Stock Index team comprises seasoned professionals with extensive expertise in Forex and crypto trading and analysis. Our team boasts an impressive track record, with a success rate of over 70% on our trading signals. Partner with us and leverage our expertise to maximize your earnings and growth potential.</p>
+                                    </div>
+                                </div>
+                                <div class="feature feature-s2 animated fadeInUp" data-animate="fadeInUp" data-delay=".5" style="visibility: visible; animation-delay: 0.5s;">
+                                    <div class="feature-icon dot">
+                                        <em class="icon ikon ikon-user"></em>
+                                    </div>
+                                    <div class="feature-text">
+                                        <h5 class="title title-sm">VALUE-BASED PLAN & OUTSTANDING SERVICE PERFORMANCE</h3>
+                                                    <p>We are dedicated to delivering exceptional service to our valued clients. We take pride in offering affordable and effective investment solutions that empower anyone to achieve success in trading. Visit our Pricing Plan section to explore our investment options.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="feature feature-s2 animated fadeInUp" data-animate="fadeInUp" data-delay=".6" style="visibility: visible; animation-delay: 0.6s;">
+                                    <div class="feature-icon dot">
+                                        <em class="icon ikon ikon-shiled-alt"></em>
+                                    </div>
+                                    <div class="feature-text">
+                                        <h5 class="title title-sm">DATA SECURITY</h5>
+                                        <p> Orbit Stock Index is committed to providing clients a secure environment to invest. Data protection and safekeeping of clients assets are our priority.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                        <div class="col-lg-5">
+                            <div class="gfx py-4 animated fadeInUp" data-animate="fadeInUp" data-delay=".1" style="visibility: visible; animation-delay: 0.1s;">
+                                <img src="https://dist.neo4j.com/wp-content/uploads/20180109025607/import-bitcoin-blockchain-neo4j-graph-database.gif" alt="gfx">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .row -->
+                </div>
+                <!-- .block @e -->
+            </div>
+        </section>
+
+        <section class="section section-problem bg-light" id="problem">
+            <div class="container">
+                <!-- Section Head @s -->
+                <div class="section-head text-center wide-auto-sm">
+                    <h2 class="title animated fadeInUp" data-animate="fadeInUp" data-delay=".1" style="visibility: visible; animation-delay: 0.1s;">Why Choose Us</h2>
+                    <p class="animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="visibility: visible; animation-delay: 0.2s;">We provide Ultra-fast trading capabilities designed to optimize user experience empowered by modern technologies and expert research.</p>
+                </div>
+                <!-- .section-head @e -->
+                <!-- Block @s -->
+                <div class="nk-block nk-block-problems tc-light">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-lg-6">
+                            <div class="feature boxed boxed-lg bg-theme no-mg split-lg-left split-left animated fadeInUp" data-animate="fadeInUp" data-delay=".3" style="visibility: visible; animation-delay: 0.3s;">
+                                <div class="nk-block-text">
+                                    <h6 class="title title-xs tc-primary animated fadeInUp" data-animate="fadeInUp" data-delay=".1" style="visibility: visible; animation-delay: 0.1s;">Intuitive Dashboard</h6>
+                                    <h2 class="title animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="visibility: visible; animation-delay: 0.2s;">Introducing User Friendly Dashboard</h2>
+                                    <p class="animated fadeInUp" data-animate="fadeInUp" data-delay=".3" style="visibility: visible; animation-delay: 0.3s;">We designed the dashboard to deliver a comprehensive and transparent view of investment performance, empowering investors to make informed decisions and execute effective portfolio management strategies.</p>
+                                    <ul class="list list-check animated fadeInUp" data-animate="fadeInUp" data-delay=".4" style="visibility: visible; animation-delay: 0.4s;">
+                                        <li>Fully manage KYC application process.</li>
+                                        <li>Instant Payment Gateway and Payment option.</li>
+                                        <li>Analytics reports, secured Data and others.</li>
+                                        <li>Worldwide access. Anytime and anywhere.</li>
+                                        <li>Mobile Friendly and Support all modern browser.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                        <div class="col-lg-6">
+                            <div class="feature-group bg-theme-alt split-right split-lg animated fadeInUp" data-animate="fadeInUp" data-delay=".4" style="visibility: visible; animation-delay: 0.4s;">
+                                <div class="feature boxed bg-white-10">
+                                    <div class="feature-text">
+                                        <h4 class="title title-md">Innovative platform</h4>
+                                        <p>At  Orbit Stock Index, innovation is the standard. Our investment platform is at the forefront of the industry but we are not content to stop improving. We are continuously expanding our services.</p>
+                                    </div>
+                                </div>
+                                <div class="feature boxed bg-white-2">
+                                    <div class="feature-text">
+                                        <h4 class="title title-md">24/7 customer support</h4>
+                                        <p>We offer premium customer support, providing swift and dedicated assistance to our clients. Our support team is constantly monitored to ensure seamless and efficient service delivery guaranteeing an exceptional customer experience.</p>
+                                    </div>
+                                </div>
+                                <div class="feature boxed bg-black-10">
+                                    <div class="feature-text">
+                                        <h4 class="title title-md">Investment fees </h4>
+                                        <p>We provide a detailed breakdown of our fees on our pricing page, empowering you to estimate your return on investment (ROI) and make informed decisions with confidence. Our goal is to deliver clarity and visibility, maximizing your investment potential.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                    </div>
+                    <!-- .row -->
+                </div>
+                <!-- .block @e -->
+            </div>
+        </section>
+        <!-- // -->
+
+
+        <section class="section section-solution bg-white pt-5" id="solution">
+            <div class="container">
+                <!-- Section Head @s -->
+                <div class="section-head text-center wide-auto-sm">
+                    <h2 class="title animated fadeInUp" data-animate="fadeInUp" data-delay=".1" style="visibility: visible; animation-delay: 0.1s;">Resources</h2>
+                    <p class="animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="visibility: visible; animation-delay: 0.2s;">We are creating modular software, blockchain apps & other market tool to suit investors</p>
+                </div>
+                <!-- .section-head @e -->
+                <!-- Block @s -->
+                <div class="nk-block nk-block-token mgb-m30">
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <div class="text-center">
+                                <div class="tradingview-widget-container" style="text-align: center; margin-bottom:10px;">
+                                    <div class="tradingview-widget-container__widget"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                                        {
+                                            "colorTheme": "light",
+                                            "dateRange": "12M",
+                                            "showChart": true,
+                                            "locale": "en",
+                                            "largeChartUrl": "",
+                                            "isTransparent": false,
+                                            "showSymbolLogo": true,
+                                            "width": "100%",
+                                            "height": "450",
+                                            "plotLineColorGrowing": "rgba(33, 150, 243, 1)",
+                                            "plotLineColorFalling": "rgba(33, 150, 243, 1)",
+                                            "gridLineColor": "rgba(240, 243, 250, 1)",
+                                            "scaleFontColor": "rgba(120, 123, 134, 1)",
+                                            "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
+                                            "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
+                                            "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
+                                            "tabs": [{
+                                                "title": "Cryptocurrency",
+                                                "symbols": [{
+                                                        "s": "COINBASE:BTCUSD"
+                                                    },
+                                                    {
+                                                        "s": "COINBASE:ETHUSD"
+                                                    },
+                                                    {
+                                                        "s": "COINBASE:LTCUSD"
+                                                    },
+                                                    {
+                                                        "s": "COINBASE:BCHUSD"
+                                                    },
+                                                    {
+                                                        "s": "BITFINEX:XRPUSD"
+                                                    },
+                                                    {
+                                                        "s": "BITFINEX:LINKUSD"
+                                                    },
+                                                    {
+                                                        "s": "BITFINEX:TRXUSD"
+                                                    }
+                                                ]
+                                            }]
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="text-center ">
+                                <div class="gfx py-4 animated fadeInUp" data-animate="fadeInUp" data-delay=".1" style="visibility: visible; animation-delay: 0.1s;">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl_XNiphUnw5t2a_sInlyga-ftQYAnaYPvIQ&usqp=CAU" style="max-width: 100%;" alt="gfx">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- .block @e -->
+            </div>
+        </section>
+        <!-- // -->
+        <!-- // -->
+
+
+
+
+
+
+
+
+
+
+        <div class="section-full  p-t80 p-b80 bg-gray">
+            <div class="container">
+                <div class="section-head text-center"> <span class="wt-title-subline font-16 text-gray-dark m-b15"></span>
+                    <h2 class="text-uppercase">deposits/withdrawals</h2>
+                    <div class="wt-separator-outer">
+                        <div class="wt-separator bg-primary"></div>
+                    </div>
+                    <p></p>
+                </div>
+                <div class="table-responsive" style="height:400px; overflow-y:auto; overflow-x:auto;">
+                    <marquee direction="down" height="100%">
+                        <table class="table" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Amount(USD)</th>
+                                    <th class="text-center">Wallet</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$10,000.00</td>
+                                    <td class="text-center"> 3a17c5984af22cd7a443f14457841b3b19a51ea75a30e18bc6a82e4f8732dbca </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-warning btn-sm"><span class="btn-label"><i class="fa fa-warning"></i></span>Pending</button>
+                                    </td>
+                                    <td class="text-center">$51,000.00</td>
+                                    <td class="text-center"> 8a2b9781aa4995625af7d2b008f020ac74e7e0d2a599e93ed995f7c3bc2be9f2 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$24,100.00</td>
+                                    <td class="text-center"> f007e92cc9f82ba9c8c40c481eec7315fa9abcd85e7249a6cb57e38a2cf22d3e </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$4,000.00</td>
+                                    <td class="text-center"> 8a2b9781aa4995625af7d2b008f020ac74e7e0d2a599e93ed995f7c3bc2be9f2 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$500</td>
+                                    <td class="text-center"> 00db85ef40da34f3ea76aa60f0b2053eec2d90121e450791c18d8edbfedde6f1 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$240,000</td>
+                                    <td class="text-center"> b21a418a44ed8b56118facefe7aa8d26541dff811b8a8ca65cfa1346d62c5c48 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$17,000</td>
+                                    <td class="text-center"> 1e652d2899a1d058a20041a9faaeb5dc009101ca412ff09c387e6b281bd1db8b </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-warning btn-sm"><span class="btn-label"><i class="fa fa-warning"></i></span>Pending</button>
+                                    </td>
+                                    <td class="text-center">$51,000</td>
+                                    <td class="text-center"> 6a49e66a66f75e72e6bd383ac798792af204a6693708912ad0d48e363a2ab7a7 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$21,000</td>
+                                    <td class="text-center"> 8a2b9781aa4995625af7d2b008f020ac74e7e0d2a599e93ed995f7c3bc2be9f2 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-warning btn-sm"><span class="btn-label"><i class="fa fa-warning"></i></span>Pending</button>
+                                    </td>
+                                    <td class="text-center">$6,000</td>
+                                    <td class="text-center"> 797ba039291417fdbdb411ea0a102d23090cde9ac7799ff605f40b5db484891d </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$9,000</td>
+                                    <td class="text-center"> f0b66ce7a33bbc63bf50050beaf52be71709c359aa1d344bb90f943690485661 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$23,000</td>
+                                    <td class="text-center"> 2083e95ada3c584471ba5982e16c5dc2a6e464d3c170555ea8c708668be9383b </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$51,000</td>
+                                    <td class="text-center"> 8a2b9781aa4995625af7d2b008f020ac74e7e0d2a599e93ed995f7c3bc2be9f2 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$5,000</td>
+                                    <td class="text-center"> 8a2b9781aa4995625af7d2b008f020ac74e7e0d2a599e93ed995f7c3bc2be9f2 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">5,000</td>
+                                    <td class="text-center"> 15c3a97edbd606bd1e455aa2875677f5c6cd2b804e9054e898f640d313e39781 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-warning btn-sm"><span class="btn-label"><i class="fa fa-warning"></i></span>Pending</button>
+                                    </td>
+                                    <td class="text-center">$18,000</td>
+                                    <td class="text-center"> 66c13496e9d53a2402fd49bbe91df298164472679cc868bbfebbabb4844d784c </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$2,500</td>
+                                    <td class="text-center"> ce972a6b82135fcba0890ea0c8668bdddf782fd580672daa6616c3b1af40ca9f </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$9,000</td>
+                                    <td class="text-center"> 376e809b02e6ef044f6d5cf5b72111f25f3c3e16a93dce865a178e2e0f5c484c </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-warning btn-sm"><span class="btn-label"><i class="fa fa-warning"></i></span>Pending</button>
+                                    </td>
+                                    <td class="text-center">$43,000</td>
+                                    <td class="text-center"> aa14458f8082d9c4265ef491ca0b5d4801c16bbf7a4aece7b70a0b4824ffdfea </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$10,000.00</td>
+                                    <td class="text-center"> 3a17c5984af22cd7a443f14457841b3b19a51ea75a30e18bc6a82e4f8732dbca </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-warning btn-sm"><span class="btn-label"><i class="fa fa-warning"></i></span>Pending</button>
+                                    </td>
+                                    <td class="text-center">$51,000.00</td>
+                                    <td class="text-center"> 8a2b9781aa4995625af7d2b008f020ac74e7e0d2a599e93ed995f7c3bc2be9f2 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$24,100.00</td>
+                                    <td class="text-center"> f007e92cc9f82ba9c8c40c481eec7315fa9abcd85e7249a6cb57e38a2cf22d3e </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$4,000.00</td>
+                                    <td class="text-center"> 8a2b9781aa4995625af7d2b008f020ac74e7e0d2a599e93ed995f7c3bc2be9f2 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$500</td>
+                                    <td class="text-center"> 00db85ef40da34f3ea76aa60f0b2053eec2d90121e450791c18d8edbfedde6f1 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$240,000</td>
+                                    <td class="text-center"> b21a418a44ed8b56118facefe7aa8d26541dff811b8a8ca65cfa1346d62c5c48 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$17,000</td>
+                                    <td class="text-center"> 1e652d2899a1d058a20041a9faaeb5dc009101ca412ff09c387e6b281bd1db8b </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-warning btn-sm"><span class="btn-label"><i class="fa fa-warning"></i></span>Pending</button>
+                                    </td>
+                                    <td class="text-center">$51,000</td>
+                                    <td class="text-center"> 6a49e66a66f75e72e6bd383ac798792af204a6693708912ad0d48e363a2ab7a7 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$21,000</td>
+                                    <td class="text-center"> 8a2b9781aa4995625af7d2b008f020ac74e7e0d2a599e93ed995f7c3bc2be9f2 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-success btn-sm"><span class="btn-label"><i class="fa fa-check"></i></span>confirmed</button>
+                                    </td>
+                                    <td class="text-center">$6,000</td>
+                                    <td class="text-center"> 797ba039291417fdbdb411ea0a102d23090cde9ac7799ff605f40b5db484891d </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$9,000</td>
+                                    <td class="text-center"> f0b66ce7a33bbc63bf50050beaf52be71709c359aa1d344bb90f943690485661 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$23,000</td>
+                                    <td class="text-center"> 2083e95ada3c584471ba5982e16c5dc2a6e464d3c170555ea8c708668be9383b </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$51,000</td>
+                                    <td class="text-center"> 8a2b9781aa4995625af7d2b008f020ac74e7e0d2a599e93ed995f7c3bc2be9f2 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$5,000</td>
+                                    <td class="text-center"> 8a2b9781aa4995625af7d2b008f020ac74e7e0d2a599e93ed995f7c3bc2be9f2 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">5,000</td>
+                                    <td class="text-center"> 15c3a97edbd606bd1e455aa2875677f5c6cd2b804e9054e898f640d313e39781 </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-warning btn-sm"><span class="btn-label"><i class="fa fa-warning"></i></span>Pending</button>
+                                    </td>
+                                    <td class="text-center">$18,000</td>
+                                    <td class="text-center"> 66c13496e9d53a2402fd49bbe91df298164472679cc868bbfebbabb4844d784c </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$2,500</td>
+                                    <td class="text-center"> ce972a6b82135fcba0890ea0c8668bdddf782fd580672daa6616c3b1af40ca9f </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$9,000</td>
+                                    <td class="text-center"> 376e809b02e6ef044f6d5cf5b72111f25f3c3e16a93dce865a178e2e0f5c484c </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn btn-warning btn-sm"><span class="btn-label"><i class="fa fa-warning"></i></span>Pending</button>
+                                    </td>
+                                    <td class="text-center">$43,000</td>
+                                    <td class="text-center"> aa14458f8082d9c4265ef491ca0b5d4801c16bbf7a4aece7b70a0b4824ffdfea </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$10,000.00</td>
+                                    <td class="text-center"> 3a17c5984af22cd7a443f14457841b3b19a51ea75a30e18bc6a82e4f8732dbca </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$10,000.00</td>
+                                    <td class="text-center"> 3a17c5984af22cd7a443f14457841b3b19a51ea75a30e18bc6a82e4f8732dbca </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$10,000.00</td>
+                                    <td class="text-center"> 3a17c5984af22cd7a443f14457841b3b19a51ea75a30e18bc6a82e4f8732dbca </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$10,000.00</td>
+                                    <td class="text-center"> 3a17c5984af22cd7a443f14457841b3b19a51ea75a30e18bc6a82e4f8732dbca </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$10,000.00</td>
+                                    <td class="text-center"> 3a17c5984af22cd7a443f14457841b3b19a51ea75a30e18bc6a82e4f8732dbca </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$10,000.00</td>
+                                    <td class="text-center"> 3a17c5984af22cd7a443f14457841b3b19a51ea75a30e18bc6a82e4f8732dbca </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$1000.00</td>
+                                    <td class="text-center"> 3a17c5984af22cd7a443f14457841b3b19a51ea75a30e18bc6a82e4f8732dbca </td>
+                                </tr>
+                                <td class="text-center">
+                                    <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                </td>
+                                <td class="text-center">$123,000.00</td>
+                                <td class="text-center"> 3a17c5984af22cd7a443f14457841b3b19a51ea75a30e18bc6a82e4f8732dbca </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button class="btn
+                                            btn-info btn-sm"><span class="btn-label"><i class="fa
+                                            fa-check"></i></span>Confirmed</button>
+                                    </td>
+                                    <td class="text-center">$10,000.00</td>
+                                    <td class="text-center"> 3a17c5984af22cd7a443f14457841b3b19a51ea75a30e18bc6a82e4f8732dbca </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+        <!--================End Trending Area Area =================-->
+
+
+
+
+
+
+
+
+
+
+
+        <section class="bg-theme bg-pattern-dots" id="tokens">
+            <div class="section section-tokensale tc-light">
+                <div class="container">
+                    <!-- Section Head @s -->
+                    <div class="section-head text-center wide-auto">
+                        <h2 class="title animated" data-animate="fadeInUp" data-delay=".1"> Orbit Stock Index Statistics</h2>
+                        <p class="animated" data-animate="fadeInUp" data-delay=".2">Our achievements with a realworld use case created on the blockchain network.</p>
+                        REGIONAL REPRESENTATIVE PROGRAM If you have 50plus active direct and indirect referrals under your link,   Orbit Stock Index rewards you with the offer of a Regional Representaпїѕve which enпїѕtles you to an all expense paid trip to the company Headquarters,
+                        you will get to meet the Company’s CEO and Shareholders. Finally, you will be paid $2,000 every month for a job well done
+                    </div>
+                    <!-- .col -->
+
+
+<style>
+    .totall{
+        justify-content:center; right;
+        right: -300px;
+
+    }
+@media (max-width: 768px) {
+    .totall{
+        justify-content:center;
+        right: 5px;
+
+}
+</style>
+
+                    <div  class="col-lg-5 totall">
+                        <div class="animated" data-animate="fadeInUp" data-delay=".4">
+                            <div class="token-status bg-theme">
+                                <h4 class="title title-md">Yearly Turn over</h4>
+                                <div class="token-countdown countdown" data-date="2020/11/15"></div>
+                                <div class="progress-wrap progress-wrap-point">
+                                    <span class="progress-info">Withdrawals so far
+                                                    <span>$31,418,326</span>
+                                    </span>
+                                    <div class="progress-bar">
+                                        <div class="progress-percent bg-grad" data-percent="70"></div>
+                                        <div class="progress-point progress-point-1">Last Year
+                                            <span>$47.2m</span>
+                                        </div>
+                                        <div class="progress-point progress-point-2" style="left: 70%;">Now
+                                            <span>$31.4m</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{% url 'accounts:register' %}" class="btn btn-grad">Open an account </a>
+
+                            </div>
+                            <div class="bonus bg-theme">
+                                <div class="bonus-info" style="width:100%;">
+                                    <div class="bonus-percent">10%
+                                        <small>Bonus</small>
+                                    </div>
+                                    <div class="bonus-date">Referral</div>
+                                    <span class="bonus-badge badge-xs">Now</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .col -->
+                </div>
+                <!-- .row -->
+            </div>
+            <!-- .block @e -->
+            </div>
+            </div>
+        </section>
+       
+
+
+        <section class="section tc-light bg-theme-grad" id="admin-intro">
+            <div class="container">
+                <style>
+                    .label-13XFthDT.snap-3jwwmr9K.end-1tjyjlqO {
+                        visibility: hidden !important;
+                    }
+                </style>
+                <!-- Block @s -->
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container" style="text-align: center;">
+
+                    <div class="tradingview-widget-container__widget"></div>
+
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                        {
+                            "width": "97%",
+                            "height": 590,
+                            "defaultColumn": "overview",
+                            "screener_type": "crypto_mkt",
+                            "displayCurrency": "USD",
+                            "colorTheme": "light",
+                            "locale": "en"
+                        }
+                    </script>
+                </div>
+                <!-- TradingView Widget END -->
+                <!-- .block @e -->
+            </div>
+        </section>
+        <!-- // -->
+
+        <section class="section section-m section-partners bg-light" id="partners">
+            <div class="container">
+                <!-- Block @s -->
+                <div class="nk-block block-partners">
+                    <h6 class="title title-xs tc-primary text-center animated" data-animate="fadeInUp" data-delay=".1">Our Partners</h6>
+                    <ul class="partner-list flex-lg-nowrap">
+                        
+                        <li class="partner-logo animated" data-animate="fadeInUp" data-delay=".3">
+                            <img src="{% static 'images/partners/b.png' %}" alt="partner">
+                        </li>
+                        <li class="partner-logo animated" data-animate="fadeInUp" data-delay=".4">
+                            <img src="{% static 'images/partners/c.png' %}" alt="partner">
+                        </li>
+                        <li class="partner-logo animated" data-animate="fadeInUp" data-delay=".5">
+                            <img src="{% static 'images/partners/d.png' %}" alt="partner">
+                        </li>
+                        <li class="partner-logo animated" data-animate="fadeInUp" data-delay=".6">
+                            <img src="{% static 'images/partners/e.png' %}" alt="partner">
+                        </li>
+                        <li class="partner-logo animated" data-animate="fadeInUp" data-delay=".7">
+                            <img src="{% static 'images/partners/f.png' %}" alt="partner">
+                        </li>
+                       
+                    </ul>
+                </div>
+                <!-- Block @e -->
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="nk-footer bg-theme-grad">
+        <section class="section no-pdy section-contact bg-transparent">
+            <div class="container">
+                <!-- Block @s -->
+                <div class="nk-block block-contact animated" data-animate="fadeInUp" data-delay=".9" id="contact">
+                    <div class="row justify-content-center no-gutters">
+
+                        <!-- .col -->
+                        <div class="col-lg-4">
+                            <div class="contact-wrap split split-right split-lg-right bg-genitian bg-theme tc-light">
+                                <div class="d-flex flex-column justify-content-between h-100">
+                                    <ul class="contact-list">
+                                        <li>
+                                            <em class="contact-icon fas fa-building"></em>
+                                            <div class="contact-text">
+                                                <h6> Orbit Stock Index</h6>
+                                                <span>One London Wall, London Wall, Barbican, London EC2Y 5EB, United Kingdom. </span>
+                                            </div>
+                                        </li>
+
+
+                                        <li>
+                                            <em class="contact-icon fas fa-building"></em>
+                                            <div class="contact-text">
+                                                <h6>Orbit Stock Index</h6>
+
+                                                <li>
+                                                    <em class="contact-icon fas fa-envelope"></em>
+                                                    <div class="contact-text">
+                                                        <h6><a href="mailto:support@orbit-stockindex.com">support@orbit-stockindex.com</a></h6>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <em class="contact-icon fas fa-envelope"></em>
+                                                    <div class="contact-text">
+                                                        <span><a href="mailto:help@orbit-stockindex.com">help@orbit-stockindex.com</a></span>
+                                                    </div>
+                                                </li>
+
+                                    </ul>
+                                    <div class="contact-social">
+                                        <h6>Be a part of our community</h6>
+                                        <ul class="social-links">
+                                            <li>
+                                                <a href="#">
+                                                        <em class="fab fa-twitter"></em>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                        <em class="fab fa-medium-m"></em>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                        <em class="fab fa-facebook-f"></em>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                        <em class="fab fa-youtube"></em>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                        <em class="fab fa-bitcoin"></em>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                        <em class="fab fa-github"></em>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .col -->
+                        </div>
+                        <!-- .row -->
+                    </div>
+                    <!-- .block @e -->
+                </div>
+                <div class="nk-ovm ovm-top ovm-h-60 bg-light"></div>
+                <!-- .nk-ovm -->
+        </section>
+        <!-- // -->
+        <section class="section section-footer tc-light bg-transparent">
+            <div class="container">
+                <!-- Block @s -->
+                <div class="nk-block block-footer mgb-m30">
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-4">
+                            <div class="wgs wgs-menu animated" data-animate="fadeInUp" data-delay=".2">
+                                <h6 class="wgs-title">Company</h6>
+                                <div class="wgs-body">
+                                    <ul class="wgs-links">
+                                        <li>
+                                            <a href="{% url 'about' %}">About Us</a>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="{% url 'contact_us' %}">Contact Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'faq' %}">FAQs</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                        <div class="col-lg-2 col-sm-4">
+                            <div class="wgs wgs-menu animated" data-animate="fadeInUp" data-delay=".3">
+                                <h6 class="wgs-title">Legal</h6>
+                                <div class="wgs-body">
+                                    <ul class="wgs-links">
+                                        <li>
+                                            <a href="{% url 'transactions:terms' %}">Terms &amp; Conditions</a>
+                                        </li>
+                                        
+                                                <a href="{% url 'privacy' %}">Privacy Policy</a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'cookie' %}">Cookie Policy</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{% url 'company' %}">Company Certificate</a>
+                                            </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                        <div class="col-lg-2 col-sm-4">
+                            <div class="wgs wgs-menu animated" data-animate="fadeInUp" data-delay=".4">
+                                <h6 class="wgs-title">Quick Links</h6>
+                                <div class="wgs-body">
+                                    <ul class="wgs-links">
+                                        <li>
+                                            <a href="{% url 'accounts:register' %}">Signup</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'accounts:login' %}">Sign In</a>
+                                        </li>
+                                        <!-- <li>
+                                                <a href="?a=pricing">Our Investment Plans</a>
+                                            </li>
+                                            <li>
+                                                <a href="Gal l.pdf">Company PDF  </a>
+                                            </li>
+                                             <li>-->
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                        <div class="col-lg-6 order-lg-first">
+                            <div class="wgs wgs-text animated" data-animate="fadeInUp" data-delay=".1">
+                                <div class="wgs-body">
+                                    <a href="/" class="wgs-logo">
+                                            <img src="{% static 'images/ss2.png' %}" "{% static 'images/logo-full-white2x.png' %} 2x" alt="logo">
+                                        </a>
+
+                                    <p>Copyright © 2024 www.orbit-stockindex.com
+                                        <br> All rights reserved.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                    </div>
+                    <!-- .row -->
+                </div>
+                <!-- .block @e -->
+            </div>
+        </section>
+        <div class="nk-ovm shape-b"></div>
+    </footer>
+    </div>
+
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="{% static 'cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+    <script src="{% static 'asseton/js/jquery.bundlef86ef86e.js' %}?ver=192"></script>
+    <script src="{% static 'asseton/js/scriptsf86ef86e.js' %}?ver=192"></script>
+    <script src="{% static 'asseton/js/charts.js' %}"></script>
+
+
+
+    <style>
+        img {
+            max-width: 70%;
+            height: auto;
+        }
+    </style>
+
+    <style>
+        .mgm {
+            border-radius: 7px;
+            position: fixed;
+            z-index: 90;
+            bottom: 45%;
+            right: 50px;
+            background: #fff;
+            padding: 10px 27px;
+            box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, .3);
+        }
+
+        .mgm a {
+            font-weight: 700;
+            display: block;
+            color: #2962FF;
+        }
+
+        .mgm a,
+        .mgm a:active {
+            transition: all .2s ease;
+            color: #2962FF;
+        }
+    </style>
+    <div class="mgm" style="display: none;">
+        <div class="txt" style="color:black;"></div>
+    </div>
+    <script data-cfasync="false" src="#"></script>
+    <script type="text/javascript">
+        var listCountries = ['South Africa', 'USA', 'Germany', 'France', 'Italy', 'India', 'Australia', 'India', 'Canada', 'Argentina', 'Saudi Arabia', 'Mexico', 'India', 'South Africa', 'Venezuela', 'South Africa', 'Sweden', 'South Africa', 'South Africa', 'Italy', 'South Africa', 'United Kingdom', 'South Africa', 'Greece', 'Cuba', 'South Africa', 'Portugal', 'Austria', 'South Africa', 'Panama', 'South Africa', 'South Africa', 'Netherlands', 'Switzerland', 'Belgium', 'Israel', 'Cyprus'];
+        var listPlans = ['$500', '$1,500', '$1,000', '$10,000', '$2,000', '$3,000', '$4,000', '$600', '$700', '$2,500'];
+        var transarray = ['just <b>invested</b>', 'has <b>withdrawn</b>', 'is <b>trading with</b>'];
+        interval = Math.floor(Math.random() * (40000 - 8000 + 1) + 8000);
+        var run = setInterval(request, interval);
+
+        function request() {
+            clearInterval(run);
+            interval = Math.floor(Math.random() * (40000 - 8000 + 1) + 8000);
+            var country = listCountries[Math.floor(Math.random() * listCountries.length)];
+            var transtype = transarray[Math.floor(Math.random() * transarray.length)];
+            var plan = listPlans[Math.floor(Math.random() * listPlans.length)];
+            var msg = 'Someone from <b>' + country + '</b> ' + transtype + ' <a href="javascript:void(0);" onclick="javascript:void(0);">' + plan + '</a>';
+            $(".mgm .txt").html(msg);
+            $(".mgm").stop(true).fadeIn(300);
+            window.setTimeout(function() {
+                $(".mgm").stop(true).fadeOut(300);
+            }, 10000);
+            run = setInterval(request, interval);
+        }
+    </script>
+    <style>
+        .bg-theme-grad {
+            background-image: linear-gradient(to right, #181818 0%, #181818 100%) !important;
+        }
+
+        .btn-grad:before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            content: "";
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            border-radius: 5px;
+            opacity: 0;
+            transition: all .5s;
+            background-image: linear-gradient(to right, #F9B81F 0%, #c09328 100%);
+        }
+
+        .btn-grad {
+            border: none;
+            background-image: linear-gradient(to right, #F9B81F 0%, #c09328 100%);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6 {
+            color: #171717;
+            font-weight: 500;
+            font-family: "Roboto", sans-serif;
+            line-height: 1.45;
+            margin-bottom: 0.5rem;
+        }
+
+        element.style {
+            background-color: #c093288c;
+        }
+
+        .btn-primary {
+            background-color: linear-gradient(#F9B81F, #c09328);
+            border-color: #16a3fe;
+        }
+
+        .preloader-alt:after,
+        .preloader-alt:before {
+            background: #343a40;
+        }
+    </style>
+
+
+
+    <!-- GetButton.io widget -->
+    <script type="text/javascript">
+        (function() {
+            var options = {
+                whatsapp: "", // WhatsApp number
+                call_to_action: "Message us", // Call to action
+                button_color: "#FF6550", // Color of button
+                position: "left", // Position may be 'right' or 'left'
+            };
+            var proto = document.location.protocol,
+                host = "getbutton.io",
+                url = proto + "//static." + host;
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = url + '/widget-send-button/js/init.js';
+            s.onload = function() {
+                WhWidgetSendButton.init(host, proto, options);
+            };
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+        })();
+    </script>
+    <!-- /GetButton.io widget -->
+</body>
+
+</html>

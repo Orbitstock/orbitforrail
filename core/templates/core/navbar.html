@@ -1,0 +1,451 @@
+
+
+{% load static %}
+
+
+        <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow">
+            <nav id="sidebar" aria-label="Main Navigation">
+                
+
+
+
+
+
+<div  class="user-profile-card">
+  <div class="profile-header">
+    <div class="avatar">
+      <img src="{{ user.account.picture.url }}" alt="Profile Picture">
+    </div>
+    <div class="user-info">
+      <h2 class="name">{{ user.first_name|upper }}</h2>
+      <h2 class="name">{{ user.last_name|upper }}</h2>
+      <p class="username">@{{ user.username|lower }}</p>
+    </div>
+    <div class="dropdown-icon-wrapper">
+      <img style="max-width:20px;max-height: 20px;" src="https://cdn-icons-png.flaticon.com/128/142/142063.png" alt="Dropdown" class="dropdown-icon">
+    </div>
+    <a class="d-lg-none btn btn-sm btn-alt-secondary ms-1 mobile-sidebar-close" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+      <i class="fa fa-fw fa-times"></i>
+    </a>
+  </div>
+
+
+
+  <div class="profile-dropdown">
+    <div class="dropdown-section">
+      <p class="last-login">Last login: {{ user.last_login|date:"F j, Y, g:i a" }}</p>
+    </div>
+    <div class="dropdown-section">
+      <div class="account-info">
+        <img style="width:35px;height: 35px;" src="https://cdn-icons-png.flaticon.com/128/4663/4663983.png" alt="Account">
+        <div>
+          <p class="account-label">Account ID</p> 
+          <p class="account-value">{{ user.account_no|slice:-3 }}-{{ user.profile.code }}</p>
+        </div>
+    </div>
+
+    
+    <div class="dropdown-section">
+      <div class="verification-status">
+        <p>Verification Status</p>
+                                        {% if user.account.status == "VERIFIED" %}
+                                    <span class="unique-status-verified-2024">
+                                        {{ user.account.status }}
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                {% elif user.account.status == "UNVERIFIED" %}
+                                    <span class="unique-status-unverified-2024">
+                                        {{ user.account.status }}
+                                        <i class="fas fa-times-circle"></i>
+                                    </span>
+                                {% elif user.account.status == "PENDING" %}
+                                    <span class="unique-status-pending-2024">
+                                        {{ user.account.status }}
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </span>
+                                {% else %}
+                                    <span class="unique-status-unknown-2024">
+                                        Unknown Status
+                                    </span>
+                                {% endif %}
+      </div>
+
+
+    </div>
+
+
+  </div>
+</div>
+
+<style>
+
+.mobile-sidebar-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 50%;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-sidebar-close:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+@media (min-width: 992px) {
+  .mobile-sidebar-close {
+    display: none;
+  }
+}
+
+    .user-profile-card {
+      font-family: 'Roboto', sans-serif;
+      background-color: transparent;
+      border: 1px solid black;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 360px;
+      margin: 1px auto;
+      transition: all 0.3s ease;
+    }
+
+    .user-profile-card:hover {
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .avatar img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .user-info {
+      margin-left: 20px;
+      flex-grow: 1;
+    }
+
+    .name {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+      color: #ffffff;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .username {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.8);
+      margin: 5px 0 0;
+    }
+
+    .dropdown-icon-wrapper {
+      position: absolute;
+      right: 10px;
+      left: 210px;
+      bottom: 1px;
+    }
+
+    .dropdown-icon {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+      color: #ffffff;
+    }
+
+    .color-profile-bar {
+      height: 6px;
+      display: flex;
+    }
+
+    .bar-segment {
+      height: 100%;
+      transition: width 0.5s ease;
+    }
+
+    .profile-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+      padding: 0 20px;
+      background-color: #ffffff;
+    }
+
+    .profile-dropdown.active {
+      max-height: 300px; /* Adjust this value based on your content */
+      padding: 20px;
+    }
+
+    .dropdown-section {
+      margin-bottom: 20px;
+    }
+    .dropdown-icon {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.5s ease;
+      color: #ffffff;
+    }
+
+    .dropdown-icon.active {
+      transform: rotate(180deg);
+    }
+    .last-login {
+      font-size: 12px;
+      color: #757575;
+      margin: 0;
+    }
+
+    .account-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      background-color: #f5f7fa;
+      padding: 15px;
+    }
+
+    .account-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 15px;
+      color: #3a1c71;
+    }
+
+    .account-label {
+      font-size: 14px;
+      color: #757575;
+      margin: 0;
+      margin-left: 15px;
+    }
+
+    .account-value {
+      font-size: 12px;
+      font-weight: bold;
+      color: #333;
+      margin: 3px 0 0;
+      margin-left: 15px;
+    }
+
+    .verification-status {
+      font-size: 16px;
+      background-color: #f5f7fa;
+      padding: 15px;
+    }
+
+    .verification-status p {
+      margin: 0 0 10px;
+      color: #757575;
+    }
+
+    .unique-status-verified-2024 {
+        color: #4caf50;
+        font-weight: bold;
+    }
+
+    .unique-status-unverified-2024 {
+        color: #f44336;
+        font-weight: bold;
+    }
+
+    .unique-status-pending-2024 {
+        color: #ff9800;
+        font-weight: bold;
+    }
+
+    .unique-status-unknown-2024 {
+        color: #9e9e9e;
+        font-weight: bold;
+    }
+    .js-sidebar-scroll .content-side {
+        right: 60px;
+        
+    }
+    .content-side {
+        position: relative;
+        
+    }
+    .status-verified { color: #4caf50; font-weight: bold; }
+    .status-unverified { color: #f44336; font-weight: bold; }
+    .status-pending { color: #ff9800; font-weight: bold; }
+    .status-unknown { color: #9e9e9e; font-weight: bold; }
+
+    @media (max-width: 768px) {
+      .user-profile-card {
+        width: 90%;
+        max-width: 360px;
+      }
+
+    .dropdown-icon-wrapper {
+      position: absolute;
+      right: 20px;
+      bottom: 5px;
+      left: 290px;
+    }
+    .js-sidebar-scroll .content-side {
+        right: 10px;
+        
+    }
+    .content-side {
+        position: relative;
+        
+    }
+
+
+    }
+</style>
+
+<script>
+    document.querySelector('.profile-header').addEventListener('click', function() {
+      const dropdown = document.querySelector('.profile-dropdown');
+      const icon = document.querySelector('.dropdown-icon');
+      
+      dropdown.classList.toggle('active');
+      icon.classList.toggle('active');
+    });
+
+    // Color profile bar animation
+    const barSegments = document.querySelectorAll('.bar-segment');
+    barSegments.forEach((segment, index) => {
+      const originalWidth = segment.style.width;
+      segment.style.width = '0';
+      setTimeout(() => {
+        segment.style.width = originalWidth;
+      }, 300 + (index * 100));
+    });
+</script>
+
+
+
+
+                <div  class="js-sidebar-scroll">
+
+
+
+
+
+
+
+
+
+
+                    <div class="content-side">
+                        <ul class="nav-main">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link active" href="{% url 'core:home' %}">
+                                    <i class="nav-main-link-icon si si-speedometer"></i>
+                                    <span class="nav-main-link-name">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item ">
+                                <a class="nav-main-link nav-main-link active"  aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:payment_create' %}">
+                                    <i class="fas fa-hand-holding-usd"></i>&nbsp;<span class="nav-main-link-name">Deposit</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-heading">--</li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active"  aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:withdrawal' %}">
+                                <i class="fas fa-exchange-alt"></i>&nbsp;<span class="nav-main-link-name">Transfer</span>
+
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:create_withdrawal' %}">
+                                    <i class="fas fa-award"></i>&nbsp;<span class="nav-main-link-name">Withdraw</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:schema' %}">
+                                    <i class="fas fa-award"></i>&nbsp;<span class="nav-main-link-name">Investment Plans</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:investment_history' %}">
+                                    <i class="fas fa-book"></i>&nbsp;<span class="nav-main-link-name">Investment Logs</span>
+
+                                </a>
+                                
+                            </li>
+                            
+                            <li class="nav-main-heading">--</li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:summary' %}">
+                                    <i class="fas fa-list-alt"></i>&nbsp;<span class="nav-main-link-name">All Transactions</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:recent_payments' %}">
+                                    <i class="fas fa-donate"></i>&nbsp;<span class="nav-main-link-name">Deposit Logs</span>
+
+                                </a>
+                                
+                            </li>
+                            
+                            <li class="nav-main-heading">--</li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:kyc_verification' %}">
+                                    <i class="fas fa-id-card"></i>&nbsp;<span class="nav-main-link-name">KYC Verification</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:referral' %}">
+                                    <i class="fas fa-user-plus"></i>&nbsp;<span class="nav-main-link-name">Referral</span>
+
+                                </a>
+                               
+                            </li>
+
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:login_history' %}">
+                                    <i class="fas fa-user"></i>&nbsp;<span class="nav-main-link-name">Profile</span>
+
+
+                                </a>
+                                
+                            </li>
+
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:edit_profile' %}">
+                                    <i class="fas fa-cogs"></i>&nbsp;<span class="nav-main-link-name">Settings</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:logout' %}">
+                                    <i class="fas fa-sign-out-alt"></i>&nbsp;<span class="nav-main-link-name">Logout</span>
+
+                                </a>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </nav>

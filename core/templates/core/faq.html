@@ -1,0 +1,514 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Orbit Stock Index - Your Trusted Crypto Investment Partner</title>
+    <meta name="description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="og:title" content="Orbit Stock Index - Your Trusted Crypto Investment Partner" />
+    <meta property="og:description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="twitter:title" content="Orbit Stock Index - Your Trusted Crypto Investment Partner" />
+    <meta property="twitter:description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="og:type" content="website" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Webflow" name="generator" />
+    <link rel="stylesheet" href="{% static 'asseton/css/vendor.bundlef86ef86e.css' %}">
+    <link rel="stylesheet" href="{% static 'asseton/css/stylef86ef86e.css' %}">    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="icon" type="image/png" sizes="32x32" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="icon" type="image/png" sizes="16x16" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="manifest" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="mask-icon" color="#5bbad5" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="apple-touch-icon" />
+
+    
+    <!-- Smartsupp Live Chat script -->
+    <script type="text/javascript">
+    var _smartsupp = _smartsupp || {};
+    _smartsupp.key = 'a6d859bc78e1dd7855b3860d122e62897dcd21b4';
+    window.smartsupp||(function(d) {
+      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+      c.type='text/javascript';c.charset='utf-8';c.async=true;
+      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+    })(document);
+    </script>
+    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+</head>
+
+
+
+
+
+<body class="nk-body body-wider bg-light">
+    <div class="nk-wrap">
+        <header class="nk-header page-header is-transparent is-sticky is-shrink">
+            <!-- Header @s -->
+            <div class="header-main">
+                <div class="header-container container">
+                    <div class="header-wrap">
+
+
+
+                        <!-- Logo @s -->
+                        <div class="header-logo logo animated fadeInDown" data-animate="fadeInDown" data-delay=".6" style="visibility: visible; animation-delay: 0.6s;">
+                            <a href="/" class="logo-link">
+                                <img class="logo-dark" src="{% static 'images/ss1.png' %}"   style='width:200px;height:auto; '>
+                                <img class="logo-light" src="{% static 'images/ss2.png' %}"  style='width:200px;height:auto; ' >
+                            </a>
+                        </div>
+
+                        <!-- Menu Toogle @s -->
+                        <div class="header-nav-toggle">
+                            <a href="#" class="navbar-toggle" data-menu-toggle="header-menu">
+                                <div class="toggle-line">
+                                    <span></span>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Menu @s -->
+                        <div class="header-navbar animated fadeInDown" data-animate="fadeInDown" data-delay=".75" style="visibility: visible; animation-delay: 0.75s;">
+                            <nav class="header-menu" id="header-menu">
+                                <ul class="menu">
+                                    <li class="menu-item ">
+                                        <a href="/">Home</a>
+
+                                    </li>
+
+                                    <li class="menu-item has-sub">
+                                        <a class="menu-link nav-link menu-toggle" href="{% url 'about' %}">About</a>
+                                        <ul class="menu-sub menu-drop menu-mega menu-mega-2clmn">
+                                            <div class="menu-mega-innr">
+                                                <ul class="menu-mega-list">
+                                                    <li class="menu-item">
+                                                        <a class="menu-link nav-link" href="{% url 'about' %}">About Us</a>
+                                                    </li>
+
+
+
+                                                    <li class="menu-item">
+                                                        <a class="menu-link nav-link" href="{% url 'security' %}">Security
+                                                            <span class="badge badge-dot"></span>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </ul>
+                                    </li>
+
+                                    <!-- <li class="menu-item ">
+                                        <a href="?a=pricing">Plans </a>
+
+                                    </li>-->
+
+                                    <li class="menu-item has-sub">
+                                        <a class="menu-link nav-link menu-toggle" href="#">Resources</a>
+                                        <div class="menu-sub menu-drop menu-mega menu-mega-2clmn">
+                                            <div class="menu-mega-innr">
+                                                <ul class="menu-mega-list">
+                                                    <li class="menu-item">
+                                                        <a href="{% url 'plan' %}">Online chart</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a href="{% url 'service' %}">Market</a>
+                                                    </li>
+
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="menu-item">
+                                        <a href="{% url 'faq' %}">FAQs</a>
+                                    </li>
+
+
+                                    <li class="menu-item">
+                                        <a href="{% url 'contact_us' %}">Contact</a>
+                                    </li>
+
+                                </ul>
+                                <ul class="menu-btns">
+                                    <li>
+                                        <a href="{% url 'accounts:login' %}" class="btn btn-md btn-auto btn-grad no-change">
+            <span>Sign In</span>
+        </a>
+
+                                        <a href="{% url 'accounts:register' %}" class="btn btn-md btn-auto btn-grad no-change">
+            <span>Signup</span>
+        </a>
+                                    </li>
+                                </ul>
+
+
+
+
+
+
+
+                            </nav>
+                            <div class="header-navbar-overlay"></div>
+                        </div>
+
+                        <!-- .header-navbar @e -->
+                    </div>
+                </div>
+            </div>
+            <!-- .header-main @e -->
+            <!-- Banner @s -->
+            <div class="header-banner bg-theme-grad">
+                <div class="nk-banner">
+                    <div class="banner banner-page">
+                        <div class="banner-wrap">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-xl-6 col-lg-9">
+                                        <div class="banner-caption cpn tc-light text-center">
+                                            <div class="cpn-head">
+                                                <h2 class="title ttu">FAQs</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .nk-banner -->
+                <div class="nk-ovm shape-a-sm"></div>
+            </div>
+            <!-- .header-banner @e -->
+        </header>
+
+        <main class="nk-pages">
+
+            <section class="section section-faq bg-white" id="faq">
+                <div class="container">
+                    <!-- Block @s -->
+                    <div class="nk-block block-faq">
+                        <div class="row">
+                            <div class="col-md-4 col-lg-3 mb-4 mb-lg-0">
+                                <ul class="nav tab-nav tab-nav-vr tab-nav-bdr mr-lg-3">
+                                    <li>
+                                        <a data-toggle="tab" href="#general-questions" class="active">
+                                            <em class="fas fa-caret-right"></em>General Questions</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#ico-questions" class="">
+                                            <em class="fas fa-caret-right"></em>Investment Questions</a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#clients-releted" class="">
+                                            <em class="fas fa-caret-right"></em>Clients Related</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- .col -->
+                            <div class="col-md-8 col-lg-9">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active show" id="general-questions">
+                                        <div class="accordion accordion-faq" id="faq-1">
+                                            <div class="accordion-item current">
+                                                <h5 class="accordion-title accordion-title-sm collapsed" data-toggle="collapse" data-target="#faq-1-1" aria-expanded="false">What is Orbit Stock Index ?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-1-1" class="collapse" data-parent="#faq-1" style="">
+                                                    <div class="accordion-content">
+                                                        <p>Orbit Stock Index is a certified forex/CFD and cryptocurrency trade investment platform, which is unique in the forex &amp; crypto platform. We’re one the most reliable companies, and we are very
+                                                            serious about the business we are in. 
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-title accordion-title-sm collapsed" data-toggle="collapse" data-target="#faq-1-2" aria-expanded="false">How can I participate ?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-1-2" class="collapse" data-parent="#faq-1" style="">
+                                                    <div class="accordion-content">
+                                                        <p>You'll need to
+                                                            <a href="{% url 'accounts:register' %}">open an account</a> with us and make deposit for a specific plan. Then our account managers can begin using their tested and trusted trading strategies to earn profits on
+                                                            your behalf. Opening an account takes less than 5 minutes of your time!
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-title accordion-title-sm collapsed" data-toggle="collapse" data-target="#faq-1-3" aria-expanded="false">What about the safety of my funds? How secure is your platform ?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-1-3" class="collapse" data-parent="#faq-1" style="">
+                                                    <div class="accordion-content">
+                                                        <p>All Orbit Stock Index connections are encrypted using HTTPS with state of the art RSA 2048-bit encryption. More importantly, Orbit Stock Index doesn’t have any access to your funds, and all
+                                                            your crypto assets always remain in your account. Please see our
+                                                            <a href="{% url 'security' %}">security page </a> for more information.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item ">
+                                                <h5 class="accordion-title accordion-title-sm" data-toggle="collapse" data-target="#faq-1-4" aria-expanded="true">What payment methods do you support?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-1-4" class="collapse show" data-parent="#faq-1" style="">
+                                                    <div class="accordion-content">
+                                                        <p>We accept cryptocurrencies (BTC, ETH, USDT ERC 20, USDT TRC 20 /Tron  and more). All submitted information is encrypted, so you can be confident that your information is safe and secure.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="ico-questions">
+                                        <div class="accordion accordion-faq" id="faq-2">
+                                            <div class="accordion-item current">
+                                                <h5 class="accordion-title accordion-title-sm collapsed" data-toggle="collapse" data-target="#faq-2-1" aria-expanded="false">What is the minimum deposit?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-2-1" class="collapse" data-parent="#faq-2" style="">
+                                                    <div class="accordion-content">
+                                                        <div class="accordion-content">
+                                                            <p>With Orbit Stock Index you can start earning profits from your investment with a minimum deposit of $500. Usually, the minimum plan varies from $500 to $999. </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-title accordion-title-sm" data-toggle="collapse" data-target="#faq-2-2" aria-expanded="true">Can I switch/upgrade plans?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-2-2" class="collapse show" data-parent="#faq-2" style="">
+                                                    <div class="accordion-content">
+                                                        <p>You can upgrade anytime to get more output. At the same time if you already have an active plan and you want to switch/upgrade, please contact us via email or through our livechat</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-title accordion-title-sm collapsed" data-toggle="collapse" data-target="#faq-2-3">How frequently will I receive my outputs?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-2-3" class="collapse" data-parent="#faq-2">
+                                                    <div class="accordion-content">
+                                                        <p>Trading outputs are generated daily, but you will receive your profits only once they have accumulated to a certain quantity. These trade outputs are set in order to avoid that customers pay excessive
+                                                            fees for receiving small amounts in their wallets</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-title accordion-title-sm collapsed" data-toggle="collapse" data-target="#faq-2-4" aria-expanded="false">How can I get a refund?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-2-4" class="collapse" data-parent="#faq-2" style="">
+                                                    <div class="accordion-content">
+                                                        <p>You can cancel your subscription at any time. We don’t issue refunds or credits for partial use of service or the amount of time left in your subscription.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade " id="clients-releted">
+                                        <div class="accordion accordion-faq" id="faq-4">
+                                            <div class="accordion-item current">
+                                                <h5 class="accordion-title accordion-title-sm collapsed" data-toggle="collapse" data-target="#faq-4-1" aria-expanded="false">Do I need to provide KYC documents?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-4-1" class="collapse" data-parent="#faq-4" style="">
+                                                    <div class="accordion-content">
+                                                        <p>If the legal requirements arise in future you may be asked to provide the identity documents (Photo ID, Address Proof, Passport, Driving License... etc) for your identification for initiating the
+                                                            process of KYC. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-title accordion-title-sm collapsed" data-toggle="collapse" data-target="#faq-4-2" aria-expanded="false">Do i get referral commission ?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-4-2" class="collapse" data-parent="#faq-4" style="">
+                                                    <div class="accordion-content">
+                                                        <p>Yes, we offer a 10% referral commission whenever a new investor registers with your referral code and invest.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-title accordion-title-sm" data-toggle="collapse" data-target="#faq-4-3" aria-expanded="true">How long does it take for my account to be active?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-4-3" class="collapse show" data-parent="#faq-4" style="">
+                                                    <div class="accordion-content">
+                                                        <p>Your account will be active immediately after registration. If any error arise please contact us immediately </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h5 class="accordion-title accordion-title-sm collapsed" data-toggle="collapse" data-target="#faq-4-4">Didn't find an answer to your question?
+                                                    <span class="accordion-icon"></span>
+                                                </h5>
+                                                <div id="faq-4-4" class="collapse" data-parent="#faq-4">
+                                                    <div class="accordion-content">
+                                                        <p>We can help <a href="{% url 'contact_us' %}">Ask a Question</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .col -->
+                        </div>
+                        <!-- .row -->
+                    </div>
+                    <!-- .block @e -->
+                </div>
+            </section>
+        </main>
+
+
+
+
+        <footer class="nk-footer bg-theme-grad">
+
+
+        <section class="section section-footer tc-light bg-transparent">
+            <div class="container">
+                <!-- Block @s -->
+                <div class="nk-block block-footer mgb-m30">
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-4">
+                            <div class="wgs wgs-menu animated" data-animate="fadeInUp" data-delay=".2">
+                                <h6 class="wgs-title">Company</h6>
+                                <div class="wgs-body">
+                                    <ul class="wgs-links">
+                                        <li>
+                                            <a href="{% url 'about' %}">About Us</a>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="{% url 'contact_us' %}">Contact Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'faq' %}">FAQs</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                        <div class="col-lg-2 col-sm-4">
+                            <div class="wgs wgs-menu animated" data-animate="fadeInUp" data-delay=".3">
+                                <h6 class="wgs-title">Legal</h6>
+                                <div class="wgs-body">
+                                    <ul class="wgs-links">
+                                        <li>
+                                            <a href="{% url 'transactions:terms' %}">Terms &amp; Conditions</a>
+                                        </li>
+                                        
+                                                <a href="{% url 'privacy' %}">Privacy Policy</a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'cookie' %}">Cookie Policy</a>
+                                            </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                        <div class="col-lg-2 col-sm-4">
+                            <div class="wgs wgs-menu animated" data-animate="fadeInUp" data-delay=".4">
+                                <h6 class="wgs-title">Quick Links</h6>
+                                <div class="wgs-body">
+                                    <ul class="wgs-links">
+                                        <li>
+                                            <a href="{% url 'accounts:register' %}">Signup</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'accounts:login' %}">Sign In</a>
+                                        </li>
+                                        <!-- <li>
+                                                <a href="?a=pricing">Our Investment Plans</a>
+                                            </li>
+                                            <li>
+                                                <a href="Gal l.pdf">Company PDF  </a>
+                                            </li>
+                                             <li>-->
+                                        <a href="{% url 'company' %}">Company Certificate  </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                        <div class="col-lg-6 order-lg-first">
+                            <div class="wgs wgs-text animated" data-animate="fadeInUp" data-delay=".1">
+                                <div class="wgs-body">
+                                    <a href="/" class="wgs-logo">
+                                            <img src="{% static 'images/ss2.png' %}" "{% static 'images/logo-full-white2x.png' %} 2x" alt="logo">
+                                        </a>
+
+                                    <p>Copyright © 2024 Orbit Stock Index .
+                                        <br> All rights reserved.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                    </div>
+                    <!-- .row -->
+                </div>
+                <!-- .block @e -->
+            </div>
+        </section>
+            <div class="nk-ovm shape-b"></div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+    <script src="{% static 'asseton/js/jquery.bundlef86ef86e.js' %}?ver=192"></script>
+    <script src="{% static 'asseton/js/scriptsf86ef86e.js' %}?ver=192"></script>
+    <script src="{% static 'asseton/js/charts.js' %}"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    <style>
+        img {
+            max-width: 70%;
+            height: auto;
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>

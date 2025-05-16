@@ -1,0 +1,501 @@
+
+
+{% load static %}
+
+
+        <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow">
+            <nav id="sidebar" aria-label="Main Navigation">
+                <div class="content-header">
+                    <a class="fw-semibold text-dual" href="{% url 'core:home' %}">
+                        <span class="smini-visible">
+                            <i class="fa fa-circle-notch text-primary"></i>
+                        </span>
+                        <span class="smini-hide fs-5 tracking-wider">GlobalearnLTD</span>
+                    </a>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout" data-action="dark_mode_toggle">
+                            <i class="far fa-moon"></i>
+                        </button>
+                       
+                        <a class="d-lg-none btn btn-sm btn-alt-secondary ms-1" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+                            <i class="fa fa-fw fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+                <div class="unique-user-profile-card-2024">
+                    <div class="unique-user-profile-header-2024" onclick="toggleUniqueUserDropdown2024()">
+                        <div class="unique-user-avatar-2024">
+                            <img src="{{ user.account.picture.url }}" alt="User Avatar">
+                        </div>
+                        <div class="unique-user-info-2024">
+                            <h3 class="unique-user-name-2024">{{ user.first_name|upper }}</h3>
+                            <h3 class="unique-user-name-2024">{{ user.last_name|upper }}</h3>
+                            <p class="unique-user-username-2024">@{{ user.username|lower }}</p>
+                        </div>
+                        <div class="unique-dropdown-icon-wrapper-2024">
+                            <div class="unique-dropdown-icon-2024">
+                                <img src="https://cdn-icons-png.flaticon.com/128/142/142063.png" alt="Dropdown Icon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="unique-user-profile-dropdown-2024" id="uniqueUserProfileDropdown2024">
+                        <div class="unique-dropdown-section-2024">
+                            <p class="unique-last-login-2024">Last Login: <span>{{ user.last_login|date:"F j, Y, g:i a" }}</span></p>
+                        </div>
+                        <div class="unique-dropdown-section-2024">
+                            <div class="unique-account-info-2024">
+                                <img src="https://cdn-icons-png.flaticon.com/128/4663/4663983.png" alt="Account Icon">
+                                <div>
+                                    <p class="unique-account-label-2024">Account ID:</p>
+                                    <p class="unique-account-value-2024">{{ user.account_no|slice:-3 }}-{{ user.profile.code }}</p>
+                                </div>
+                            </div>
+                            <div class="unique-verification-status-2024">
+                                <p>Verification Status:</p>
+                                {% if user.account.status == "VERIFIED" %}
+                                    <span class="unique-status-verified-2024">
+                                        {{ user.account.status }}
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                {% elif user.account.status == "UNVERIFIED" %}
+                                    <span class="unique-status-unverified-2024">
+                                        {{ user.account.status }}
+                                        <i class="fas fa-times-circle"></i>
+                                    </span>
+                                {% elif user.account.status == "PENDING" %}
+                                    <span class="unique-status-pending-2024">
+                                        {{ user.account.status }}
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </span>
+                                {% else %}
+                                    <span class="unique-status-unknown-2024">
+                                        Unknown Status
+                                    </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <style>
+                    .unique-user-profile-card-2024 {
+                        font-family: 'Roboto', sans-serif;
+                        background-color: #f0f4f8;
+                        border-radius: 16px;
+                        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+                        overflow: hidden;
+                        width: 340px;
+                        margin: 30px auto;
+                        transition: all 0.3s ease;
+                    }
+
+                    .unique-user-profile-card-2024:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+                    }
+
+                    .unique-user-profile-header-2024 {
+                        display: flex;
+                        align-items: center;
+                        padding: 25px;
+                        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+                        cursor: pointer;
+                        position: relative;
+                    }
+
+                    .unique-user-avatar-2024 img {
+                        width: 70px;
+                        height: 70px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 3px solid #ffffff;
+                    }
+
+                    .unique-user-info-2024 {
+                        margin-left: 20px;
+                        flex-grow: 1;
+                    }
+
+                    .unique-user-name-2024 {
+                        font-size: 22px;
+                        font-weight: bold;
+                        margin: 0;
+                        color: #ffffff;
+                        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+                    }
+
+                    .unique-user-username-2024 {
+                        font-size: 18px;
+                        color: #e0e0e0;
+                        margin: 5px 0 0;
+                    }
+
+                    .unique-dropdown-icon-wrapper-2024 {
+                        display: flex;
+                        align-items: flex-end;
+                        justify-content: center;
+                        height: 100%;
+                        position: absolute;
+                        right: 200px;
+                        bottom: 2px;
+                    }
+
+                    .unique-dropdown-icon-2024 img {
+                        width: 24px;
+                        height: 24px;
+                        transition: transform 0.3s ease;
+                    }
+
+                    .unique-user-profile-dropdown-2024 {
+                        display: none;
+                        padding: 25px;
+                        background-color: #ffffff;
+                    }
+
+                    .unique-dropdown-section-2024 {
+                        margin-bottom: 20px;
+                    }
+
+                    .unique-last-login-2024 {
+                        font-size: 13px;
+                        color: #757575;
+                        margin: 0;
+                    }
+
+                    .unique-account-info-2024 {
+                        display: flex;
+                        margin-bottom: 15px;
+                        background-color: #f5f7fa;
+                        padding: 10px;
+                        border-radius: 10px;
+                        justify-content: left;
+                    }
+
+                    .unique-account-info-2024 img {
+                        width: 30px;
+                        height: 30px;
+                        margin-right: 12px;
+                    }
+
+                    .unique-account-label-2024 {
+                        font-size: 14px;
+                        color: #757575;
+                        margin: 0;
+                    }
+
+                    .unique-account-value-2024 {
+                        font-size: 13px;
+                        font-weight: bold;
+                        color: #333;
+                        margin: 3px 0 0;
+                    }
+
+                    .unique-verification-status-2024 {
+                        font-size: 16px;
+                        background-color: #f5f7fa;
+                        padding: 15px;
+                        border-radius: 10px;
+                    }
+
+                    .unique-verification-status-2024 p {
+                        margin: 0 0 10px;
+                        color: #757575;
+                    }
+
+                    .unique-status-verified-2024 {
+                        color: #4caf50;
+                        font-weight: bold;
+                    }
+
+                    .unique-status-unverified-2024 {
+                        color: #f44336;
+                        font-weight: bold;
+                    }
+
+                    .unique-status-pending-2024 {
+                        color: #ff9800;
+                        font-weight: bold;
+                    }
+
+                    .unique-status-unknown-2024 {
+                        color: #9e9e9e;
+                        font-weight: bold;
+                    }
+
+                    @media (max-width: 768px) {
+                        .unique-dropdown-icon-wrapper-2024 {
+                            display: flex;
+                            align-items: flex-end;
+                            justify-content: center;
+                            height: 100%;
+                            position: absolute;
+                            right: 20px;
+                            bottom: 40px;
+                        }
+                    }
+
+                </style>
+
+                <script>
+                    function toggleUniqueUserDropdown2024() {
+                        const dropdown = document.getElementById('uniqueUserProfileDropdown2024');
+                        const icon = document.querySelector('.unique-dropdown-icon-2024 img');
+                        if (dropdown.style.display === 'block') {
+                            dropdown.style.display = 'none';
+                            icon.style.transform = 'rotate(0deg)';
+                        } else {
+                            dropdown.style.display = 'block';
+                            icon.style.transform = 'rotate(180deg)';
+                        }
+                    }
+
+                </script>
+
+
+                <div class="js-sidebar-scroll">
+                    <div class="content-side">
+                        <ul class="nav-main">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link active" href="{% url 'core:home' %}">
+                                    <i class="nav-main-link-icon si si-speedometer"></i>
+                                    <span class="nav-main-link-name">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item ">
+                                <a class="nav-main-link nav-main-link active"  aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:payment_create' %}">
+                                    <i class="fas fa-hand-holding-usd"></i>&nbsp;<span class="nav-main-link-name">Deposit</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-heading">--</li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active"  aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:withdrawal' %}">
+                                <i class="fas fa-exchange-alt"></i>&nbsp;<span class="nav-main-link-name">Transfer</span>
+
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:create_withdrawal' %}">
+                                    <i class="fas fa-award"></i>&nbsp;<span class="nav-main-link-name">Withdraw</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:schema' %}">
+                                    <i class="fas fa-award"></i>&nbsp;<span class="nav-main-link-name">Investment Plans</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:investment_history' %}">
+                                    <i class="fas fa-book"></i>&nbsp;<span class="nav-main-link-name">Investment Logs</span>
+
+                                </a>
+                                
+                            </li>
+                            
+                            <li class="nav-main-heading">--</li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:summary' %}">
+                                    <i class="fas fa-list-alt"></i>&nbsp;<span class="nav-main-link-name">All Transactions</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:recent_payments' %}">
+                                    <i class="fas fa-donate"></i>&nbsp;<span class="nav-main-link-name">Deposit Logs</span>
+
+                                </a>
+                                
+                            </li>
+                            
+                            <li class="nav-main-heading">--</li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:kyc_verification' %}">
+                                    <i class="fas fa-id-card"></i>&nbsp;<span class="nav-main-link-name">KYC Verification</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:referral' %}">
+                                    <i class="fas fa-user-plus"></i>&nbsp;<span class="nav-main-link-name">Referral</span>
+
+                                </a>
+                               
+                            </li>
+
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:login_history' %}">
+                                    <i class="fas fa-user"></i>&nbsp;<span class="nav-main-link-name">Profile</span>
+
+
+                                </a>
+                                
+                            </li>
+
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:edit_profile' %}">
+                                    <i class="fas fa-cogs"></i>&nbsp;<span class="nav-main-link-name">Settings</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:logout' %}">
+                                    <i class="fas fa-sign-out-alt"></i>&nbsp;<span class="nav-main-link-name">Logout</span>
+
+                                </a>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+
+
+
+<button id="darkModeToggle">Toggle Dark Mode</button>
+<script>
+    const darkModeToggle = document.getElementById('darkModeToggle');
+let isDarkMode = false;
+
+function applyDarkMode() {
+  const css = `
+    html, body, * {
+      background-color: #1a1a1a !important;
+      color: #e0e0e0 !important;
+      border-color: #444 !important;
+    }
+    a {
+      color: #9af !important;
+    }
+    img, video {
+      filter: brightness(0.8) contrast(1.2);
+    }
+  `;
+  
+  const style = document.createElement('style');
+  style.id = 'dark-mode-style';
+  style.textContent = css;
+  document.head.appendChild(style);
+}
+
+function removeDarkMode() {
+  const style = document.getElementById('dark-mode-style');
+  if (style) {
+    style.remove();
+  }
+}
+
+darkModeToggle.addEventListener('click', () => {
+  isDarkMode = !isDarkMode;
+  if (isDarkMode) {
+    applyDarkMode();
+  } else {
+    removeDarkMode();
+  }
+});
+    
+</script>
+
+
+____SECOND DARKMODE__
+
+<button type="button" class="btn btn-sm btn-alt-secondary dark-mode-toggle">
+    <i class="far fa-moon"></i>
+</button>
+
+<script>
+const darkModeToggle = {
+    isOn: false,
+    toggle: function() {
+        this.isOn ? this.turnOff() : this.turnOn();
+    },
+    turnOn: function() {
+        this.applyDarkMode();
+        this.isOn = true;
+        localStorage.setItem("darkMode", "on");
+    },
+    turnOff: function() {
+        this.removeDarkMode();
+        this.isOn = false;
+        localStorage.setItem("darkMode", "off");
+    },
+    applyDarkMode: function() {
+        const css = `
+            html, body, * {
+                background-color: #1a1a1a !important;
+                color: #e0e0e0 !important;
+                border-color: #444 !important;
+            }
+            a {
+                color: #9af !important;
+            }
+            img, video {
+                filter: brightness(0.8) contrast(1.2);
+            }
+        `;
+        
+        let style = document.getElementById('dark-mode-style');
+        if (!style) {
+            style = document.createElement('style');
+            style.id = 'dark-mode-style';
+            document.head.appendChild(style);
+        }
+        style.textContent = css;
+    },
+    removeDarkMode: function() {
+        const css = `
+            html, body, * {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                border-color: #cccccc !important;
+            }
+            a {
+                color: #0000ff !important;
+            }
+            img, video {
+                filter: none;
+            }
+        `;
+        
+        let style = document.getElementById('dark-mode-style');
+        if (!style) {
+            style = document.createElement('style');
+            style.id = 'dark-mode-style';
+            document.head.appendChild(style);
+        }
+        style.textContent = css;
+    },
+    init: function() {
+        const savedMode = localStorage.getItem("darkMode");
+        if (savedMode === "on") {
+            this.turnOn();
+        } else {
+            this.turnOff();
+        }
+    }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.querySelector('.dark-mode-toggle');
+    toggleButton.addEventListener('click', function() {
+        darkModeToggle.toggle();
+    });
+    darkModeToggle.init();
+});
+</script>

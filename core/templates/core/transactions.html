@@ -1,0 +1,529 @@
+{% extends 'core/base.html' %} {% block title %} Transactions | {{ block.super }}{% endblock title %} {% block content %} {% include "core/messages.html" %}
+{% load static %}
+
+            <main id="main-container">
+                <div class="content">
+                    <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center py-2 text-center text-md-start">
+                        <div class="flex-grow-1 mb-1 mb-md-0">
+                            <h2 class="h6 fw-medium fw-medium text-muted mb-0">Welcome {{ user.username }}.</h2>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="row items-push">
+                        <div class="col-sm-6 col-xxl-3">
+                            <div class="block block-rounded d-flex flex-column h-100 mb-0">
+                                <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
+                                    <dl class="mb-0">
+                                        <dt class=" fw-bold">$ {{ user.balance }}</dt>
+                                        <dd  class="fs-sm fw-medium text-muted mb-0">Total Balance <i class="fas fa-coins"></i></dd>
+                                    </dl>
+                                    <div class="item item-rounded-lg bg-body-light">
+                                        <i class="fas fa-coins  text-primary"></i>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="bg-body-light rounded-bottom">
+                                    <a class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                        <span><i class="fas fa-wallet"></i>Your Main Balance</span>
+                                        <img style="max-width:20px;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-xxl-3">
+                            <div class="block block-rounded d-flex flex-column h-100 mb-0">
+                                <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
+                                    <dl class="mb-0">
+                                        <dt class=" fw-bold"> $ {{ user.total_profit }}</dt>
+                                        <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Total Earnings</dd>
+                                    </dl>
+                                    <div class="item item-rounded-lg bg-body-light">
+                                        <img style="max-width:20px;" src="https://cdn-icons-png.flaticon.com/128/7314/7314637.png">
+                                    </div>
+                                </div>
+                                <div class="bg-body-light rounded-bottom">
+                                    <a class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                        <span><i class="fas fa-wallet"></i>Your Entire Earnings</span>
+                                        <img style="max-width:20px;" src="https://cdn-icons-png.flaticon.com/128/4256/4256900.png">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-xxl-3">
+                            <div class="block block-rounded d-flex flex-column h-100 mb-0">
+                                <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
+                                    <dl class="mb-0">
+                                        <dt class=" fw-bold">$ {{ total_deposit|floatformat:2 }}</dt>
+                                        <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Total Deposit</dd>
+                                    </dl>
+                                    <div class="item item-rounded-lg bg-body-light">
+                                        <img style="max-width:20px;" src="https://cdn-icons-png.flaticon.com/128/2936/2936758.png">
+                                    </div>
+                                </div>
+                                <div class="bg-body-light rounded-bottom">
+                                    <a class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                        <span><i class="fas fa-wallet"></i>Your Entire Deposit</span>
+                                        <img style="max-width:20px;" src="https://cdn-icons-png.flaticon.com/128/8865/8865789.png">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xxl-3">
+                            <div class="block block-rounded d-flex flex-column h-100 mb-0">
+                                <div class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
+                                    <dl class="mb-0">
+                                        <dt class=" fw-bold" id="crypto-balance">$0.00</dt>
+                                        <dd class="fs-sm fw-medium text-muted mb-0">Total Withdrawal</dd>
+                                    </dl>
+                                    <script>
+                                        document.addEventListener("DOMContentLoaded", function() {
+                                            // Retrieve the crypto balances from Django template variables
+                                            const ethereums = parseFloat("{{ total_withdrawal|floatformat:2 }}") || 0;
+                                            const bitcoins = parseFloat("{{ total_crypto_withdrawal|floatformat:2 }}") || 0;
+
+                                            // Calculate the total balance
+                                            const totalBalance = ethereums + bitcoins;
+
+                                            // Update the total balance display with a dollar sign
+                                            document.getElementById("crypto-balance").textContent = `$ ${totalBalance.toFixed(2)}`;
+                                        });
+                                    </script>
+                                    <div class="item item-rounded-lg bg-body-light">
+                                        <i class=" text-primary"><img style="max-width: 30px;" src="https://cdn-icons-png.flaticon.com/128/10691/10691826.png"></i>
+                                    </div>
+                                </div>
+                                <div class="bg-body-light rounded-bottom">
+                                    <a class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                        <span><i class="fas fa-wallet"></i>Your Total Withdrawal</span>
+                                        <img style="max-width:20px;" src="https://cdn-icons-png.flaticon.com/128/3459/3459525.png">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+
+
+<!-- Deposit Block -->
+<div class="col-md-6">
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <div class="block-options-item">
+                <button type="button" class="btn btn-primary me-1 mb-3" onclick="window.location.href='{% url 'transactions:payment_create' %}'">
+                    <i class="fas fa-piggy-bank me-1"></i> Deposit
+                </button>
+            </div>
+            <div class="block-options">
+                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+            </div>
+        </div>
+        <div class="block-content">
+            <p>
+                To complete your payment, select your preferred payment method, enter the payment amount, make the payment, upload the proof of payment, and click "Proceed to Payment" to finalize the process.
+            </p>
+        </div>
+
+        <!-- Unique Deposit Video Tutorial Button -->
+        <div class="block-content">
+            <button type="button" class="btn-image-button-deposit" data-bs-toggle="modal" data-bs-target="#depositTutorialModal">
+                <span class="btn-text"><i class="fas fa-play-circle"></i> Deposit Tutorial</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Investment Block -->
+<div class="col-md-6">
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <div class="block-options-item">
+                <button type="button" class="btn btn-info me-1 mb-3" onclick="window.location.href='{% url 'accounts:schema' %}'">
+                    <i class="fas fa-chart-line me-1"></i> Investment
+                </button>
+            </div>
+            <div class="block-options">
+                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+            </div>
+        </div>
+        <div class="block-content">
+            <p>
+                Discover various investment opportunities by viewing the comprehensive list of investment plans. Select the plan that aligns with your budget, enter the investment amount, and click 'INVEST NOW' to secure your investment.
+            </p>
+        </div>
+
+        <!-- Unique Investment Video Tutorial Button -->
+        <div class="block-content">
+            <button type="button" class="btn-image-button-investment" data-bs-toggle="modal" data-bs-target="#investmentTutorialModal">
+                <span class="btn-text"><i class="fas fa-play-circle"></i> Investment Tutorial</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Withdrawal Block -->
+<div class="col-md-6">
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <div class="block-options-item">
+                <button type="button" class="btn btn-success me-1 mb-3" onclick="window.location.href='{% url 'transactions:create_withdrawal' %}'">
+                    <i class="fas fa-money-bill-wave me-1"></i> Withdrawal
+                </button>
+            </div>
+            <div class="block-options">
+                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+            </div>
+        </div>
+        <div class="block-content">
+            <p>
+                To initiate a withdrawal, choose your preferred withdrawal method, enter the desired amount, provide the recipient's wallet address, and confirm the transaction.
+            </p>
+        </div>
+
+        <!-- Unique Withdrawal Video Tutorial Button -->
+        <div class="block-content">
+            <button type="button" class="btn-image-button-withdrawal" data-bs-toggle="modal" data-bs-target="#withdrawalTutorialModal">
+                <span class="btn-text"><i class="fas fa-play-circle"></i> Withdrawal Tutorial</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modals for Video Tutorials -->
+
+<!-- Deposit Video Modal -->
+<div class="modal fade" id="depositTutorialModal" tabindex="-1" aria-labelledby="depositTutorialModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="depositTutorialModalLabel">How to Deposit - Video Tutorial</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://res.cloudinary.com/dro8yxudy/video/upload/v1731321770/new_Orbit_Deposit_dbrzym.mp4" title="Deposit Video Tutorial" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Investment Video Modal -->
+<div class="modal fade" id="investmentTutorialModal" tabindex="-1" aria-labelledby="investmentTutorialModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="investmentTutorialModalLabel">How to Invest - Video Tutorial</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://res.cloudinary.com/dro8yxudy/video/upload/v1731321807/new_Orbit_Investment_qurtww.mp4" title="Investment Video Tutorial" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Withdrawal Video Modal -->
+<div class="modal fade" id="withdrawalTutorialModal" tabindex="-1" aria-labelledby="withdrawalTutorialModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="withdrawalTutorialModalLabel">How to Withdraw - Video Tutorial</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://res.cloudinary.com/dro8yxudy/video/upload/v1731321737/new_Orbit_Withdrawal_awnqi5.mp4" title="Withdrawal Video Tutorial" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS for Buttons -->
+<style>
+    /* Deposit Tutorial Button */
+    .btn-image-button-deposit {
+        background-image: url('https://cdn.corporatefinanceinstitute.com/assets/deposit-1024x683.jpeg');
+        background-size: cover;
+        background-position: center;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Subtle shadow to make text visible */
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    .btn-image-button-deposit:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Investment Tutorial Button */
+    .btn-image-button-investment {
+        background-image: url('https://rates.fm/static/content/thumbs/984x553/0/de/kfknqr---c1034x582x50px50p--0546fa4162fb39f097866e4ee3d21de0.jpg');
+        background-size: cover;
+        background-position: center;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Subtle shadow for visibility */
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    .btn-image-button-investment:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Withdrawal Tutorial Button */
+    .btn-image-button-withdrawal {
+        background-image: url('https://thumbor.forbes.com/thumbor/fit-in/1290x/https://www.forbes.com/advisor/wp-content/uploads/2022/03/getty_atm_withdrawal_limits.jpeg');
+        background-size: cover;
+        background-position: center;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Subtle shadow */
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    .btn-image-button-withdrawal:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const modals = [
+        document.getElementById('depositTutorialModal'),
+        document.getElementById('investmentTutorialModal'),
+        document.getElementById('withdrawalTutorialModal')
+    ];
+
+    // Function to stop video
+    const stopVideo = (modal) => {
+        const iframe = modal.querySelector('iframe');
+        if (iframe) {
+            // Create a new src by adding a timestamp to force reload
+            const currentSrc = iframe.src;
+            iframe.src = '';
+            setTimeout(() => {
+                iframe.src = currentSrc;
+            }, 100);
+        }
+    };
+
+    modals.forEach(modal => {
+        modal.addEventListener('hide.bs.modal', function () {
+            stopVideo(this);
+        });
+    });
+});
+
+</script>
+
+
+                        <div class="col-md-6">
+                            <div class="block block-rounded">
+                                <div class="block-header block-header-default">
+                                        <div class="block-options-item">
+                                            <button type="button" class="btn btn-secondary me-1 mb-3" onclick="window.location.href='{% url 'transactions:referral' %}'">
+                                                <i class="fas fa-user-friends me-1"></i> Referral
+                                            </button>
+
+                                        </div>                                    
+                                        <div class="block-options">
+                                        
+                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+                                        
+                                    </div>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                        Maximize your earnings by sharing your referral link with family and friends. When they earn, you'll receive a generous 10% reward based on their earnings.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                            {% if transaction_history %}
+                            <div class="block block-rounded">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">Transaction History</h3>
+                                    <div class="block-options space-x-1">
+                                        <a href="{% url 'transactions:history_pdf_export' %}?export=pdf" class="btn btn-sm btn-alt-secondary">
+                                            <i class="fa fa-download"></i> Download PDF
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="block-content block-content-full">
+                                    <div class="table-scroll-container">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-vcenter">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Transaction ID</th>
+                                                        <th>Type</th>
+                                                        <th>Status</th>
+                                                        <th class="mobile-hide">Amount</th>
+                                                        <th class="mobile-hide">Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="fs-sm">
+                                                    {% for transaction in transaction_history %}
+                                                    <tr>
+                                                        <td>
+                                                            <a class="fw-semibold" href="javascript:void(0)">{{ transaction.transaction_id }}</a>
+                                                        </td>
+                                                        <td>
+                                                            {% if transaction.transaction_type == 'WITHDRAWAL' %}
+                                                                Transfer
+                                                            {% else %}
+                                                                {{ transaction.get_transaction_type_display }}
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+                                                        {% with status=transaction.get_related_status %}
+                                                            {% if transaction.content_type.model == 'withdrawal' %}
+                                                                {% if status == 'PENDING' %}
+                                                                    <span class="badge bg-warning">Pending</span>
+                                                                {% elif status == 'COMPLETED' %}
+                                                                    <span class="badge bg-success">Completed</span>
+                                                                {% elif status == 'CANCELLED' %}
+                                                                    <span class="badge bg-danger">Cancelled</span>
+                                                                {% elif status == 'DECLINED' %}
+                                                                    <span class="badge bg-danger">Declined</span>
+                                                                {% endif %}
+                                                            {% elif transaction.content_type.model in 'payment,cryptowithdraw' %}
+                                                                {% if status == 'PENDING' %}
+                                                                    <span class="badge bg-warning">Pending</span>
+                                                                {% elif status == 'COMPLETE' %}
+                                                                    <span class="badge bg-success">Complete</span>
+                                                                {% elif status == 'CANCELLED' %}
+                                                                    <span class="badge bg-danger">Cancelled</span>
+                                                                {% elif status == 'DECLINED' %}
+                                                                    <span class="badge bg-danger">Declined</span>
+                                                                {% endif %}
+                                                            {% elif transaction.content_type.model == 'loanrequest' %}
+                                                                <span class="badge bg-info">Requested</span>
+                                                            {% else %}
+                                                                <span class="badge bg-secondary">{{ transaction.get_status_display }}</span>
+                                                            {% endif %}
+                                                        {% endwith %}
+                                                        </td>
+                                                        <td class="mobile-hide">
+                                                            <strong>{{ transaction.amount }}</strong>
+                                                        </td>
+                                                        <td class="mobile-hide">
+                                                            {{ transaction.timestamp|date:"M d, Y g:i A" }}
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if transaction_paginator.num_pages > 1 %}
+                                <div class="block-content block-content-full bg-body-light">
+                                    <nav aria-label="Transactions Navigation">
+                                        <ul class="pagination pagination-sm justify-content-end mb-0">
+                                            {% if transaction_history.has_previous %}
+                                                <li class="page-item">
+                                                    <a class="page-link" href="?transaction_page={{ transaction_history.previous_page_number }}" tabindex="-1" aria-label="Previous">
+                                                        Prev
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                            
+                                            {% for i in transaction_paginator.page_range %}
+                                                {% if transaction_history.number == i %}
+                                                    <li class="page-item active">
+                                                        <a class="page-link" href="#">{{ i }}</a>
+                                                    </li>
+                                                {% else %}
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?transaction_page={{ i }}">{{ i }}</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                            
+                                            {% if transaction_history.has_next %}
+                                                <li class="page-item">
+                                                    <a class="page-link" href="?transaction_page={{ transaction_history.next_page_number }}" aria-label="Next">
+                                                        Next
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </nav>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% else %}
+                            <p>No transaction history available.</p>
+                            {% endif %}
+                            <style>
+                                .table-scroll-container {
+                                max-height: 400px; /* Adjust this value as needed */
+                                overflow-y: auto;
+                                scrollbar-width: none; /* Firefox */
+                                -ms-overflow-style: none; /* Internet Explorer 10+ */
+                            }
+
+                            .table-scroll-container::-webkit-scrollbar {
+                                width: 0;
+                                height: 0;
+                            }
+                            .logo-imagerr {
+                                    display: none;
+                                }
+
+                            @media (max-width: 767px) {
+                                .mobile-hide {
+                                    display: none;
+                                }
+                                    .logo-imagerr {
+                                    display: block; /* or display: inline; depending on your needs */
+                                }
+                            }
+                            </style>
+                </div>
+            </main>
+
+{% endblock content %}

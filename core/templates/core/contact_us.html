@@ -1,0 +1,824 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+
+<html lang="zxx">
+
+
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<!-- /Added by HTTrack -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Orbit Stock Index - Your Trusted Crypto Investment Partner</title>
+    <meta name="description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="og:title" content="Orbit Stock Index - Your Trusted Crypto Investment Partner" />
+    <meta property="og:description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="twitter:title" content="Orbit Stock Index - Your Trusted Crypto Investment Partner" />
+    <meta property="twitter:description" content="Orbit Stock Index offers government-approved crypto investments with daily and periodic rewards. Join us for secure and profitable investment opportunities." />
+    <meta property="og:type" content="website" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Webflow" name="generator" />
+    <link rel="stylesheet" href="{% static 'asseton/css/vendor.bundlef86ef86e.css' %}">
+    <link rel="stylesheet" href="{% static 'asseton/css/stylef86ef86e.css' %}">    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="icon" type="image/png" sizes="32x32" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="icon" type="image/png" sizes="16x16" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="manifest" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="mask-icon" color="#5bbad5" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" rel="apple-touch-icon" />
+
+    
+    <!-- Smartsupp Live Chat script -->
+    <script type="text/javascript">
+    var _smartsupp = _smartsupp || {};
+    _smartsupp.key = 'a6d859bc78e1dd7855b3860d122e62897dcd21b4';
+    window.smartsupp||(function(d) {
+      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+      c.type='text/javascript';c.charset='utf-8';c.async=true;
+      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+    })(document);
+    </script>
+    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+</head>
+
+
+
+
+
+<body class="nk-body body-wider bg-light">
+    <div class="nk-wrap">
+        <header class="nk-header page-header is-transparent is-sticky is-shrink">
+            <!-- Header @s -->
+            <div class="header-main">
+                <div class="header-container container">
+                    <div class="header-wrap">
+
+
+
+                        <!-- Logo @s -->
+                        <div class="header-logo logo animated fadeInDown" data-animate="fadeInDown" data-delay=".6" style="visibility: visible; animation-delay: 0.6s;">
+                            <a href="/" class="logo-link">
+                                <img class="logo-dark" src="{% static 'images/ss1.png' %}"   style='width:200px;height:auto; '>
+                                <img class="logo-light" src="{% static 'images/ss2.png' %}"  style='width:200px;height:auto; ' >
+                            </a>
+                        </div>
+
+                        <!-- Menu Toogle @s -->
+                        <div class="header-nav-toggle">
+                            <a href="#" class="navbar-toggle" data-menu-toggle="header-menu">
+                                <div class="toggle-line">
+                                    <span></span>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Menu @s -->
+                        <div class="header-navbar animated fadeInDown" data-animate="fadeInDown" data-delay=".75" style="visibility: visible; animation-delay: 0.75s;">
+                            <nav class="header-menu" id="header-menu">
+                                <ul class="menu">
+                                    <li class="menu-item ">
+                                        <a href="/">Home</a>
+
+                                    </li>
+
+                                    <li class="menu-item has-sub">
+                                        <a class="menu-link nav-link menu-toggle" href="{% url 'about' %}">About</a>
+                                        <ul class="menu-sub menu-drop menu-mega menu-mega-2clmn">
+                                            <div class="menu-mega-innr">
+                                                <ul class="menu-mega-list">
+                                                    <li class="menu-item">
+                                                        <a class="menu-link nav-link" href="{% url 'about' %}">About Us</a>
+                                                    </li>
+
+
+
+                                                    <li class="menu-item">
+                                                        <a class="menu-link nav-link" href="{% url 'security' %}">Security
+                                                            <span class="badge badge-dot"></span>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </ul>
+                                    </li>
+
+                                    <!-- <li class="menu-item ">
+                                        <a href="?a=pricing">Plans </a>
+
+                                    </li>-->
+
+                                    <li class="menu-item has-sub">
+                                        <a class="menu-link nav-link menu-toggle" href="#">Resources</a>
+                                        <div class="menu-sub menu-drop menu-mega menu-mega-2clmn">
+                                            <div class="menu-mega-innr">
+                                                <ul class="menu-mega-list">
+                                                    <li class="menu-item">
+                                                        <a href="{% url 'plan' %}">Online chart</a>
+                                                    </li>
+                                                    <li class="menu-item">
+                                                        <a href="{% url 'service' %}">Market</a>
+                                                    </li>
+
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="menu-item">
+                                        <a href="{% url 'faq' %}">FAQs</a>
+                                    </li>
+
+
+                                    <li class="menu-item">
+                                        <a href="{% url 'contact_us' %}">Contact</a>
+                                    </li>
+
+                                </ul>
+                                <ul class="menu-btns">
+                                    <li>
+                                        <a href="{% url 'accounts:login' %}" class="btn btn-md btn-auto btn-grad no-change">
+            <span>Login</span>
+        </a>
+
+                                        <a href="{% url 'accounts:register' %}" class="btn btn-md btn-auto btn-grad no-change">
+            <span>Signup</span>
+        </a>
+                                    </li>
+                                </ul>
+
+
+
+
+
+
+
+                            </nav>
+                            <div class="header-navbar-overlay"></div>
+                        </div>
+
+                        <!-- .header-navbar @e -->
+                    </div>
+                </div>
+            </div>
+            <!-- .header-main @e -->
+
+            <div class="header-banner bg-theme-grad">
+                <div class="nk-banner">
+                    <div class="banner banner-page">
+                        <div class="banner-wrap">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-xl-6 col-lg-9">
+                                        <div class="banner-caption cpn tc-light text-center">
+                                            <div class="cpn-head">
+                                                <h2 class="title ttu">Contact Us</h2>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .nk-banner -->
+                <div class="nk-ovm shape-a-sm"></div>
+            </div>
+            <!-- .header-banner @e -->
+        </header>
+        <main class="nk-pages">
+            <div class="fade show active" id="contact-default-01">
+                <section class="section section-l section-contact">
+                    <div class="container">
+                        <div class="nk-block block-contact" id="contact">
+                            <div class="row justify-content-center no-gutters">
+
+<div class="contact-form-container">
+    <div class="contact-form-wrapper">
+        <div class="form-header">
+            <h3 class="contact-form-title">Get in Touch</h3>
+            <p class="contact-form-subtitle">We're all ears for your thoughts!</p>
+        </div>
+        <form class="contact-form" action="" method="post" name="mainform" onsubmit="return checkform()">
+            {% csrf_token %}
+            <input type="hidden" name="form_id" value="16786256681902">
+            <input type="hidden" name="form_token" value="a6e0527d1b50bd5097dc0a56d447f391">
+            <input type="hidden" name="a" value="support">
+            <input type="hidden" name="action" value="send">
+
+            <div class="form-group">
+                <div class="input-wrapper">
+                    <input type="text" id="{{ form.name.id_for_label }}" name="{{ form.name.html_name }}" required>
+                    <label for="{{ form.name.id_for_label }}">Your Name</label>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="form-hint">How should we address you?</div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-wrapper">
+                    <input type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" required>
+                    <label for="{{ form.email.id_for_label }}">Your Email</label>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="form-hint">We respect your privacy</div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-wrapper">
+                    <textarea id="{{ form.message.id_for_label }}" name="{{ form.message.html_name }}" required></textarea>
+                    <label for="{{ form.message.id_for_label }}">Your Message</label>
+                    <i class="fas fa-comment"></i>
+                </div>
+                <div class="form-hint">What's on your mind?</div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">
+                    <span class="btn-text">Send Message</span>
+                    <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                </button>
+            </div>
+
+            <div class="form-footer">
+                <a href="{% url 'core:home' %}" class="home-link">
+                    <i class="fas fa-home"></i> Return to Homepage
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #126E82;
+    --secondary-color: #51a3b8;
+    --text-color: #333;
+    --hint-color: #6c757d;
+    --bg-color: #f6f9fc;
+    --input-bg: #ffffff;
+    --input-border: #e0e0e0;
+    --input-focus-border: #126E82;
+    --input-focus-shadow: rgba(18, 110, 130, 0.1);
+}
+
+.contact-form-container {
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 40px;
+    background: linear-gradient(135deg, var(--bg-color) 0%, #ffffff 100%);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-form-title {
+    font-size: 32px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.contact-form-subtitle {
+    font-size: 16px;
+    color: var(--hint-color);
+    margin-bottom: 25px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid var(--input-border);
+    border-radius: 12px;
+    background-color: var(--input-bg);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+}
+
+.contact-form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 4px var(--input-focus-shadow);
+}
+
+.contact-form label {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: var(--hint-color);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    padding: 0 5px;
+    background-color: var(--input-bg);
+}
+
+.contact-form textarea + label {
+    top: 20px;
+    transform: none;
+}
+
+.contact-form input:focus ~ label,
+.contact-form textarea:focus ~ label,
+.contact-form input:not(:placeholder-shown) ~ label,
+.contact-form textarea:not(:placeholder-shown) ~ label {
+    top: 0;
+    font-size: 12px;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.contact-form .input-wrapper i {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.contact-form textarea + i {
+    top: 20px;
+    transform: none;
+}
+
+.form-hint {
+    font-size: 12px;
+    color: var(--hint-color);
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+.form-actions {
+    text-align: center;
+}
+
+.btn-submit {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(18, 110, 130, 0.3);
+}
+
+.btn-submit:active {
+    transform: translateY(-1px);
+}
+
+.btn-text {
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.btn-icon {
+    position: absolute;
+    right: -30px;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.btn-submit:hover .btn-text {
+    transform: translateX(-15px);
+}
+
+.btn-submit:hover .btn-icon {
+    right: 20px;
+    opacity: 1;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.home-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.home-link i {
+    margin-right: 5px;
+}
+
+.home-link:hover {
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.contact-form-container::before,
+.contact-form-container::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(18, 110, 130, 0.1), rgba(18, 110, 130, 0.05));
+    z-index: 0;
+}
+
+.contact-form-container::before {
+    top: -150px;
+    left: -150px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.contact-form-container::after {
+    bottom: -150px;
+    right: -150px;
+    animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.error-message {
+    color: #ff4136;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+@media (max-width: 600px) {
+    .contact-form-container {
+        padding: 30px 20px;
+    }
+    
+    .contact-form-title {
+        font-size: 28px;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 14px;
+    }
+    
+    .btn-submit {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+}
+</style>
+
+<script>
+function checkform() {
+    const form = document.mainform;
+    const fields = ['name', 'email', 'message'];
+    const messages = {
+        'name': "Please enter your full name.",
+        'email': "Please enter a valid email address.",
+        'message': "Please type your message."
+    };
+
+    let isValid = true;
+
+    for (let field of fields) {
+        if (form[field].value.trim() === '') {
+            showError(form[field], messages[field]);
+            isValid = false;
+        } else {
+            clearError(form[field]);
+        }
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email.value.trim())) {
+        showError(form.email, "Please enter a valid email address.");
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function showError(input, message) {
+    const formGroup = input.closest('.form-group');
+    let error = formGroup.querySelector('.error-message');
+    if (!error) {
+        error = document.createElement('div');
+        error.className = 'error-message';
+        formGroup.appendChild(error);
+    }
+    error.textContent = message;
+    input.classList.add('error');
+}
+
+function clearError(input) {
+    const formGroup = input.closest('.form-group');
+    const error = formGroup.querySelector('.error-message');
+    if (error) {
+        formGroup.removeChild(error);
+    }
+    input.classList.remove('error');
+}
+
+document.querySelectorAll('.contact-form input, .contact-form textarea').forEach(input => {
+    input.addEventListener('focus', () => {
+        input.closest('.form-group').classList.add('focused');
+    });
+    input.addEventListener('blur', () => {
+        if (input.value === '') {
+            input.closest('.form-group').classList.remove('focused');
+        }
+    });
+    // Set initial state
+    if (input.value !== '') {
+        input.closest('.form-group').classList.add('focused');
+    }
+});
+</script>
+
+                                <div class="col-lg-4">
+                                    <div class="contact-wrap split split-right split-lg-right bg-theme-dark tc-light">
+                                        <div class="d-flex flex-column justify-content-between">
+                                            <h3 class="animated text-md fadeInUp" data-animate="fadeInUp" data-delay=".3" style="visibility: visible; animation-delay: 0.3s;">Want to get in touch?</h3> whatever works for you. We'll be here.
+                                            <p></p>
+                                            <ul class="contact-list">
+                                                <li>
+                                                    <em class="contact-icon fas fa-building"></em>
+                                                    <div class="contact-text">
+                                                        <h6>Orbit Stock Index</h6>
+                                                        <span>One London Wall, London Wall, Barbican, London EC2Y 5EB, United Kingdom. </span>
+                                                    </div>
+                                                </li>
+
+
+
+
+
+                                                <li>
+                                                    <em class="contact-icon fas fa-envelope"></em>
+                                                    <div class="contact-text">
+                                                        <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__">support@orbit-stockindex.com</a></span>
+                                                    </div>
+
+                                                </li>
+                                            </ul>
+                                            <div class="contact-social animated fadeInUp" data-animate="fadeInUp" data-delay=".6" style="visibility: visible; animation-delay: 0.6s;">
+                                                <h6>Be a part of our community</h6>
+                                                <ul class="social-links">
+                                                    <li>
+                                                        <a href="#">
+                                                    <em class="fab fa-telegram"></em>
+                                                </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                    <em class="fab fa-facebook-f"></em>
+                                                </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                    <em class="fab fa-twitter"></em>
+                                                </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                    <em class="fab fa-bitcoin"></em>
+                                                </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                    <em class="fab fa-github"></em>
+                                                </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-image bg-opacity-0" data-overlay="theme" data-opacity="95">
+                        <img data-src="images/bg/bg-a.jpg" alt="background">
+
+                    </div>
+                </section>
+            </div>
+        </main>
+        <style>
+            .bg-theme-dark {
+                background-color: #181818 !important;
+            }
+        </style>
+
+
+
+
+
+        <footer class="nk-footer bg-theme-grad">
+
+        <section class="section section-footer tc-light bg-transparent">
+            <div class="container">
+                <!-- Block @s -->
+                <div class="nk-block block-footer mgb-m30">
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-4">
+                            <div class="wgs wgs-menu animated" data-animate="fadeInUp" data-delay=".2">
+                                <h6 class="wgs-title">Company</h6>
+                                <div class="wgs-body">
+                                    <ul class="wgs-links">
+                                        <li>
+                                            <a href="{% url 'about' %}">About Us</a>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="{% url 'contact_us' %}">Contact Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'faq' %}">FAQs</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                        <div class="col-lg-2 col-sm-4">
+                            <div class="wgs wgs-menu animated" data-animate="fadeInUp" data-delay=".3">
+                                <h6 class="wgs-title">Legal</h6>
+                                <div class="wgs-body">
+                                    <ul class="wgs-links">
+                                        <li>
+                                            <a href="{% url 'transactions:terms' %}">Terms &amp; Conditions</a>
+                                        </li>
+                                        
+                                                <a href="{% url 'privacy' %}">Privacy Policy</a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'cookie' %}">Cookie Policy</a>
+                                            </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                        <div class="col-lg-2 col-sm-4">
+                            <div class="wgs wgs-menu animated" data-animate="fadeInUp" data-delay=".4">
+                                <h6 class="wgs-title">Quick Links</h6>
+                                <div class="wgs-body">
+                                    <ul class="wgs-links">
+                                        <li>
+                                            <a href="{% url 'accounts:register' %}">Signup</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'accounts:login' %}">Login</a>
+                                        </li>
+                                        <!-- <li>
+                                                <a href="?a=pricing">Our Investment Plans</a>
+                                            </li>
+                                            <li>
+                                                <a href="Gal l.pdf">Company PDF  </a>
+                                            </li>
+                                             <li>-->
+                                        <a href="{% url 'company' %}">Company Certificate  </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                        <div class="col-lg-6 order-lg-first">
+                            <div class="wgs wgs-text animated" data-animate="fadeInUp" data-delay=".1">
+                                <div class="wgs-body">
+                                    <a href="/" class="wgs-logo">
+                                            <img src="{% static 'images/ss2.png' %}" "{% static 'images/logo-full-white2x.png' %} 2x" alt="logo">
+                                        </a>
+
+                                    <p>Copyright © 2024 www.orbit-stockindex.com.
+                                        <br> All rights reserved.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .col -->
+                    </div>
+                    <!-- .row -->
+                </div>
+                <!-- .block @e -->
+            </div>
+        </section>
+            <div class="nk-ovm shape-b"></div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+    <script src="{% static 'asseton/js/jquery.bundlef86ef86e.js' %}?ver=192"></script>
+    <script src="{% static 'asseton/js/scriptsf86ef86e.js' %}?ver=192"></script>
+    <script src="{% static 'asseton/js/charts.js' %}"></script>
+
+
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    <style>
+        img {
+            max-width: 70%;
+            height: auto;
+        }
+    </style>
+
+
+
+
+        <script type="text/javascript">
+            function googleTranslateElementInit2() {
+            new google.translate.TranslateElement({pageLanguage: 'en',autoDisplay: false}, 'google_translate_element2');}
+        </script>
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+        <script type="text/javascript">
+            eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('6 7(a,b){n{4(2.9){3 c=2.9("o");c.p(b,f,f);a.q(c)}g{3 c=2.r();a.s(\'t\'+b,c)}}u(e){}}6 h(a){4(a.8)a=a.8;4(a==\'\')v;3 b=a.w(\'|\')[1];3 c;3 d=2.x(\'y\');z(3 i=0;i<d.5;i++)4(d[i].A==\'B-C-D\')c=d[i];4(2.j(\'k\')==E||2.j(\'k\').l.5==0||c.5==0||c.l.5==0){F(6(){h(a)},G)}g{c.8=b;7(c,\'m\');7(c,\'m\')}}',43,43,'||document|var|if|length|function|GTranslateFireEvent|value|createEvent||||||true|else|doGTranslate||getElementById|google_translate_element2|innerHTML|change|try|HTMLEvents|initEvent|dispatchEvent|createEventObject|fireEvent|on|catch|return|split|getElementsByTagName|select|for|className|goog|te|combo|null|setTimeout|500'.split('|'),0,{}))
+            $(function(){
+                        $('.selectpicker').selectpicker();
+                   
+
+
+
+
+
+
+
+</body>
+
+
+</html>
