@@ -16,7 +16,7 @@ os.environ['SSL_CERT_FILE'] = certifi.where()
 BASE_DIR = Path(__file__).resolve().parent.parent
 CSRF_TRUSTED_ORIGINS = [
     "https://web-production-9d64d.up.railway.app/",
-    "https://www.zorevinacart.store"
+    "https://www.orbit-stockindex.com"
 ]
 
 # SECURITY WARNING: keep the secret key used in production secret!
