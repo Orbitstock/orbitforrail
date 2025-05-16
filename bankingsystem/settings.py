@@ -15,7 +15,7 @@ os.environ['SSL_CERT_FILE'] = certifi.where()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
 CSRF_TRUSTED_ORIGINS = [
-    "https://web-production-f4d8.up.railway.app",
+    "https://web-production-9d64d.up.railway.app/",
     "https://www.zorevinacart.store"
 ]
 
@@ -103,7 +103,6 @@ DATABASE_URL = "postgresql://postgres.zbigkfdfdlzvimfljcsh:[Firstwork51a51$@aws-
 DATABASES = {
     'default': dj_database_url.config(default=DATABASE_URL)
 }
-
 
 
 """
