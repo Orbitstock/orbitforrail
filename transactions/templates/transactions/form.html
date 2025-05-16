@@ -1,0 +1,136 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% include "core/messages.html" %}
+{% load static %}
+
+    <link rel="stylesheet" href="{% static 'assets/frontend/css/styles.css' %}?var=2.1" />
+
+<main id="main-container">
+    <div class="block block-rounded">
+        <div class="block-content block-content-full">
+
+                    <!--Page Content-->
+<div >
+    <div >
+        <div >
+            <div >
+                <!--Page Content-->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="site-card">
+                            <div class="site-card-header">
+                                <h3 class="title">Transfer Money</h3>
+                                <div class="card-header-links">
+                                    <a style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" 
+                                                    class="site-btn blue-btn" 
+                                                    onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';" href="{% url 'transactions:summary' %}" class="card-header-link">SEND MONEY LOG</a>
+                                </div>
+                            </div>
+                            <div class="site-card-body">
+                                <div class="progress-steps">
+                                    <!-- Progress steps code -->
+                                </div>
+
+                                <div class="progress-steps-form">
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-xl-6 col-md-12">
+                                                <label for="id_target" class="form-label">User ID / Account ID</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="{{ form.target.html_name }}" required class="form-control " placeholder="User ID"  aria-describedby="basic-addon1">
+                                                    
+                                                </div>
+                                                {{ form.target.errors }}
+                                            </div>
+                                            <div class="col-xl-6 col-md-12">
+                                                <label for="id_target_email" class="form-label">User Email</label>
+                                                <div class="input-group">
+                                                    <input type="email" name="{{ form.target_email.html_name }}" required class="form-control userCheck" placeholder="User Email" >
+                                                </div>
+                                                {{ form.target_email.errors }}
+                                            </div>
+                                            <div class="col-xl-6 col-md-12">
+                                                <label for="id_amount" class="form-label">Amount</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="{{ form.amount.html_name }}" required class="form-control sendAmount" placeholder="Amount"  aria-describedby="basic-addon1">
+                                                    <span class="input-group-text" id="basic-addon1">USD</span>
+                                                </div>
+                                                {{ form.amount.errors }}
+                                            </div>
+                                            <div class="col-xl-12 col-md-12 mt-3">
+                                                <label for="id_note" class="form-label">Send Money Note (Optional)</label>
+                                                <div class="input-group">
+                                                    {{ form.note }}
+                                                </div>
+                                                {{ form.note.errors }}
+                                            </div>
+                                        </div>
+                                        <div class="transaction-list table-responsive">
+                                            <div class="user-panel-title">
+                                                <h3>Send Money Details</h3>
+                                            </div>
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><strong>Payment Amount</strong></td>
+                                                        <td><span class="amount"></span> <span class="currency">USD</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Charge</strong></td>
+                                                        <td class="charge2">0.00 USD</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>User Email</strong></td>
+                                                        <td class="userEmail"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="buttons">
+                                            <button style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" 
+                                                    class="site-btn blue-btn" 
+                                                    onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';">Send Money<i class="fas fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Page Content-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var amountInput = document.querySelector(".sendAmount");
+    var amountSpan = document.querySelector(".amount");
+    var currencySpan = document.querySelector(".currency");
+    var userEmailCell = document.querySelector(".userEmail");
+
+    amountInput.addEventListener("input", function() {
+        var amount = parseFloat(amountInput.value);
+        amountSpan.textContent = amount.toFixed(2);
+    });
+
+    var userEmailInput = document.querySelector("input[name='{{ form.target_email.html_name }}']");
+    userEmailInput.addEventListener("input", function() {
+        userEmailCell.textContent = userEmailInput.value;
+    });
+</script>
+                    <!--Page Content-->
+                </div>
+        </div>
+
+</main>
+
+
+
+{% endblock %}

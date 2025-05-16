@@ -1,0 +1,348 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% include "core/messages.html" %}
+
+
+<main id="main-container">
+    <div class="bg-body-light">
+        <div class="content content-full">
+            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
+		<div class="flex-grow-1">
+		    <h1 class="h3 fw-bold mb-1">
+		        Crypto Wallet
+		    </h1>
+		    <h2 class="fs-base lh-base fw-medium text-muted mb-0">
+		        Manage your cryptocurrency balances and wallet addresses with ease.
+		    </h2>
+		</div>
+		<nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+		    <ol class="breadcrumb breadcrumb-alt">
+		        <li class="breadcrumb-item">
+		            <a class="link-fx" href="javascript:void(0)">Dashboard</a>
+		        </li>
+		        <li class="breadcrumb-item" aria-current="page">
+		            Crypto Wallet
+		        </li>
+		    </ol>
+		</nav>
+		</div>
+
+        </div>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">$ {{ user.account.bitcoins }}</h3><img style="max-width:30px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/5968/5968260.png">
+                    </div>
+                    <div class="block-content block-content-full">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBitcoin" aria-controls="offcanvasBitcoin">
+                            Bitcoin Balance <span>  </span><span>  </span> <img style="max-width:20px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                        </button>
+                        <div class="offcanvas offcanvas-top bg-body-extra-light" tabindex="-1" id="offcanvasBitcoin" aria-labelledby="offcanvasBitcoinLabel">
+                            <div class="offcanvas-header bg-body-light">
+                                <h5 class="offcanvas-title" id="offcanvasBitcoinLabel">Bitcoin Balance</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/5968/5968260.png" style="max-width:30px;">
+                                    Bitcoin Balance : $ {{ user.account.bitcoins }}
+                                    <br>
+                                    Wallet Address : {{ wallets_instance.bitcoin }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">$ {{ user.account.ethereums }}</h3><img style="max-width:30px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/7016/7016523.png">
+                    </div>
+                    <div class="block-content block-content-full">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEthereum" aria-controls="offcanvasEthereum">
+                            Ethereum Balance
+                        <span>  </span><span>  </span> <img style="max-width:20px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                        </button>
+                        <div class="offcanvas offcanvas-top bg-body-extra-light" tabindex="-1" id="offcanvasEthereum" aria-labelledby="offcanvasEthereumLabel">
+                            <div class="offcanvas-header bg-body-light">
+                                <h5 class="offcanvas-title" id="offcanvasEthereumLabel">Ethereum Balance</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/15301/15301586.png" style="max-width:30px;">
+                                    Ethereum Balance : $ {{ user.account.ethereums }}
+                                    <br>
+                                    Wallet Address : {{ wallets_instance.ethereum }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">$ {{ user.account.usdt_trc20s }}</h3><img style="max-width:30px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/16147/16147281.png">
+                    </div>
+                    <div class="block-content block-content-full">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasUsdt" aria-controls="offcanvasUsdt">
+                            USDT ERC20 Balance
+                        <span>  </span><span>  </span> <img style="max-width:20px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                        </button>
+                        <div class="offcanvas offcanvas-top bg-body-extra-light" tabindex="-1" id="offcanvasUsdt" aria-labelledby="offcanvasUsdtLabel">
+                            <div class="offcanvas-header bg-body-light">
+                                <h5 class="offcanvas-title" id="offcanvasUsdtLabel">USDT ERC20 Balance</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/16147/16147281.png" style="max-width:30px;">
+                                    USDT ERC20 Balance : $ {{ user.account.usdt_trc20s }}
+                                    <br>
+                                    Wallet Address : {{ wallets_instance.usdt_erc20 }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">$ {{ user.account.trons }}</h3><img style="max-width:30px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/7016/7016547.png">
+                    </div>
+                    <div class="block-content block-content-full">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTron" aria-controls="offcanvasTron">
+                            Tron Balance
+                        <span>  </span><span>  </span> <img style="max-width:20px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                        </button>
+                        <div class="offcanvas offcanvas-bottom bg-body-extra-light" tabindex="-1" id="offcanvasTron" aria-labelledby="offcanvasTronLabel">
+                            <div class="offcanvas-header bg-body-light">
+                                <h5 class="offcanvas-title" id="offcanvasTronLabel">Tron Balance</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/7016/7016547.png" style="max-width:30px;">
+                                    Tron Balance : $ {{ user.account.trons }}
+                                    <br>
+                                    Wallet Address : {{ wallets_instance.tron }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">$ {{ user.account.solanas }}</h3><img style="max-width:30px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6001/6001527.png">
+                    </div>
+                    <div class="block-content block-content-full">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSolana" aria-controls="offcanvasSolana">
+                            Solana Balance
+                        <span>  </span><span>  </span> <img style="max-width:20px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                        </button>
+                        <div class="offcanvas offcanvas-bottom bg-body-extra-light" tabindex="-1" id="offcanvasSolana" aria-labelledby="offcanvasSolanaLabel">
+                            <div class="offcanvas-header bg-body-light">
+                                <h5 class="offcanvas-title" id="offcanvasSolanaLabel">Solana Balance</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/6001/6001527.png" style="max-width:30px;">
+                                    Solana Balance : $ {{ user.account.solanas }}
+                                    <br>
+                                    Wallet Address : {{ wallets_instance.solana }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">$ {{ user.account.bnbs }}</h3><img style="max-width:30px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/16580/16580578.png">
+                    </div>
+                    <div class="block-content block-content-full">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBnbSmartChain" aria-controls="offcanvasBnbSmartChain">
+                            BNB Smart Chain Balance
+                        <span>  </span><span>  </span> <img style="max-width:20px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                        </button>
+                        <div class="offcanvas offcanvas-bottom bg-body-extra-light" tabindex="-1" id="offcanvasBnbSmartChain" aria-labelledby="offcanvasBnbSmartChainLabel">
+                            <div class="offcanvas-header bg-body-light">
+                                <h5 class="offcanvas-title" id="offcanvasBnbSmartChainLabel">BNB Smart Chain Balance</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/6001/6001116.png" style="max-width:30px;">
+                                    BNB Smart Chain Balance : $ {{ user.account.bnbs }}
+                                    <br>
+                                    Wallet Address : {{ wallets_instance.bnb }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">$ {{ user.account.litecoins }}</h3><img style="max-width:30px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6675/6675784.png">
+                    </div>
+                    <div class="block-content block-content-full">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLitecoin" aria-controls="offcanvasLitecoin">
+                            Litecoin Balance
+                        <span>  </span><span>  </span> <img style="max-width:20px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                        </button>
+                        <div class="offcanvas offcanvas-bottom bg-body-extra-light" tabindex="-1" id="offcanvasLitecoin" aria-labelledby="offcanvasLitecoinLabel">
+                            <div class="offcanvas-header bg-body-light">
+                                <h5 class="offcanvas-title" id="offcanvasLitecoinLabel">Litecoin Balance</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/3938/3938179.png" style="max-width:30px;">
+                                    Litecoin Balance : $ {{ user.account.litecoins }}
+                                    <br>
+                                    Wallet Address : {{ wallets_instance.litecoin }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">$ {{ user.account.dogecoins }}</h3><img style="max-width:30px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/5004/5004984.png">
+                    </div>
+                    <div class="block-content block-content-full">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDogecoin" aria-controls="offcanvasDogecoin">
+                            Dogecoin Balance
+                        <span>  </span><span>  </span> <img style="max-width:20px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                        </button>
+                        <div class="offcanvas offcanvas-bottom bg-body-extra-light" tabindex="-1" id="offcanvasDogecoin" aria-labelledby="offcanvasDogecoinLabel">
+                            <div class="offcanvas-header bg-body-light">
+                                <h5 class="offcanvas-title" id="offcanvasDogecoinLabel">Dogecoin Balance</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/6001/6001356.png" style="max-width:30px;">
+                                    Dogecoin Balance : $ {{ user.account.dogecoins }}
+                                    <br>
+                                    Wallet Address : {{ wallets_instance.dogecoin }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-6">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">$ {{ user.account.xrps }}</h3><img style="max-width:30px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6946/6946147.png">
+                    </div>
+                    <div class="block-content block-content-full">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasXRP" aria-controls="offcanvasXRP">
+                            XRP Balance
+                        <span>  </span><span>  </span> <img style="max-width:20px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                        </button>
+                        <div class="offcanvas offcanvas-bottom bg-body-extra-light" tabindex="-1" id="offcanvasXRP" aria-labelledby="offcanvasXRPLabel">
+                            <div class="offcanvas-header bg-body-light">
+                                <h5 class="offcanvas-title" id="offcanvasXRPLabel">XRP Balance</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/6001/6001443.png" style="max-width:30px;">
+                                    XRP Balance : $ {{ user.account.xrps }}
+                                    <br>
+                                    Wallet Address : {{ wallets_instance.xrp }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">$ {{ user.account.shiba_inu }}</h3><img style="max-width:30px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/15301/15301760.png">
+                    </div>
+                    <div class="block-content block-content-full">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSHIBAINU" aria-controls="offcanvasSHIBAINU">
+                            SHIBA INU Balance
+                        <span>  </span><span>  </span> <img style="max-width:20px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                        </button>
+                        <div class="offcanvas offcanvas-bottom bg-body-extra-light" tabindex="-1" id="offcanvasSHIBAINU" aria-labelledby="offcanvasSHIBAINULabel">
+                            <div class="offcanvas-header bg-body-light">
+                                <h5 class="offcanvas-title" id="offcanvasSHIBAINULabel">SHIBA INU Balance</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/7016/7016538.png" style="max-width:30px;">
+                                    SHIBA INU Balance : $ {{ user.account.shiba_inu }}
+                                    <br>
+                                    Wallet Address : {{ wallets_instance.shiba_inu }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-6">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">$ {{ user.account.cardano }}</h3><img style="max-width:30px; justify-content: right;" src="https://www.pngall.com/wp-content/uploads/10/Cardano-Crypto-Logo-PNG-Picture.png">
+                    </div>
+                    <div class="block-content block-content-full">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCARDANO" aria-controls="offcanvasCARDANO">
+                            CARDANO Balance
+                        <span>  </span><span>  </span> <img style="max-width:20px; justify-content: right;" src="https://cdn-icons-png.flaticon.com/128/6152/6152441.png">
+                        </button>
+                        <div class="offcanvas offcanvas-bottom bg-body-extra-light" tabindex="-1" id="offcanvasCARDANO" aria-labelledby="offcanvasCARDANOLabel">
+                            <div class="offcanvas-header bg-body-light">
+                                <h5 class="offcanvas-title" id="offcanvasCARDANOLabel">CARDANO Balance</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <p>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/6425/6425953.png" style="max-width:30px;">
+                                    CARDANO Balance : $ {{ user.account.cardano }}
+                                    <br>
+                                    Wallet Address : {{ wallets_instance.cardano }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</main>
+
+
+
+{% endblock %}

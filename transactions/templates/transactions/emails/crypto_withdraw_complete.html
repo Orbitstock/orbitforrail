@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Withdrawal Complete</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0f8e0;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            background-color: #ffffff;
+            margin: 30px auto;
+            padding: 20px;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #00cc66;
+        }
+        .email-header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .email-header img {
+            max-width: 180px;
+            margin-bottom: 10px;
+        }
+        .email-body {
+            padding: 20px;
+            color: #333333;
+        }
+        .email-body h2 {
+            color: #00cc66;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .email-body p {
+            font-size: 16px;
+            color: #555555;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+        .crypto-withdraw-details {
+            background-color: #f0fff0;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e6e9ec;
+            margin-top: 20px;
+        }
+        .crypto-withdraw-details p {
+            font-weight: bold;
+            margin: 5px 0;
+            font-size: 15px;
+            color: #333333;
+        }
+        .email-footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777777;
+            margin-top: 30px;
+            padding: 20px;
+            border-top: 1px solid #e6e9ec;
+        }
+        .email-footer a {
+            color: #00cc66;
+            text-decoration: none;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #00cc66;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                padding: 15px;
+            }
+            .email-body h2 {
+                font-size: 22px;
+            }
+            .email-body p, .crypto-withdraw-details p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <img src="https://res.cloudinary.com/dro8yxudy/image/upload/v1731288059/ss3_nnvzvj.png" alt="ORBIT STOCK INDEX Logo">
+        </div>
+        <div class="email-body">
+            <h2>Crypto Withdrawal Complete</h2>
+            <p>Hello {{ crypto_withdraw.user.first_name }} {{ crypto_withdraw.user.last_name }},</p>
+            <p>Your crypto withdrawal has been successfully processed. Here are the details:</p>
+            <div class="crypto-withdraw-details">
+                <p>Amount: ${{ crypto_withdraw.amount|floatformat:2 }}</p>
+                <p>Method: {{ crypto_withdraw.get_payment_method_display }}</p>
+                <p>Date: {{ crypto_withdraw.timestamp }}</p>
+                <p>Recipient Address: {{ crypto_withdraw.recipient_address }}</p>
+            </div>
+            <p>Thank you for your patience. If you have any questions, contact us at <a href="mailto:support@orbit-stockindex.com">support@orbit-stockindex.com</a>.</p>
+        </div>
+        <div class="email-footer">
+            © 2024 ORBIT STOCK INDEX. All rights reserved. | <a href="https://www.orbit-stockindex.com">Visit our website</a>
+        </div>
+    </div>
+</body>
+</html>

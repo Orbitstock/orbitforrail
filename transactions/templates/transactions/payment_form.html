@@ -1,0 +1,685 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% include "core/messages.html" %}
+{% load static %}
+
+    <link rel="stylesheet" href="{% static 'assets/frontend/css/styles.css' %}?var=2.1" />
+
+<main id="main-container">
+    <div class="block block-rounded">
+        <div class="block-content block-content-full">
+
+                    <!--Page Content-->
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="site-card">
+                                <div class="site-card-header">
+                                    <h3 class="title">Add Money</h3>
+                                    <div class="card-header-links">
+                                        <a style="background-color: #0056b3;" href="{% url 'transactions:recent_payments' %}" class="card-header-link">Deposit History</a>
+                                    </div>
+                                </div>
+
+                    <div id="payment-form-container" class="form-container">
+                        <h2>Choose Payment Method</h2>
+                        
+                        
+                        <form id="payment-form" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            
+                            <!-- Amount -->
+                            <div class="form-group buysell-field">
+                                <label class="form-label">Amount to Deposit</label>
+                                {{ form.amount }}
+                                <span class="form-note">Minimum: 100.00 USD</span>
+                            </div>
+
+                            <!-- Payment Method Options -->
+                            <div class="payment-methods">
+                                <div class="payment-option" onclick="selectPaymentOption('crypto')">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Cryptocurrency_Logo.svg/633px-Cryptocurrency_Logo.svg.png?20171112032351" alt="Cryptocurrency Logo">
+                                    <div class="payment-option-text">
+                                        <strong>Cryptocurrency</strong> (Pay with Bitcoin, Ethereum, or USDT)
+                                    </div>
+                                    <input type="radio" name="payment" value="crypto">
+                                </div>
+                                
+                                <div class="payment-option" onclick="selectPaymentOption('giftcard')">
+                                    <img src="https://cdn.redmondpie.com/wp-content/uploads/2011/07/Apple-Logo.png" alt="Gift Card Logo">
+                                    <div class="payment-option-text">
+                                        <strong>Gift Card</strong> (Redeem various gift cards)
+                                    </div>
+                                    <input type="radio" name="payment" value="giftcard">
+                                </div>
+
+                                <div class="payment-option" onclick="selectPaymentOption('bank')">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png?20150315064712" alt="Bank Transfer Logo">
+                                    <div class="payment-option-text">
+                                        <strong>Bank Transfer</strong> (Direct bank transfer options)
+                                    </div>
+                                    <input type="radio" name="payment" value="bank">
+                                </div>
+                            </div>
+
+                            <!-- Flash Message -->
+                            <div id="flash-message" class="custom-flash-message" style="display: none;">
+                                <span id="flash-text"></span>
+                                <div class="flash-progress-bar" id="flash-progress"></div>
+                                <button class="close-flash" onclick="closeFlashMessage()">&times;</button>
+                            </div>
+
+                            <!-- Payment Sections -->
+                            <div class="payment-section">
+                                <!-- Cryptocurrency Payment -->
+                                <div id="crypto-section" class="payment-details">
+                                    <h3>Cryptocurrency Payment</h3>
+                                    <select id="crypto-method" name="crypto_method" class="form-control">
+                                        <option value="">Choose...</option>
+                                        <option value="BITCOIN">Bitcoin</option>
+                                        <option value="ETHEREUM">Ethereum</option>
+                                        <option value="USDT_TRC20">Usdt Trc20</option>
+                                        <option value="XRP">Xrp</option>
+                                    </select>
+                                    <div id="crypto-details" style="display: none;">
+                                        <p>Wallet Address:</p>
+                                        <input type="text" id="crypto-address-input" class="form-control" readonly>
+                                    <button type="button" class="btn" onclick="copyPaymentAddress()" style="background-color: #007BFF; /* Blue background */color: white; /* White text */border: 1px solid #007BFF; /* Blue border for definition */padding: 10px 20px; /* Adjusted padding for better appearance */font-size: 14px; /* Font size */font-weight: 500; /* Slightly bolder text */border-radius: 4px; /* Rounded corners */cursor: pointer; /* Pointer cursor */text-align: center; /* Center text */transition: background-color 0.2s ease, border-color 0.2s ease; /* Smooth transitions */"onmouseover="this.style.backgroundColor='#0056b3'; this.style.borderColor='#0056b3';" onmouseout="this.style.backgroundColor='#007BFF'; this.style.borderColor='#007BFF';">
+                                        Copy Wallet Address
+                                    </button>
+
+                                        <div class="qr-code">
+                                            <img id="crypto-qr-code" src="" alt="QR Code">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Gift Card Payment -->
+                                <div id="giftcard-section" class="payment-details">
+                                    <h3>Gift Card Payment</h3>
+
+                                    {{ form.giftcard_type }}
+                                    {{ form.giftcard_code }}
+                                    <div class="gift-card-logo">
+                                        <img style="max-width:50px;" id="giftcard-logo" src="" alt="Gift Card">
+                                    </div>
+                                </div>
+
+                                <!-- Bank Transfer -->
+                                <div id="bank-section" class="payment-details">
+                                    <h3>Bank Transfer Details</h3>
+                                    {{ form.bank_transfer }}
+                                    <div id="bank-details" style="display: none;">
+                                        <img id="bank-logo" src="" alt="Bank Logo">
+                                        <p>Transfer Tag:</p>
+                                        <input type="text" id="bank-tag-input" class="form-control" readonly>
+                                    <button 
+                                        type="button" 
+                                        class="btn" 
+                                        onclick="copyBankTag()" 
+                                        style="
+                                            background-color: #007BFF; /* Blue background */
+                                            color: white; /* White text */
+                                            border: 1px solid #007BFF; /* Blue border for definition */
+                                            padding: 10px 20px; /* Adjusted padding for better appearance */
+                                            font-size: 14px; /* Font size */
+                                            font-weight: 500; /* Slightly bolder text */
+                                            border-radius: 4px; /* Rounded corners */
+                                            cursor: pointer; /* Pointer cursor */
+                                            text-align: center; /* Center text */
+                                            transition: background-color 0.2s ease, border-color 0.2s ease; /* Smooth transitions */
+                                        "
+                                        onmouseover="this.style.backgroundColor='#0056b3'; this.style.borderColor='#0056b3';" 
+                                        onmouseout="this.style.backgroundColor='#007BFF'; this.style.borderColor='#007BFF';"
+                                    >
+                                        Copy Tag
+                                    </button>
+
+
+                                        <div class="qr-code">
+                                            <img id="bank-qr-code" src="" alt="QR Code">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            
+<!-- Beyond God Mode - Proof of Payment Section -->
+<div class="beyond-proof-payment-form-group-2024">
+    <label for="proof-of-pay-input" class="beyond-proof-payment-label-2024">
+        Proof of Payment <i class="fas fa-file-invoice"></i>
+    </label>
+    <small class="beyond-proof-payment-small-2024">Upload a screenshot of your payment confirmation</small>
+
+    <!-- Django form field -->
+    {{ form.proof_of_pay }}
+
+    <!-- Image Preview Section -->
+    <div class="beyond-proof-pay-preview-wrapper-2024">
+        <img id="beyond-proof-of-pay-preview-img-2024" src="https://via.placeholder.com/150" alt="Proof of Payment" class="beyond-proof-pay-preview-img-2024">
+    </div>
+</div>
+
+<script>
+    // Beyond God Mode - Script to preview the selected image for Proof of Payment
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('beyond-proof-of-pay-preview-img-2024');
+            output.src = reader.result;
+            output.classList.add('beyond-img-loaded-2024');  // Add class for transition effect
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+
+<style>
+/* Beyond God Mode Proof of Payment Form Styles */
+.beyond-proof-payment-form-group-2024 {
+    margin: 20px 0;
+    padding: 25px;
+    border: 1px solid #b3c7d6;
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(58,130,191,1) 0%, rgba(195,229,245,1) 100%);
+    box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+    transition: all 0.4s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.beyond-proof-payment-form-group-2024:hover {
+    box-shadow: 0px 10px 40px rgba(0,0,0,0.2);
+    transform: translateY(-7px);
+}
+
+.beyond-proof-payment-form-group-2024::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(58,130,191,0.0) 80%);
+    transition: all 0.6s ease-in-out;
+    border-radius: 50%;
+}
+
+.beyond-proof-payment-form-group-2024:hover::before {
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(58,130,191,0.0) 80%);
+}
+
+.beyond-proof-payment-label-2024 {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.beyond-proof-payment-label-2024 i {
+    margin-left: 8px;
+    color: #fffcf2;
+}
+
+.beyond-proof-payment-small-2024 {
+    display: block;
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+    color: #d9e8f2;
+}
+
+.beyond-proof-pay-preview-wrapper-2024 {
+    margin-top: 25px;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    transition: background 0.3s ease;
+}
+
+.beyond-proof-pay-preview-wrapper-2024:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.beyond-proof-pay-preview-img-2024 {
+    max-width: 150px;
+    border: 4px solid rgba(255,255,255,0.7);
+    padding: 8px;
+    border-radius: 15px;
+    opacity: 0.5;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.beyond-img-loaded-2024 {
+    opacity: 1;
+    transform: scale(1.07);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .beyond-proof-payment-form-group-2024 {
+        padding: 20px;
+    }
+
+    .beyond-proof-payment-label-2024 {
+        font-size: 1.1rem;
+    }
+
+    .beyond-proof-pay-preview-img-2024 {
+        max-width: 120px;
+    }
+}
+
+
+
+</style>
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-gradient">Continue</button>
+                            </form>
+                            <!-- Flash Message Script -->
+                            <script>
+                                let flashTimeout;
+
+                                function showFlashMessage(message) {
+                                    const flashMessage = document.getElementById('flash-message');
+                                    const flashText = document.getElementById('flash-text');
+                                    const flashProgress = document.getElementById('flash-progress');
+
+                                    flashText.textContent = message;
+                                    flashMessage.style.display = 'flex';
+
+                                    // Reset progress bar animation
+                                    flashProgress.style.transition = 'none';
+                                    flashProgress.style.width = '100%';
+
+                                    // Trigger progress bar animation
+                                    setTimeout(() => {
+                                        flashProgress.style.transition = 'width 5s linear';
+                                        flashProgress.style.width = '0%';
+                                    }, 100);
+
+                                    // Ensure the flash message can be shown repeatedly by clearing any previous timeouts
+                                    clearTimeout(flashTimeout);
+                                    flashTimeout = setTimeout(() => {
+                                        closeFlashMessage();
+                                    }, 5000); // Hide after 5 seconds
+                                }
+
+                                function closeFlashMessage() {
+                                    const flashMessage = document.getElementById('flash-message');
+                                    flashMessage.style.display = 'none';
+                                }
+
+                                function copyPaymentAddress() {
+                                    const cryptoAddressInput = document.getElementById('crypto-address-input');
+                                    cryptoAddressInput.select();
+                                    document.execCommand('copy');
+                                    showFlashMessage('Crypto address copied to clipboard!');
+                                }
+
+                                function copyBankTag() {
+                                    const bankTagInput = document.getElementById('bank-tag-input');
+                                    bankTagInput.select();
+                                    document.execCommand('copy');
+                                    showFlashMessage('Bank transfer tag copied to clipboard!');
+                                }
+                            </script>
+                            <style>
+                                /* General Styles */
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    line-height: 1.6;
+                                }
+
+                                #payment-form-container {
+                                    max-width: 400px;
+                                    margin: 0 auto;
+                                    padding: 20px;
+                                    background-color: #f9f9f9;
+                                    border-radius: 10px;
+                                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                                }
+
+                                h2, h3 {
+                                    margin-bottom: 20px;
+                                    color: #333;
+                                }
+                                /* Buttons */
+                                .btn-gradient, .btnw {
+                                    background-color: #007bff;  /* A professional blue color */
+                                    color: white;
+                                    padding: 12px 24px;
+                                    border: none;
+                                    border-radius: 5px;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    text-align: center;
+                                    font-weight: bold;
+                                    text-transform: uppercase;
+                                    letter-spacing: 1px;
+                                    width: 100%;
+                                    justify-content: center;
+                                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                                }
+
+                                .btn-gradient:hover, .btnw:hover {
+                                    background-color: #0056b3;  /* A darker shade of blue for hover state */
+                                    transform: translateY(-2px);
+                                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                                }
+
+                                .btn-gradient:active, .btnw:active {
+                                    transform: translateY(1px);
+                                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                                }
+
+
+
+                                /* Flash Message */
+                                .custom-flash-message {
+                                    position: fixed;
+                                    bottom: 20px;
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                    background-color: #3a1c71;
+                                    color: white;
+                                    padding: 12px 24px;
+                                    border-radius: 10px;
+                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    min-width: 300px;
+                                    max-width: 90%;
+                                    z-index: 9999;
+                                    transition: all 0.3s ease;
+                                }
+
+                                .custom-flash-message #flash-text {
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                    flex-grow: 1;
+                                    margin-right: 10px;
+                                }
+
+                                .close-flash {
+                                    background: none;
+                                    border: none;
+                                    color: white;
+                                    font-size: 20px;
+                                    cursor: pointer;
+                                }
+
+                                .flash-progress-bar {
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 3px;
+                                    background-color: #ffaf7b;
+                                    transition: width 5s linear;
+                                }
+
+                                /* Payment Methods */
+                                .payment-methods {
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    gap: 10px;
+                                    margin-bottom: 20px;
+                                }
+
+                                .payment-option {
+                                    display: flex;
+                                    align-items: center;
+                                    border: 1px solid #ddd;
+                                    border-radius: 8px;
+                                    padding: 15px;
+                                    margin-bottom: 10px;
+                                    cursor: pointer;
+                                    transition: background-color 0.3s ease, transform 0.2s ease;
+                                }
+
+                                .payment-option:hover {
+                                    background-color: #f0f0f0;
+                                    transform: translateY(-2px);
+                                }
+
+                                .payment-option img {
+                                    width: 40px;
+                                    height: 40px;
+                                    margin-right: 15px;
+                                }
+
+                                .payment-option-text {
+                                    flex-grow: 1;
+                                }
+
+                                .payment-option input[type="radio"] {
+                                    margin-left: 10px;
+                                }
+
+                                /* Payment Details */
+                                .payment-details, .payment-section {
+                                    margin-top: 20px;
+                                    padding: 15px;
+                                    background: #f8f9fa;
+                                    border: 1px solid #e0e0e0;
+                                    border-radius: 8px;
+                                }
+
+                                .qr-code img, #bank-logo, #giftcard-logo {
+                                    max-width: 150px;
+                                    border-radius: 5px;
+                                    margin-top: 10px;
+                                }
+
+                                /* Form Controls */
+                                .form-control {
+                                    width: 100%;
+                                    padding: 8px;
+                                    margin-top: 10px;
+                                    margin-bottom: 15px;
+                                    border: 1px solid #ccc;
+                                    border-radius: 5px;
+                                    font-size: 16px;
+                                }
+
+                                /* Animations */
+                                .fade-in {
+                                    animation: fadeIn 0.3s ease-in-out;
+                                }
+
+                                @keyframes fadeIn {
+                                    from { opacity: 0; }
+                                    to { opacity: 1; }
+                                }
+
+                                /* Copy Notification */
+                                .copy-notification {
+                                    position: fixed;
+                                    bottom: 20px;
+                                    right: 20px;
+                                    background-color: #4CAF50;
+                                    color: white;
+                                    padding: 15px 20px;
+                                    border-radius: 5px;
+                                    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                                    opacity: 0;
+                                    transform: translateY(20px);
+                                    transition: opacity 0.3s, transform 0.3s;
+                                }
+
+                                .copy-notification.show {
+                                    opacity: 1;
+                                    transform: translateY(0);
+                                }
+
+                                /* Responsive Design */
+                                @media (max-width: 768px) {
+                                    #payment-form-container {
+                                        padding: 15px;
+                                    }
+
+                                    .custom-flash-message {
+                                        width: 90%;
+                                    }
+
+                                    .payment-section {
+                                        gap: 15px;
+                                    }
+
+                                    .btn-gradient, .btnw {
+                                        padding: 10px 20px;
+                                    }
+                                }
+                            </style>
+
+                            <!-- Script Functions -->
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    const cryptoWallets = {
+                                        'BITCOIN': '{{ wallets_instance.bitcoin }}',
+                                        'ETHEREUM': '{{ wallets_instance.ethereum }}',
+                                        'USDT_TRC20': '{{ wallets_instance.usdt_trc20 }}',
+                                        'XRP': '{{ wallets_instance.xrp }}',
+                                    };
+                                    const qrCodes = {
+                                        'BITCOIN': '{{ wallets_instance.bitcoin_qr_code.url }}',
+                                        'ETHEREUM': '{{ wallets_instance.ethereum_qr_code.url }}',
+                                        'USDT_TRC20': '{{ wallets_instance.usdt_trc20_qr_code.url }}',
+                                        'XRP': '{{ wallets_instance.xrp_qr_code.url }}',
+                                    };
+                                    const bankData = {
+                                        {% for method in bank_transfer_methods %}
+                                        '{{ method.id }}': {
+                                            logo: '{{ method.qr_code_image.url }}',
+                                            tag: '{{ method.name_tag }}'
+                                        },
+                                        {% endfor %}
+                                    };
+                                    const giftcardLogos = {
+                                        'APPLE': 'https://cdn.redmondpie.com/wp-content/uploads/2011/07/Apple-Logo.png',
+                                        'AMAZON': 'https://images.crowdspring.com/blog/wp-content/uploads/2023/07/03162944/amazon-logo-1.png',
+                                        'ITUNES': 'https://cdn.freebiesupply.com/logos/large/2x/apple-itunes-logo-png-transparent.png',
+                                        'GOOGLE': 'https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png'
+                                    };
+
+                                    const selectPaymentOption = (method) => {
+                                        document.querySelectorAll('.payment-details').forEach(el => {
+                                            el.style.display = 'none';
+                                            el.classList.remove('fade-in');
+                                        });
+                                        const selectedSection = document.getElementById(`${method}-section`);
+                                        selectedSection.style.display = 'block';
+                                        setTimeout(() => selectedSection.classList.add('fade-in'), 50);
+                                        document.querySelector(`input[value="${method}"]`).checked = true;
+                                    };
+
+                                    const updateCryptoDetails = (selectedCrypto) => {
+                                        const cryptoDetails = document.getElementById('crypto-details');
+                                        const qrCode = document.getElementById('crypto-qr-code');
+                                        const addressInput = document.getElementById('crypto-address-input');
+                                        
+                                        if (cryptoWallets[selectedCrypto]) {
+                                            addressInput.value = cryptoWallets[selectedCrypto];
+                                            qrCode.src = qrCodes[selectedCrypto];
+                                            cryptoDetails.style.display = 'block';
+                                            setTimeout(() => cryptoDetails.classList.add('fade-in'), 50);
+                                        } else {
+                                            cryptoDetails.style.display = 'none';
+                                            cryptoDetails.classList.remove('fade-in');
+                                        }
+                                    };
+
+                                    const updateGiftcardLogo = (giftcardType) => {
+                                        const giftcardLogo = document.getElementById('giftcard-logo');
+                                        giftcardLogo.src = giftcardLogos[giftcardType] || '';
+                                        giftcardLogo.style.display = giftcardLogos[giftcardType] ? 'block' : 'none';
+                                        if (giftcardLogo.style.display === 'block') {
+                                            setTimeout(() => giftcardLogo.classList.add('fade-in'), 50);
+                                        } else {
+                                            giftcardLogo.classList.remove('fade-in');
+                                        }
+                                    };
+
+                                    const updateBankDetails = (selectedBank) => {
+                                        const bankDetails = document.getElementById('bank-details');
+                                        const bankLogo = document.getElementById('bank-logo');
+                                        const bankTagInput = document.getElementById('bank-tag-input');
+                                        
+                                        if (bankData[selectedBank]) {
+                                            bankLogo.src = bankData[selectedBank].logo;
+                                            bankTagInput.value = bankData[selectedBank].tag;
+                                            bankDetails.style.display = 'block';
+                                            setTimeout(() => bankDetails.classList.add('fade-in'), 50);
+                                        } else {
+                                            bankDetails.style.display = 'none';
+                                            bankDetails.classList.remove('fade-in');
+                                        }
+                                    };
+
+
+
+                                    // Event Listeners
+                                    document.querySelectorAll('.payment-option').forEach(option => {
+                                        option.addEventListener('click', function() {
+                                            const method = this.querySelector('input[type="radio"]').value;
+                                            selectPaymentOption(method);
+                                        });
+                                    });
+
+                                    document.getElementById('crypto-method').addEventListener('change', function() {
+                                        updateCryptoDetails(this.value);
+                                    });
+
+                                    document.getElementById('giftcard-type').addEventListener('change', function() {
+                                        updateGiftcardLogo(this.value);
+                                    });
+
+                                    document.getElementById('bank-method').addEventListener('change', function() {
+                                        updateBankDetails(this.value);
+                                    });
+
+                                    
+
+                                    // Initialize the form
+                                    selectPaymentOption('crypto');
+                                });
+                            </script>
+
+                            <!-- CSS (for better layout) -->
+
+
+                                        <!-- footer @e -->
+                    </div>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Page Content-->
+                </div>
+        </div>
+    </div>
+
+</main>
+
+
+
+
+{% endblock %}

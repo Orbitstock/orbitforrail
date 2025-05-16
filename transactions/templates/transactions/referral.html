@@ -1,0 +1,360 @@
+{% extends 'core/base.html' %}
+ {% block title %} Transactions | {{ block.super }}{% endblock title %} {% block content %} {% include "core/messages.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'assets/frontend/css/styles.css' %}?var=2.1" />
+
+<main id="main-container">
+<div>
+    <div>
+        <div>
+            <div>
+                <!--Page Content-->
+                <div class="row"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="site-card">
+                            <div class="site-card-header">
+                                <h3 class="title">All Referral Logs</h3>
+                                <div class="card-header-links">
+                                    <span style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" 
+                                                    class="site-btn blue-btn" 
+                                                    onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';" href="{% url 'transactions:summary' %}" class="card-header-link rounded-pill"> Referral Profit: $ {{ user.referral_bonus }} </span>
+                                </div>
+                            </div>
+                            <div class="site-card-body table-responsive">
+                                <div class="site-tab-bars">
+                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" 
+                                                    class="site-btn blue-btn" 
+                                                    onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';" href="{% url 'transactions:summary' %}" class="card-header-link">
+                                
+
+
+                                    {% if my_recs %}
+                                    <i icon-name="network"></i>Count  {{ my_recs|length }} </a>    
+
+                                    {% else %}
+                                        <i icon-name="network stat-item" ></i>Count 0</a>
+                                    {% endif %}
+
+                    </li>
+
+                </ul>
+
+                
+                  <div class="referral-container">
+                    <h2 class="referral-title">Your Exclusive Referral Link</h2>
+                    <p>Get $20 and $100 worth of Bitcoin for every $1,000 deposit or investment made by your referrals</p>
+                    <div class="referral-link-wrapper">
+                      <input type="text" id="referral-link" value="http://www.orbit-stockindex.com/ref/{{ user.profile.code }}/" readonly>
+                      <button id="copy-button" onclick="copyRefLink()">
+                        <span class="button-text">Copy</span>
+                        <span class="button-icon"></span>
+                      </button>
+                    </div>
+                    <div class="referral-stats">
+                      <div class="stat-item">
+                      {% if my_recs %}
+                        <span class="stat-value">{{ my_recs|length }}</span>
+                      {% else %}
+                        <span class="stat-value">0</span>
+                      {% endif %}
+                        <span class="stat-label">Referrals</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-value">${{ user.referral_bonus }}</span>
+                        <span class="stat-label">Referral Earnings</span>
+                      </div>
+                    </div>
+                    <div id="toast" class="toast">Link copied to clipboard!</div>
+                  </div>
+
+                  <script>
+                    function copyRefLink() {
+                      const linkInput = document.getElementById('referral-link');
+                      linkInput.select();
+                      document.execCommand('copy');
+                      
+                      const button = document.getElementById('copy-button');
+                      const toast = document.getElementById('toast');
+                      
+                      button.classList.add('copied');
+                      toast.classList.add('show');
+                      
+                      setTimeout(() => {
+                        button.classList.remove('copied');
+                        toast.classList.remove('show');
+                      }, 3000);
+                    }
+
+                    function adjustFontSize() {
+                      const container = document.querySelector('.referral-container');
+                      const width = container.offsetWidth;
+                      const baseFontSize = Math.max(14, Math.min(18, width / 30));
+                      container.style.fontSize = `${baseFontSize}px`;
+                    }
+
+                    window.addEventListener('resize', adjustFontSize);
+                    document.addEventListener('DOMContentLoaded', adjustFontSize);
+                  </script>
+
+                  <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+                    :root {
+                      --primary-color: #4CAF50;
+                      --primary-dark: #45a049;
+                      --text-color: #333;
+                      --bg-color: #f7f9fc;
+                      color-scheme: light;
+                    }
+
+                    body {
+                      background-color: var(--bg-color);
+                      margin: 0;
+                      padding: 0;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      min-height: 100vh;
+                    }
+
+                    .referral-container {
+                      font-family: 'Poppins', sans-serif;
+                      width: 90%;
+                      max-width: 600px;
+                      margin: 2rem auto;
+                      padding: 2rem;
+                      background: #ffffff;
+                      border-radius: 20px;
+                      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                      transition: all 0.3s ease;
+                    }
+
+                    .referral-container:hover {
+                      transform: translateY(-5px);
+                      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+                    }
+
+                    .referral-title {
+                      font-size: 1.8em;
+                      font-weight: 700;
+                      color: var(--text-color);
+                      margin-bottom: 1.5rem;
+                      text-align: center;
+                      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+                    }
+
+                    .referral-link-wrapper {
+                      display: flex;
+                      align-items: center;
+                      background-color: #f5f5f5;
+                      border-radius: 50px;
+                      padding: 0.5rem;
+                      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+                      margin-bottom: 1.5rem;
+                    }
+
+                    #referral-link {
+                      flex-grow: 1;
+                      border: none;
+                      padding: 0.75rem 1rem;
+                      font-size: 1em;
+                      color: var(--text-color);
+                      background-color: #f5f5f5;
+                      outline: none;
+                      white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    }
+
+                    #copy-button {
+                      background-color: var(--primary-color);
+                      color: white;
+                      border: none;
+                      padding: 0.75rem 1.5rem;
+                      font-size: 1em;
+                      font-weight: 600;
+                      border-radius: 50px;
+                      cursor: pointer;
+                      transition: all 0.3s ease;
+                      display: flex;
+                      align-items: center;
+                      overflow: hidden;
+                    }
+
+                    #copy-button:hover {
+                      background-color: var(--primary-dark);
+                      transform: translateY(-2px);
+                      box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+                    }
+
+                    .button-text {
+                      display: inline-block;
+                      transition: transform 0.3s ease;
+                    }
+
+                    .button-icon {
+                      display: inline-block;
+                      width: 18px;
+                      height: 18px;
+                      margin-left: 8px;
+                      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z'/%3E%3C/svg%3E");
+                      background-size: contain;
+                      background-repeat: no-repeat;
+                      transition: transform 0.3s ease;
+                    }
+
+                    #copy-button.copied .button-text {
+                      transform: translateY(-100%);
+                    }
+
+                    #copy-button.copied .button-icon {
+                      transform: translateY(-100%);
+                      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+                    }
+
+                    .referral-stats {
+                      display: flex;
+                      justify-content: space-around;
+                      margin-top: 2rem;
+                    }
+
+                    .stat-item {
+                      text-align: center;
+                    }
+
+                    .stat-value {
+                      font-size: 1.5em;
+                      font-weight: 700;
+                      color: var(--primary-color);
+                      display: block;
+                    }
+
+                    .stat-label {
+                      font-size: 0.9em;
+                      color: var(--text-color);
+                      opacity: 0.8;
+                    }
+
+                    .toast {
+                      position: fixed;
+                      bottom: 20px;
+                      left: 50%;
+                      transform: translateX(-50%) translateY(100px);
+                      background-color: #333;
+                      color: #fff;
+                      padding: 1rem 2rem;
+                      border-radius: 50px;
+                      font-size: 1em;
+                      opacity: 0;
+                      transition: all 0.3s ease;
+                      z-index: 1000;
+                    }
+
+                    .toast.show {
+                      opacity: 1;
+                      transform: translateX(-50%) translateY(0);
+                    }
+
+                    @media (max-width: 600px) {
+                      .referral-container {
+                        padding: 1.5rem;
+                      }
+                      
+                      .referral-title {
+                        font-size: 1.5em;
+                      }
+                      
+                      #referral-link, #copy-button {
+                        font-size: 0.9em;
+                      }
+                      
+                      .referral-link-wrapper {
+                        flex-direction: column;
+                        align-items: stretch;
+                        border-radius: 10px;
+                      }
+                      
+                      #referral-link {
+                        border-radius: 10px 10px 0 0;
+                        text-align: center;
+                        padding: 0.75rem 0.5rem;
+                      }
+                      
+                      #copy-button {
+                        border-radius: 0 0 10px 10px;
+                        justify-content: center;
+                      }
+                      
+                      .referral-stats {
+                        flex-direction: column;
+                        align-items: center;
+                      }
+                      
+                      .stat-item {
+                        margin-bottom: 1rem;
+                      }
+                    }
+
+                    @media (min-width: 601px) {
+                      .referral-container {
+                        padding: 2.5rem;
+                      }
+                    }
+                  </style>
+
+
+                                </div>
+
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="generalTarget" role="tabpanel" aria-labelledby="generalTarget-tab">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="site-datatable">
+                                                    <div class="row table-responsive">
+                                                        <div class="col-xl-12">
+                                                            <table class="display data-table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Name</th>
+                                                                        <th>Status</th>
+                                                                        <th>Date</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% if my_recs %} {% for recommended_user in my_recs %}
+                                                                    <tr>
+                                                                        <td>{{ recommended_user.username }}</td>
+                                                                        <td>{{ recommended_user.user.account.status }}</td>
+                                                                        <td>{{ recommended_user.user.date_joined|date:"F j, Y" }}</td>
+                                                                    </tr>
+                                                                    {% endfor %} {% else %}
+                                                                    <tr>
+                                                                        <td colspan="4">You have not recommended anyone yet</td>
+                                                                    </tr>
+                                                                    {% endif %}
+                                                                </tbody>
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Page Content-->
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+{% endblock content %}

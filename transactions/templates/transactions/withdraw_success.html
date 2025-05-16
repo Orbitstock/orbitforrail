@@ -1,0 +1,235 @@
+<html>
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://res.cloudinary.com/djl5rhevy/image/upload/v1697879977/digi4_sfcf7y.jpg" type="image/png" />
+
+  <title>Processing</title>
+</head>
+<body>
+  <style>
+     #modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: #fff;
+  max-width: 80%;
+  max-height: 90%;
+  overflow: auto;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0px 0px 10px #333;
+}
+
+#close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #666;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#close-btn:hover {
+  color: #000;
+}
+
+.card__success {
+  font-size: 80px;
+  color: #28a745;
+}
+
+.card__msg {
+  font-size: 32px;
+  margin-top: 20px;
+}
+
+.card__submsg {
+  font-size: 24px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.card__body {
+  margin-top: 30px;
+}
+
+.card__avatar {
+  width: 150px;
+  height: 150px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.card__recipient-info {
+  margin-top: 30px;
+}
+
+.card__recipient {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.card__email {
+  font-size: 18px;
+  color: #666;
+}
+
+.card__price {
+  font-size: 48px;
+  margin-top: 30px;
+}
+
+.card__price span {
+  font-size: 24px;
+  vertical-align: top;
+}
+
+.card__price span:last-child {
+  font-size: 32px;
+  vertical-align: bottom;
+}
+
+.card__method {
+  font-size: 24px;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.card__payment {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.card__credit-card {
+  width: 80px;
+  height: 50px;
+}
+
+.card__card-details {
+  margin-left: 10px;
+  text-align: left;
+}
+
+.card__card-type {
+  font-size: 18px;
+  color: #666;
+  font-weight: bold;
+}
+
+.card__card-number {
+  font-size: 18px;
+  color: #666;
+}
+
+.card__tags {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card__tag {
+  font-size: 18px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background-color: #eee;
+  border-radius: 20px;
+}
+
+.card__tag--pending {
+  color: #ffc107;
+  background-color: #fff3cd;
+}
+
+.card__info {
+  font-size: 18px;
+  margin-top: 30px;
+  line-height: 1.5;
+}
+
+    
+    
+  }
+    @media (max-width: 575.98px) {
+    .card__avatar {
+      width: 100px;
+      height: 100px;
+    }
+  }
+    @media (max-width: 768px) {
+    .card__credit-card {
+      width: 50px;
+      height: 30px;
+    }
+  }
+    
+  </style>
+<div id="modal-bg">
+  <div class="modal">
+    <a href="{% url 'core:home' %}" id="close-btn">&times;</a>
+    <span class="card__success"><i class="ion-checkmark"></i></span>
+    <h1 class="card__msg">Transfer Pending</h1>
+    <h2 class="card__submsg">Withdrawal Request</h2>
+    
+    <div class="card__body">
+    <img src="https://freepngimg.com/thumb/success/6-2-success-png-image.png" 
+         class="card__avatar" 
+         style="width: 150px; height: 150px; max-width: 100%; margin: 0 auto; display: block;"/>
+      <div class="card__recipient-info">
+        <p class="card__recipient">{{ user.full_name }}</p>
+        <p class="card__email">{{ user.email }}</p>
+      </div>
+      
+      <h1 class="card__price"><span>{{ payment.amount }}</span></h1>
+      
+      <p class="card__method">{{ payment.address }}</p>
+      <div class="card__payment">
+      <img src="https://icon-library.com/images/loading-gif-icon/loading-gif-icon-24.jpg" class="card__credit-card" style="width: 80px; height: 50px;">
+        <div class="card__card-details">
+          <p class="card__card-type">Your Account ID/Number</p>
+          <p class="card__card-number"> {{ user.account_no }}</p>          
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="card__tags">
+      <span class="card__tag card__tag--pending">pending</span>
+      <span class="card__tag"> Recipient Account ID :{{ payment.target }}</span>        
+    </div>
+    
+    <p class="card__info">Your transfer of ${{ payment.amount }} to {{ payment.target }} is currently being processed and will be completed as soon as possible. You will receive an email notification once your transfer is complete. Thank you for your patience.</p>
+    
+    <a href="{% url 'core:home' %}" class="btn btn-primary">Return to home</a>
+  </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>

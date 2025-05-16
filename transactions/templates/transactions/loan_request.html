@@ -1,0 +1,138 @@
+{% extends "core/base.html" %}
+{% block title %} {{ title }} | {{ block.super }}{% endblock title %}
+
+{% block content %}
+{% include "core/messages.html" %}
+                                            <div class="dropdown buysell-cc-dropdown">
+                                                <a href="#" class="buysell-cc-choosen dropdown-indicator" data-toggle="dropdown">
+                                                    <div class="coin-item coin-btc">
+                                                        <div class="coin-icon">
+                                                            <em class="icon ni ni-sign-usd"></em>
+                                                        </div>
+                                                        <div class="coin-info">
+                                                            <span class="coin-name">{{ user.account.account_type }}({{ user.account.account_currency }})</span>
+                                                            <span class="coin-text">Available Balance: {{ user.account.account_currency }}     {{ user.balance }}</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                
+                                            </div>
+                <div class="nk-content nk-content-fluid">
+                    <div class="container wide-lg">
+                        <div class="nk-content-body">
+                            <div class="buysell">
+                                <div class="buysell-nav text-center">
+                                    <ul class="nk-nav nav nav-tabs nav-tabs-s2">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="">New Loan Request</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-primary" href="{% url 'transactions:recent_loans' %}">Loan History</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- .buysell-nav -->
+                                <div class="buysell-title text-center">
+                                    <h2 class="title">Apply For HSBC Loan</h2>
+                                </div>
+                                <!-- .buysell-title -->
+                                <div class="buysell-block">
+<form class="buysell-form" method="post">
+  {% csrf_token %}
+  
+  <div class="buysell-field form-group">
+    <div class="form-label-group">
+      <label class="form-label">{{ user.account.account_type }}:</label>
+    </div>
+                                            <div class="dropdown buysell-cc-dropdown">
+                                                <a href="javascript:void" class="buysell-cc-choosen dropdown-indicator" data-toggle="dropdown">
+                                                    <div class="coin-item coin-btc">
+                                                        <div class="coin-icon">
+                                                            <em class="icon ni ni-sign-usd"></em>
+                                                        </div>
+                                                        <div class="coin-info">
+                                                            <span class="coin-name">{{ user.account.account_type }} ({{ user.account.account_currency }})</span>
+                                                            <span class="coin-text">Available Balance: {{ user.account.account_currency }}     {{ user.balance}}</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                            </div>    <!-- Add your input field here for the disbursement account -->
+  </div>
+  
+  <div class="buysell-field form-group">
+    <div class="form-label-group">
+      <label class="form-label" for="buysell-amount">Loan Amount</label>
+    </div>
+    <div class="form-control-group">
+      {{ form.amount }}
+      <div class="form-dropdown">
+        <div class="text">USD</div>
+      </div>
+    </div>
+    <div class="form-note-group">
+      <span class="buysell-min form-note-alt">Minimum: 150 USD</span>
+      <span class="buysell-rate form-note-alt">Maximum: 150,000 USD</span>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="buysell-field form-group col-lg-6">
+      <div class="form-label-group">
+        <label class="form-label" for="buysell-amount">Credit Facility</label>
+      </div>
+      <div class="form-control-group">
+        {{ form.credit_facility }}<br>
+      </div>
+    </div>
+    
+    <div class="buysell-field form-group col-lg-6">
+      <div class="form-label-group">
+        <label class="form-label" for="buysell-amount">Repayment Tenure</label>
+      </div>
+      <div class="form-control-group">
+        {{ form.payment_tenure }}
+      </div>
+    </div>
+    
+    <div class="buysell-field form-group col-lg-12">
+      <div class="form-label-group">
+        <label class="form-label" for="buysell-amount">Purpose</label>
+      </div>
+      <div class="form-control-group">
+        {{ form.reason }}
+      </div>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <p class="title lead">You are requesting for an instant loan, By continuing, you have agreed and accepted the HSBC digital loan terms and conditions.</p>
+  <strong class="text-center bold">Terms & Conditions</strong>
+  <ul class="list list-sm list-checked">
+    <li>Interest Rate: 4.3%.</li>
+    <li>Management Fee: 3%.</li>
+    <li>Credit Life Insurance Fee: 0.8%.</li>
+    <li>Penal Charge: 3.5%.</li>
+    <li>Repayment must be made according to my preferred repayment tenure.</li>
+    <li>I waive 3-days maximum cooling off period to enable disbursement.</li>
+    <li>I accept that HSBC reserves the right to decline my loan request.</li>
+  </ul>
+  
+  <div id="Result"></div>
+  
+  <div class="buysell-field form-action">
+    <button type="submit" class="btn btn-lg btn-block btn-primary">Continue</button>
+  </div>
+</form>
+
+                                    <!-- .buysell-form -->
+                                </div>
+                                <!-- .buysell-block -->
+                            </div>
+                            <!-- .buysell -->
+                        </div>
+                    </div>
+                </div>
+
+{% endblock %}
