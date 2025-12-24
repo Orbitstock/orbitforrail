@@ -1,0 +1,97 @@
+{% extends 'core/base.html' %} {% block title %} Transactions | {{ block.super }}{% endblock title %} {% block content %} {% include "core/messages.html" %} {% load static %}
+
+<link rel="stylesheet" href="{% static 'assets/frontend/css/styles.css' %}?var=2.1" />
+
+<div>
+    <div>
+        <div>
+            <div>
+                <!--Page Content-->
+                <div class="row justify-content-center">
+                    <div class="col-xl-10 col-lg-12 col-md-12">
+                        <div class="site-card">
+                            <div class="site-card-header">
+                                <h3 class="title">Review and Confirm Investment</h3>
+                            </div>
+<div class="site-card-body">
+    <form action="{% url 'accounts:plan_d' %}" method="post">
+        {% csrf_token %}
+        {{ form.errors }}
+        <div class="progress-steps-form">
+            <div class="transaction-list table-responsive">
+                <table class="table preview-table">
+                    <tbody>
+                        <tr>
+                            <td><strong>Plan:</strong></td>
+                            <td>
+                                <div class="input-group mb-0">
+                                    <select class="site-nice-select" aria-label="Select Investment Plan" id="select-schema" name="schema_id" required>
+                                        <option value="4" data-profit="20" data-min="30000" data-max="99999" data-duration="192 hours">Diamond Plan (Plan D)</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Profit:</strong></td>
+                            <td id="profit">20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Investment Amount:</strong></td>
+                            <td id="investment-range">Minimum: $30,000.00 - Maximum: $99,999.00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Enter Amount:</strong></td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" placeholder="Enter Amount" oninput="this.value = validateDouble(this.value)" aria-label="Amount" name="amount" id="enter-amount" aria-describedby="basic-addon1" required />
+                                    <span class="input-group-text" id="basic-addon1">USD</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Select Wallet:</strong></td>
+                            <td>
+                                <div class="input-group">
+                                    <select class="site-nice-select" aria-label="Select Wallet" name="wallet" required id="selectWallet">
+                                        <option value="balance">Main Balance &nbsp;${{ user.balance }}</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="gatewaySelect"></tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="row manual-row"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Return of Interest:</strong></td>
+                            <td id="return-interest">20% (9 days)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capital Back:</strong></td>
+                            <td id="capital_back">Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="button">
+                <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" 
+                                                    class="site-btn blue-btn" 
+                                                    onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';"><i class="anticon anticon-check"></i>Invest Now</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

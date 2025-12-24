@@ -1,0 +1,209 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<br><br>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card bg-dark text-white shadow-lg border-0 rounded-4">
+                <div class="card-header rounded-top-4 p-4" style="background: linear-gradient(135deg, #1e3c72, #2a5298, #5088c7);">
+                    <h4 class="text-center mb-0">
+                        <i class="fas fa-shield-alt me-2"></i>Crypto Asset Recovery
+                    </h4>
+                    <div class="progress mt-3 rounded-pill position-relative" style="height: 6px;">
+                        <div id="progress-bar" class="progress-bar bg-gradient-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 33%"></div>
+                    </div>
+                </div>
+                <div class="card-body p-5">
+                    <form id="crypto-recovery-form" method="post" action="{% url 'accounts:recover_crypto' %}">
+                        {% csrf_token %}
+
+                        <!-- Step 1 -->
+                        <div id="step-1" class="form-step">
+                            <h5 class="text-gradient mb-4">Step 1: Select Cryptocurrency</h5>
+                            <div class="row g-4">
+                                {% for crypto in form.crypto_type.field.queryset %}
+                                <div class="col-6">
+                                    <input 
+                                        type="radio" 
+                                        class="btn-check" 
+                                        name="crypto_type" 
+                                        id="crypto-{{ crypto.pk }}" 
+                                        value="{{ crypto.pk }}" 
+                                        data-symbol="{{ crypto.name }}" 
+                                        autocomplete="off">
+                                    <label class="btn btn-outline-light w-100 h-100 py-4 position-relative hover-scale rounded-4 shadow-sm" for="crypto-{{ crypto.pk }}">
+                                        <img src="{{ crypto.logo.url }}" alt="{{ crypto.name }}" class="rounded-circle shadow-sm border border-white" style="width: 70px; height: 70px;">
+                                        <div class="mt-2 fw-bold">{{ crypto.name }}</div>
+                                        <div class="hover-overlay rounded-4"></div>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <button type="button" class="btn btn-gradient w-100 mt-4 next-step shadow-sm rounded-4">Continue</button>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div id="step-2" class="form-step d-none">
+                            <h5 class="text-gradient mb-4">Step 2: Select Wallet Type</h5>
+                            <div class="row g-4">
+                                {% for wallet in form.wallet_type.field.queryset %}
+                                <div class="col-6">
+                                    <input 
+                                        type="radio" 
+                                        class="btn-check" 
+                                        name="wallet_type" 
+                                        id="wallet-{{ wallet.pk }}" 
+                                        value="{{ wallet.pk }}" 
+                                        autocomplete="off">
+                                    <label class="btn btn-outline-light w-100 h-100 py-4 position-relative hover-scale rounded-4 shadow-sm" for="wallet-{{ wallet.pk }}">
+                                        <img src="{{ wallet.logo.url }}" alt="{{ wallet.name }}" class="rounded-circle shadow-sm border border-white" style="width: 70px; height: 70px;">
+                                        <div class="mt-2 fw-bold">{{ wallet.name }}</div>
+                                        <div class="hover-overlay rounded-4"></div>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="d-flex gap-2 mt-4">
+                                <button type="button" class="btn btn-secondary w-50 prev-step shadow-sm rounded-4">Back</button>
+                                <button type="button" class="btn btn-gradient w-50 next-step shadow-sm rounded-4">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div id="step-3" class="form-step d-none">
+                            <h5 class="text-gradient mb-4">Step 3: Enter Details</h5>
+                            <div class="mb-4">
+                                <label class="form-label">Wallet Address</label>
+                                {{ form.wallet_address }}
+                                <div class="form-text text-muted">Enter your complete wallet address</div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Amount Lost</label>
+                                <div class="input-group">
+                                    {{ form.amount_lost }}
+                                    <span class="input-group-text bg-gradient text-white rounded-end-4" id="crypto-symbol">BTC</span>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Recovery Phrase (Optional)</label>
+                                {{ form.recovery_phrase }}
+                                <div class="form-text text-muted">Enter your 12-24 word recovery phrase if available.</div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-secondary w-50 prev-step shadow-sm rounded-4">Back</button>
+                                <button type="submit" class="btn btn-success w-50 shadow-sm rounded-4">Start Recovery</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-gradient {
+        background: linear-gradient(135deg, #1e3c72, #2a5298, #5088c7);
+        -webkit-background-clip: text;
+        color: whitesmoke;
+    }
+
+    .btn-gradient {
+        background: linear-gradient(135deg, #1e3c72, #2a5298, #5088c7);
+        color: white;
+    }
+
+    .hover-scale:hover {
+        transform: scale(1.08);
+        transition: transform 0.3s;
+    }
+    .hover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    .btn:hover .hover-overlay {
+        opacity: 1;
+    }
+    .rounded-4 {
+        border-radius: 1rem !important;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const steps = document.querySelectorAll('.form-step');
+    const nextButtons = document.querySelectorAll('.next-step');
+    const prevButtons = document.querySelectorAll('.prev-step');
+    const progressBar = document.getElementById('progress-bar');
+    let currentStep = 0;
+
+    const updateProgress = (step) => {
+        const progress = ((step + 1) / steps.length) * 100;
+        progressBar.style.width = `${progress}%`;
+    };
+
+    nextButtons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            const currentStepElement = steps[currentStep];
+            const radioButtons = currentStepElement.querySelectorAll('input[type="radio"]');
+            let isValid = true;
+
+            if (radioButtons.length > 0) {
+                isValid = Array.from(radioButtons).some(radio => radio.checked);
+            }
+
+            if (!isValid) {
+                alert('Please make a selection to continue');
+                return;
+            }
+
+            steps[currentStep].classList.add('d-none');
+            currentStep++;
+            steps[currentStep].classList.remove('d-none');
+            updateProgress(currentStep);
+        });
+    });
+
+    prevButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            steps[currentStep].classList.add('d-none');
+            currentStep--;
+            steps[currentStep].classList.remove('d-none');
+            updateProgress(currentStep);
+        });
+    });
+
+    // Update crypto symbol when crypto type changes
+    const cryptoRadios = document.querySelectorAll('input[name="crypto_type"]');
+    const cryptoSymbol = document.getElementById('crypto-symbol');
+    
+    cryptoRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            cryptoSymbol.textContent = radio.dataset.symbol || 'N/A';
+        });
+    });
+});
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const recoveryPhraseInput = document.querySelector('textarea[name="recovery_phrase"]');
+    recoveryPhraseInput.addEventListener('input', () => {
+        const words = recoveryPhraseInput.value.trim().split(/\s+/);
+        if (words.length < 12 || words.length > 24) {
+            recoveryPhraseInput.classList.add('is-invalid');
+        } else {
+            recoveryPhraseInput.classList.remove('is-invalid');
+        }
+    });
+});
+
+</script>
+{% endblock %}
