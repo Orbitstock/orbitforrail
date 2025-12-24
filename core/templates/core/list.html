@@ -1,0 +1,149 @@
+<style>
+    .mgm {
+        border-radius: 7px;
+        border: 4px solid #0080db;
+        position: fixed;
+        z-index: 90;
+        bottom: 80px;
+        right: 20px; /* Changed from left to right */
+        background: #fff;
+        padding: 10px 27px;
+        box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, .3);
+    }
+
+    .mgm a {
+        font-weight: 700;
+        display: block;
+        color: #0080db;
+    }
+
+    .mgm a,
+    .mgm a:active {
+        transition: all .2s ease;
+        color: #0080db;
+    }
+</style>
+<div class="mgm" style="display: none; opacity: 0;">
+    <div class="txt" style="color: black;">
+        <span id="infoText"></span>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    const infoDataTrading = [
+        { location: "Berlin", investment: "£81,500" },
+        { location: "New York", investment: "£61,200" },
+        { location: "Mumbai", investment: "£7,600" },
+        { location: "Tokyo", investment: "£10,800" },
+        { location: "Cairo", investment: "£65,200" },
+        { location: "Beijing", investment: "£43,500" },
+        { location: "Sydney", investment: "£9,200" },
+        { location: "San Francisco", investment: "£9,700" },
+        { location: "Rio de Janeiro", investment: "£7,300" },
+        { location: "London", investment: "£45,300" },
+        { location: "Bangkok", investment: "£6,700" },
+        { location: "Istanbul", investment: "£8,400" },
+        { location: "Lima", investment: "£7,900" },
+        { location: "Paris", investment: "£8,300" },
+        { location: "Cape Town", investment: "£1,800" },
+        { location: "Los Angeles", investment: "£11,000" },
+        { location: "Shanghai", investment: "£9,000" },
+        { location: "Dubai", investment: "£60,000" },
+        { location: "Madrid", investment: "£8,100" },
+        { location: "New Delhi", investment: "£17,000" }
+    ];
+
+    const infoDataWithdrawal = [
+        { location: "Mexico City", amount: "£6,900" },
+        { location: "Sydney", amount: "£8,200" },
+        { location: "Cape Town", amount: "£6,300" },
+        { location: "Sao Paulo", amount: "£9,700" },
+        { location: "Rome", amount: "£7,100" },
+        { location: "Singapore", amount: "£10,100" },
+        { location: "Toronto", amount: "£9,300" },
+        { location: "Buenos Aires", amount: "£8,400" },
+        { location: "Stockholm", amount: "£6,200" },
+        { location: "Seoul", amount: "£7,500" },
+        { location: "Los Angeles", amount: "£10,800" },
+        { location: "Moscow", amount: "£10,800" },
+        { location: "Lisbon", amount: "£77,900" },
+        { location: "Dubai", amount: "£11,300" },
+        { location: "Berlin", amount: "£7,500" },
+        { location: "Mumbai", amount: "£8,800" },
+        { location: "Paris", amount: "£8,600" },
+        { location: "New York", amount: "£10,500" },
+        { location: "Beijing", amount: "£6,700" },
+        { location: "Stockholm", amount: "£93,600" }
+    ];
+
+    let shuffledDataTrading = [...infoDataTrading];
+    let shuffledDataWithdrawal = [...infoDataWithdrawal];
+    let currentIndexTrading = 0;
+    let currentIndexWithdrawal = 0;
+    const infoText = document.getElementById("infoText");
+    const mgm = document.querySelector(".mgm");
+
+    // Function to shuffle the array
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function updateInfoTrading() {
+        const { location, investment } = shuffledDataTrading[currentIndexTrading];
+        infoText.innerHTML = `Someone from <b>${location}</b> is <b>trading with</b> <a href="javascript:void(0);">${investment}</a`;
+        currentIndexTrading++;
+
+        if (currentIndexTrading === shuffledDataTrading.length) {
+            currentIndexTrading = 0;
+            shuffleArray(shuffledDataTrading);
+        }
+    }
+
+    function updateInfoWithdrawal() {
+        const { location, amount } = shuffledDataWithdrawal[currentIndexWithdrawal];
+        infoText.innerHTML = `Someone from <b>${location}</b> has <b>withdrawn successfully</b> <a href="javascript:void(0);">${amount}</a`;
+        currentIndexWithdrawal++;
+
+        if (currentIndexWithdrawal === shuffledDataWithdrawal.length) {
+            currentIndexWithdrawal = 0;
+            shuffleArray(shuffledDataWithdrawal);
+        }
+    }
+
+    function toggleInfoVisibility() {
+        if (mgm.style.display === "block") {
+            mgm.style.display = "none";
+            mgm.style.opacity = 0;
+        } else {
+            mgm.style.display = "block";
+            mgm.style.opacity = 1;
+        }
+    }
+
+    function displayNewItem() {
+        toggleInfoVisibility();
+        setTimeout(() => {
+            toggleInfoVisibility();
+            setTimeout(() => {
+                const randomType = Math.random() < 0.5 ? "trading" : "withdrawal";
+                if (randomType === "trading") {
+                    updateInfoTrading();
+                } else {
+                    updateInfoWithdrawal();
+                }
+                displayNewItem();
+            }, 15000);
+        }, 2000);
+    }
+
+    shuffleArray(shuffledDataTrading);
+    shuffleArray(shuffledDataWithdrawal);
+    setTimeout(displayNewItem, 20000);
+</script>

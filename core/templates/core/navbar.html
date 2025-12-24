@@ -1,0 +1,886 @@
+
+
+{% load static %}
+
+
+        <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow">
+            <nav id="sidebar" aria-label="Main Navigation">
+                
+
+
+
+
+
+<div  class="user-profile-card">
+  <div class="profile-header">
+    <div class="avatar">
+      <img src="{{ user.account.picture.url }}" alt="Profile Picture">
+    </div>
+    <div class="user-info">
+      <h2 class="name">{{ user.first_name|upper }}</h2>
+      <h2 class="name">{{ user.last_name|upper }}</h2>
+      <p class="username">@{{ user.username|lower }}</p>
+    </div>
+    <div class="dropdown-icon-wrapper">
+      <img style="max-width:20px;max-height: 20px;" src="https://cdn-icons-png.flaticon.com/128/142/142063.png" alt="Dropdown" class="dropdown-icon">
+    </div>
+    <a class="d-lg-none btn btn-sm btn-alt-secondary ms-1 mobile-sidebar-close" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+      <i class="fa fa-fw fa-times"></i>
+    </a>
+  </div>
+
+
+
+  <div class="profile-dropdown">
+    <div class="dropdown-section">
+      <p class="last-login">Last login: {{ user.last_login|date:"F j, Y, g:i a" }}</p>
+    </div>
+    <div class="dropdown-section">
+      <div class="account-info">
+        <img style="width:35px;height: 35px;" src="https://cdn-icons-png.flaticon.com/128/4663/4663983.png" alt="Account">
+        <div>
+          <p class="account-label">Account ID</p> 
+          <p class="account-value">{{ user.account_no|slice:-3 }}-{{ user.profile.code }}</p>
+        </div>
+    </div>
+
+    
+    <div class="dropdown-section">
+      <div class="verification-status">
+        <p>Verification Status</p>
+                                        {% if user.account.status == "VERIFIED" %}
+                                    <span class="unique-status-verified-2024">
+                                        {{ user.account.status }}
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                {% elif user.account.status == "UNVERIFIED" %}
+                                    <span class="unique-status-unverified-2024">
+                                        {{ user.account.status }}
+                                        <i class="fas fa-times-circle"></i>
+                                    </span>
+                                {% elif user.account.status == "PENDING" %}
+                                    <span class="unique-status-pending-2024">
+                                        {{ user.account.status }}
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </span>
+                                {% else %}
+                                    <span class="unique-status-unknown-2024">
+                                        Unknown Status
+                                    </span>
+                                {% endif %}
+      </div>
+
+
+    </div>
+
+
+  </div>
+</div>
+
+<style>
+
+    .mobile-sidebar-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 5px 8px;
+      border-radius: 50%;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .mobile-sidebar-close:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    @media (min-width: 992px) {
+      .mobile-sidebar-close {
+        display: none;
+      }
+    }
+
+        .user-profile-card {
+          font-family: 'Roboto', sans-serif;
+          background-color: transparent;
+          border: 1px solid black;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          width: 360px;
+          margin: 1px auto;
+          transition: all 0.3s ease;
+        }
+
+        .user-profile-card:hover {
+          box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-header {
+          display: flex;
+          align-items: center;
+          padding: 20px;
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+          cursor: pointer;
+          position: relative;
+        }
+
+        .avatar img {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 3px solid #ffffff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-info {
+          margin-left: 20px;
+          flex-grow: 1;
+        }
+
+        .name {
+          font-size: 20px;
+          font-weight: bold;
+          margin: 0;
+          color: #ffffff;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .username {
+          font-size: 16px;
+          color: rgba(255, 255, 255, 0.8);
+          margin: 5px 0 0;
+        }
+
+        .dropdown-icon-wrapper {
+          position: absolute;
+          right: 10px;
+          left: 210px;
+          bottom: 1px;
+        }
+
+        .dropdown-icon {
+          width: 24px;
+          height: 24px;
+          transition: transform 0.3s ease;
+          color: #ffffff;
+        }
+
+        .color-profile-bar {
+          height: 6px;
+          display: flex;
+        }
+
+        .bar-segment {
+          height: 100%;
+          transition: width 0.5s ease;
+        }
+
+        .profile-dropdown {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+          padding: 0 20px;
+          background-color: #ffffff;
+        }
+
+        .profile-dropdown.active {
+          max-height: 300px; /* Adjust this value based on your content */
+          padding: 20px;
+        }
+
+        .dropdown-section {
+          margin-bottom: 20px;
+        }
+        .dropdown-icon {
+          width: 24px;
+          height: 24px;
+          transition: transform 0.5s ease;
+          color: #ffffff;
+        }
+
+        .dropdown-icon.active {
+          transform: rotate(180deg);
+        }
+        .last-login {
+          font-size: 12px;
+          color: #757575;
+          margin: 0;
+        }
+
+        .account-info {
+          display: flex;
+          align-items: center;
+          margin-bottom: 15px;
+          background-color: #f5f7fa;
+          padding: 15px;
+        }
+
+        .account-icon {
+          width: 24px;
+          height: 24px;
+          margin-right: 15px;
+          color: #3a1c71;
+        }
+
+        .account-label {
+          font-size: 14px;
+          color: #757575;
+          margin: 0;
+          margin-left: 15px;
+        }
+
+        .account-value {
+          font-size: 12px;
+          font-weight: bold;
+          color: #333;
+          margin: 3px 0 0;
+          margin-left: 15px;
+        }
+
+        .verification-status {
+          font-size: 16px;
+          background-color: #f5f7fa;
+          padding: 15px;
+        }
+
+        .verification-status p {
+          margin: 0 0 10px;
+          color: #757575;
+        }
+
+        .unique-status-verified-2024 {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .unique-status-unverified-2024 {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .unique-status-pending-2024 {
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .unique-status-unknown-2024 {
+            color: #9e9e9e;
+            font-weight: bold;
+        }
+        .js-sidebar-scroll .content-side {
+            right: 60px;
+            
+        }
+        .content-side {
+            position: relative;
+            
+        }
+        .status-verified { color: #4caf50; font-weight: bold; }
+        .status-unverified { color: #f44336; font-weight: bold; }
+        .status-pending { color: #ff9800; font-weight: bold; }
+        .status-unknown { color: #9e9e9e; font-weight: bold; }
+
+        @media (max-width: 768px) {
+          .user-profile-card {
+            width: 90%;
+            max-width: 360px;
+          }
+
+        .dropdown-icon-wrapper {
+          position: absolute;
+          right: 20px;
+          bottom: 5px;
+          left: 290px;
+        }
+        .js-sidebar-scroll .content-side {
+            right: 10px;
+            
+        }
+        .content-side {
+            position: relative;
+            
+        }
+
+
+        }
+</style>
+
+<script>
+    document.querySelector('.profile-header').addEventListener('click', function() {
+      const dropdown = document.querySelector('.profile-dropdown');
+      const icon = document.querySelector('.dropdown-icon');
+      
+      dropdown.classList.toggle('active');
+      icon.classList.toggle('active');
+    });
+
+    // Color profile bar animation
+    const barSegments = document.querySelectorAll('.bar-segment');
+    barSegments.forEach((segment, index) => {
+      const originalWidth = segment.style.width;
+      segment.style.width = '0';
+      setTimeout(() => {
+        segment.style.width = originalWidth;
+      }, 300 + (index * 100));
+    });
+</script>
+
+
+
+
+                <div  class="js-sidebar-scroll">
+
+                    <div class="content-side">
+                        <ul class="nav-main">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link active" href="{% url 'core:home' %}">
+                                    <i class="nav-main-link-icon si si-speedometer"></i>
+                                    <span class="nav-main-link-name">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item ">
+                                <a class="nav-main-link nav-main-link active"  aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:payment_create' %}">
+                                    <i class="fas fa-hand-holding-usd"></i>&nbsp;<span class="nav-main-link-name">Deposit</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-heading">--</li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active"  aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:withdrawal' %}">
+                                <i class="fas fa-exchange-alt"></i>&nbsp;<span class="nav-main-link-name">Transfer</span>
+
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:create_withdrawal' %}">
+                                    <i class="fas fa-award"></i>&nbsp;<span class="nav-main-link-name">Withdraw</span>
+
+                                </a>
+                                
+                            </li>
+
+
+
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:schema' %}">
+                                    <i class="fas fa-award"></i>&nbsp;<span class="nav-main-link-name">Investment Plans</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:investment_history' %}">
+                                    <i class="fas fa-book"></i>&nbsp;<span class="nav-main-link-name">Investment Logs</span>
+
+                                </a>
+                                
+                            </li>
+                            
+<li class="nav-main-item">
+    <div class="notify-button-wrapper">
+        <a class="nav-main-link notify-button-active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:available_events' %}">
+            <i class="fa fa-calendar"></i>&nbsp;<span class="nav-main-link-name">Available Events</span>
+        </a>
+    </div>
+</li>
+<style>
+        
+    /* Wild and energetic keyframe animations */
+    @keyframes beastShake {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        10% { transform: translate(-5px, -5px) rotate(-5deg); }
+        20% { transform: translate(5px, 5px) rotate(5deg); }
+        30% { transform: translate(-7px, 2px) rotate(-3deg); }
+        40% { transform: translate(7px, -2px) rotate(3deg); }
+        50% { transform: translate(-5px, 5px) rotate(-5deg); }
+        60% { transform: translate(5px, -5px) rotate(5deg); }
+        70% { transform: translate(-7px, -2px) rotate(-3deg); }
+        80% { transform: translate(7px, 2px) rotate(3deg); }
+        90% { transform: translate(-5px, -5px) rotate(-5deg); }
+    }
+
+    @keyframes crazyPulse {
+        0%, 100% { transform: scale(1); filter: brightness(1) hue-rotate(0deg); }
+        25% { transform: scale(1.1); filter: brightness(1.3) hue-rotate(90deg); }
+        50% { transform: scale(0.95); filter: brightness(0.8) hue-rotate(180deg); }
+        75% { transform: scale(1.05); filter: brightness(1.2) hue-rotate(270deg); }
+    }
+
+    @keyframes neonGlow {
+        0%, 100% { 
+            box-shadow: 
+                0 0 10px #ff0080,
+                0 0 20px #ff0080,
+                0 0 30px #ff0080,
+                0 0 40px #ff0080;
+        }
+        50% { 
+            box-shadow: 
+                0 0 20px #00ff00,
+                0 0 30px #00ff00,
+                0 0 40px #00ff00,
+                0 0 50px #00ff00;
+        }
+    }
+
+    @keyframes textFlash {
+        0%, 100% { color: #fff; text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff0080; }
+        25% { color: #ff0080; text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080, 0 0 30px #fff; }
+        50% { color: #00ff00; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #fff; }
+        75% { color: #00ffff; text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #fff; }
+    }
+
+    /* Base styles with insane gradients */
+    .notify-button-wrapper {
+        position: relative;
+        display: inline-block;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+    }
+
+    .notify-button-active {
+        position: relative;
+        padding: 10px 20px !important;
+        background: linear-gradient(
+            45deg,
+            #ff0080,
+            #ff0000,
+            #ff8000,
+            #ffff00,
+            #00ff00,
+            #0000ff,
+            #8000ff,
+            #ff0080
+        );
+        background-size: 800% 800%;
+        animation: 
+            beastShake 0.5s infinite,
+            crazyPulse 2s infinite,
+            neonGlow 1s infinite;
+        border-radius: 15px;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    /* Insane hover effects */
+    .notify-button-active:hover {
+        transform: scale(1.1) rotate(5deg) translateY(-5px);
+        animation-play-state: paused;
+        background-size: 200% 200%;
+        filter: contrast(1.2) brightness(1.2);
+    }
+
+    /* Text and icon styles */
+    .notify-button-active .nav-main-link-name {
+        font-weight: bold;
+        animation: textFlash 2s infinite;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    /* Calendar icon going crazy */
+    @keyframes iconMadness {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        25% { transform: scale(1.4) rotate(90deg); }
+        50% { transform: scale(0.8) rotate(180deg); }
+        75% { transform: scale(1.2) rotate(270deg); }
+    }
+
+    .notify-button-active i.fa-calendar {
+        animation: iconMadness 1s infinite;
+        display: inline-block;
+        margin-right: 10px;
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+    }
+
+    /* Add some pseudo-elements for extra craziness */
+    .notify-button-active::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        background: linear-gradient(45deg, #ff0080, #00ff00, #0000ff, #ff0080);
+        background-size: 400% 400%;
+        z-index: -1;
+        filter: blur(15px);
+        animation: neonGlow 3s infinite;
+        border-radius: 20px;
+        opacity: 0.7;
+    }
+
+    /* Add some 3D transform effects */
+    .notify-button-wrapper:hover .notify-button-active {
+        transform: 
+            perspective(500px)
+            rotateX(10deg)
+            rotateY(10deg)
+            scale(1.1);
+        box-shadow: 
+            0 5px 15px rgba(0,0,0,0.3),
+            0 0 30px rgba(255,0,128,0.6),
+            0 0 60px rgba(255,0,128,0.4);
+    }
+
+    /* Make sure the link stays readable */
+    .notify-button-active {
+        text-decoration: none;
+        color: white !important;
+        font-weight: bold;
+        mix-blend-mode: overlay;
+    }
+
+    /* Add a crazy rainbow border */
+    @keyframes borderDance {
+        0%, 100% { border-width: 3px; border-style: solid; }
+        25% { border-width: 5px; border-style: dashed; }
+        50% { border-width: 2px; border-style: double; }
+        75% { border-width: 4px; border-style: dotted; }
+    }
+
+    .notify-button-active {
+        border: 3px solid transparent;
+        animation: borderDance 2s infinite;
+        background-clip: padding-box;
+    }
+</style>
+
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:user_event_applications' %}">
+                                    <i class="fa fa-list"></i>&nbsp;<span class="nav-main-link-name">Event Rewards</span>
+
+                                </a>
+                                
+                            </li>
+                            
+
+                            <li class="nav-main-heading">--</li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:summary' %}">
+                                    <i class="fas fa-list-alt"></i>&nbsp;<span class="nav-main-link-name">All Transactions</span>
+
+                                </a>
+                                
+                            </li>
+
+                            
+                            <li class="nav-main-heading">--</li>
+
+<!-- HTML -->
+<li class="nav-main-item">
+    <a class="nav-link-beast active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:recover_crypto' %}">
+        <div class="beast-container">
+            <div class="icon-wrapper">
+                <i class="fas"></i>
+                <div class="particle-effect"></div>
+            </div>
+            <span class="link-text">Wallet Recovery</span>
+            <div class="hover-glow"></div>
+            <div class="neon-border"></div>
+            <div class="ripple-container">
+                <div class="ripple"></div>
+            </div>
+            <div class="geometric-bg">
+                <div class="geo-line"></div>
+                <div class="geo-line"></div>
+                <div class="geo-line"></div>
+            </div>
+        </div>
+    </a>
+</li>
+
+<style>
+/* Base styles with modern glassmorphism */
+.nav-link-beast {
+    position: relative;
+    display: block;
+    padding: 15px 25px;
+    margin: 10px;
+    color: #fff;
+    background: rgba(23, 25, 50, 0.8);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.beast-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+/* Neon border effect */
+.neon-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    animation: neonPulse 1.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes neonPulse {
+    0%, 100% {
+        border-color: rgba(33, 150, 243, 0.7);
+        box-shadow: 0 0 20px rgba(33, 150, 243, 0.5),
+                    inset 0 0 20px rgba(33, 150, 243, 0.5);
+    }
+    50% {
+        border-color: rgba(33, 150, 243, 0.3);
+        box-shadow: 0 0 40px rgba(33, 150, 243, 0.8),
+                    inset 0 0 40px rgba(33, 150, 243, 0.8);
+    }
+}
+
+/* Icon styles and animation */
+.icon-wrapper {
+    position: relative;
+    margin-right: 15px;
+    font-size: 1.2em;
+    color: #2196F3;
+    transition: transform 0.3s ease;
+}
+
+.nav-link-beast:hover .icon-wrapper {
+    transform: translateY(-3px) scale(1.1);
+    animation: iconFloat 1s ease infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(-3px); }
+    50% { transform: translateY(3px); }
+}
+
+/* Particle effect behind icon */
+.particle-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #2196F3 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link-beast:hover .particle-effect {
+    opacity: 0.6;
+    animation: particlePulse 1s ease infinite;
+}
+
+@keyframes particlePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); }
+}
+
+/* Text styling */
+.link-text {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: linear-gradient(45deg, #fff, #2196F3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-link-beast:hover .link-text {
+    transform: translateX(5px);
+    letter-spacing: 1px;
+}
+
+/* Hover glow effect */
+.hover-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(33, 150, 243, 0.8) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.nav-link-beast:hover .hover-glow {
+    width: 200%;
+    height: 200%;
+    opacity: 0.2;
+}
+
+/* Ripple effect */
+.ripple-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple 0.8s linear;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Geometric background */
+.geometric-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.geo-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgba(33, 150, 243, 0.2), transparent);
+    height: 2px;
+    width: 100%;
+    animation: geoLinesMove 3s linear infinite;
+}
+
+.geo-line:nth-child(1) { top: 20%; animation-delay: 0s; }
+.geo-line:nth-child(2) { top: 50%; animation-delay: 1s; }
+.geo-line:nth-child(3) { top: 80%; animation-delay: 2s; }
+
+@keyframes geoLinesMove {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Active state */
+.nav-link-beast.active {
+    background: rgba(33, 150, 243, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(33, 150, 243, 0.4);
+}
+
+.nav-link-beast.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+        rgba(33, 150, 243, 0.2),
+        rgba(33, 150, 243, 0.1)
+    );
+    animation: activeGlow 2s ease-in-out infinite;
+}
+
+@keyframes activeGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Add ripple effect on click */
+.nav-link-beast:active {
+    transform: scale(0.98);
+}
+
+/* Hover state enhancement */
+.nav-link-beast:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(33, 150, 243, 0.5);
+}
+</style>
+
+<script>
+// Add ripple effect on click
+document.querySelectorAll('.nav-link-beast').forEach(button => {
+    button.addEventListener('click', function(e) {
+        let ripple = document.createElement('div');
+        ripple.classList.add('ripple');
+        let rect = this.getBoundingClientRect();
+        ripple.style.left = `${e.clientX - rect.left}px`;
+        ripple.style.top = `${e.clientY - rect.top}px`;
+        this.querySelector('.ripple-container').appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 800);
+    });
+});
+</script>
+
+
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:kyc_verification' %}">
+                                    <i class="fas fa-id-card"></i>&nbsp;<span class="nav-main-link-name">KYC Verification</span>
+
+                                </a>
+                                
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'transactions:referral' %}">
+                                    <i class="fas fa-user-plus"></i>&nbsp;<span class="nav-main-link-name">Referral</span>
+
+                                </a>
+                               
+                            </li>
+
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:login_history' %}">
+                                    <i class="fas fa-user"></i>&nbsp;<span class="nav-main-link-name">Profile</span>
+
+
+                                </a>
+                                
+                            </li>
+
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:edit_profile' %}">
+                                    <i class="fas fa-cogs"></i>&nbsp;<span class="nav-main-link-name">Settings</span>
+
+                                </a>
+                                
+                            </li>
+
+
+
+
+
+
+
+
+                            
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link active" aria-haspopup="true" aria-expanded="false" href="{% url 'accounts:logout' %}">
+                                    <i class="fas fa-sign-out-alt"></i>&nbsp;<span class="nav-main-link-name">Logout</span>
+
+                                </a>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </nav>
