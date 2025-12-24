@@ -1,0 +1,728 @@
+
+
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<main id="main-container" class="god-mode-events">
+    <!-- Parallax Header -->
+    <div class="parallax-header bg-gradient position-relative text-white">
+    <div style="background-image: url('https://res.cloudinary.com/dfkuixeji/image/upload/v1732228947/wsa_xt8agm.jpg'); " class="parallax-overlay position-absolute w-100 h-100"></div>
+        <div class="contentz content-full text-center">
+            <div class="header-content ">
+                <h1 class="display-5 fw-bold">🔥 Event Hub</h1>
+                <p class="fs-md mt-2">Discover, Participate, and Win Exclusive Rewards!</p>
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-primary btn-sm me-2" disabled>Current Events</button>
+                    <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#eventInfoModal">
+                        Event Guidelines
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Guidelines Modal -->
+    <div class="modal fade" id="eventInfoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Event Participation Guidelines</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Events offer exciting rewards</li>
+                        <li>Check event details carefully</li>
+                        <li>Apply before the deadline</li>
+                        <li>Follow event-specific rules</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Content -->
+    <div class="content pt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="h5">📅 Events</h2>
+            <button id="toggle-theme" class="btn btn-sm btn-outline-light">
+                🌗 
+            </button>
+        </div>
+
+        {% if current_events %}
+        <div class="row g-3">
+    <div class="container pt-4">
+        <div class="row">
+            {% for event in current_events %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="event-card position-relative">
+                    <div class="event-details p-3">
+                <div class="event-card border rounded shadow-sm">
+                    <div class="event-image-wrapper position-relative">
+                        <img src="{{ event.image.url }}" alt="{{ event.name }}" class="event-image">
+                        <div class="overlay d-flex align-items-center justify-content-center">
+                            <h3 class="overlay-title text-center text-white">{{ event.name }}</h3>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <h5 class="fw-semibold">{{ event.topic }}</h5>
+                        <p class="mb-1"><strong>Reward:</strong> ${{ event.reward_amount }}</p>
+                        <p class="mb-1"><strong>Starts:</strong> {{ event.start_date|date:"M d, Y H:i" }}</p>
+                        <p class="mb-2"><strong>Ends:</strong> {{ event.end_date|date:"M d, Y H:i" }}</p>
+                        <div id="countdown-{{ event.id }}" class="countdown-timer text-danger small fw-bold mb-2"></div>
+                        {% if event.id in applied_event_ids %}
+                        <span class="badge bg-success mb-2 w-100 text-center">🎉 Already Applied</span>
+                        {% else %}
+                        <a href="{% url 'transactions:apply_to_event' event.id %}" class="btn btn-primary btn-sm w-100">Apply Now</a>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#eventModal{{ event.id }}">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Dynamic Modal -->
+<!-- Responsive Beast Mode Modal -->
+<div class="modal fade beast-mode-modal" id="eventModal{{ event.id }}" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content beast-mode-modal__content">
+            <div class="beast-mode-modal__header">
+                <h5 class="beast-mode-modal__title">{{ event.name }}</h5>
+                <button type="button" class="btn-close beast-mode-modal__close" data-bs-dismiss="modal">X</button>
+            </div>
+            <div class="beast-mode-modal__body">
+                <div class="row g-4">
+                    <!-- Left Side: Image and Date -->
+                    <div class="col-lg-4">
+                        <div class="beast-mode-modal__image-wrapper">
+                            <img src="{{ event.image.url }}" alt="{{ event.name }}" class="beast-mode-modal__image">
+                        </div>
+                        <div class="beast-mode-modal__date mt-3">
+                            <p><strong>Start:</strong> {{ event.start_date|date:"M d, Y H:i" }}</p>
+                            <p><strong>End:</strong> {{ event.end_date|date:"M d, Y H:i" }}</p>
+                        </div>
+                    </div>
+                    <!-- Right Side: Dominant Description -->
+                    <div class="col-lg-8">
+                        <h6 class="beast-mode-modal__topic">Topic: {{ event.topic }}</h6>
+                        <div class="beast-mode-modal__description">
+                            {{ event.description|safe }}
+                        </div>
+                        <div class="beast-mode-modal__details mt-4">
+                            <p class="beast-mode-modal__reward">
+                                <span class="beast-mode-modal__label">Reward:</span>
+                                <span class="beast-mode-modal__value">${{ event.reward_amount }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="beast-mode-modal__footer">
+                <button type="button" class="beast-mode-modal__btn beast-mode-modal__btn--secondary" data-bs-dismiss="modal">Close</button>
+                {% if event.id in applied_event_ids %}
+                <a class="beast-mode-modal__btn beast-mode-modal__btn--success">🎉 Already Applied</a>
+                {% else %}
+                <a href="{% url 'transactions:apply_to_event' event.id %}" class="beast-mode-modal__btn beast-mode-modal__btn--primary">Apply Now</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Responsive Beast Mode Modal Styles */
+.beast-mode-modal .modal-dialog {
+    max-width: 95%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.beast-mode-modal__content {
+    background: linear-gradient(145deg, #ffffff, #e9e9e9);
+    border: none;
+}
+
+.beast-mode-modal__header {
+    background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    color: #fff;
+}
+
+.beast-mode-modal__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 0.8px;
+}
+
+.beast-mode-modal__close {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.beast-mode-modal__close:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.2);
+}
+
+.beast-mode-modal__body {
+    padding: 1.5rem;
+}
+
+.beast-mode-modal__image-wrapper {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background: #f9f9f9;
+}
+
+.beast-mode-modal__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.beast-mode-modal__image-wrapper:hover .beast-mode-modal__image {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.beast-mode-modal__date {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #444;
+    background: #fff;
+    padding: 0.8rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.beast-mode-modal__topic {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #3a1c71;
+    margin-bottom: 1rem;
+}
+
+.beast-mode-modal__description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+    background: #f4f4f4;
+    padding: 1rem;
+    border-radius: 10px;
+    max-height: 350px;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+}
+
+.beast-mode-modal__description::-webkit-scrollbar {
+    width: 8px;
+}
+
+.beast-mode-modal__description::-webkit-scrollbar-thumb {
+    background: #3a1c71;
+    border-radius: 4px;
+}
+
+.beast-mode-modal__details {
+    padding: 0.8rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+}
+
+.beast-mode-modal__label {
+    font-weight: bold;
+    color: #3a1c71;
+}
+
+.beast-mode-modal__footer {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    border-top: 1px solid #eaeaea;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.beast-mode-modal__btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.beast-mode-modal__btn--secondary {
+    background: #f1f1f1;
+    color: #555;
+    border: 1px solid #ccc;
+}
+
+.beast-mode-modal__btn--secondary:hover {
+    background: #eaeaea;
+    color: #333;
+}
+
+.beast-mode-modal__btn--primary {
+    background: #3a1c71;
+    color: #fff;
+    border: none;
+}
+
+.beast-mode-modal__btn--primary:hover {
+    background: #d76d77;
+    transform: translateY(-2px);
+}
+
+.beast-mode-modal__btn--success {
+    background: #28a745;
+    color: #fff;
+    border: none;
+}
+@media (max-width: 768px) {
+    .beast-mode-modal__body {
+        padding: 0.5rem; /* Reduced padding for smaller screens */
+    }
+
+    .beast-mode-modal__header {
+        padding: 0.3rem 0.5rem; /* Smaller header spacing */
+        font-size: 0.9rem; /* Header font size reduced */
+    }
+
+    .beast-mode-modal__title {
+        font-size: 0.85rem; /* Compact title */
+        margin-bottom: 0.3rem;
+    }
+
+    .beast-mode-modal__description {
+        font-size: 0.75rem; /* Smaller font size for content */
+        line-height: 1.2; /* Tightened line height */
+        max-height: 150px; /* Restrict description height */
+        overflow-y: auto; /* Scroll if necessary */
+        padding: 0.4rem; /* Compact padding */
+    }
+
+    .beast-mode-modal__image-wrapper {
+        height: 35px; /* Smaller image wrapper */
+        border-radius: 3px; /* Minimal rounding */
+        margin-bottom: 0.5rem; /* Tightened spacing below image */
+    }
+
+    .beast-mode-modal__image {
+        width: 85%; /* Reduced image width */
+        height: auto;
+        object-fit: cover; /* Maintain aspect ratio */
+    }
+
+    .beast-mode-modal__date {
+        font-size: 0.7rem; /* Compact date font */
+        padding: 0.2rem 0.4rem; /* Minimal padding */
+        height: 22px; /* Smaller container */
+        border-radius: 3px;
+        line-height: 1; /* Tight line height */
+        background: #f1f1f1;
+        margin-bottom: 0.5rem; /* Space between date and content */
+    }
+
+    .beast-mode-modal__reward {
+        font-size: 0.9rem; /* Reduced reward font */
+        font-weight: bold;
+        margin-bottom: 0.3rem; /* Space optimization */
+    }
+
+    .beast-mode-modal__btn {
+        font-size: 0.75rem; /* Smaller button font */
+        padding: 0.3rem 0.6rem; /* Compact button padding */
+        border-radius: 3px; /* Cleaner look */
+    }
+}
+
+@media (max-width: 576px) {
+    .beast-mode-modal__body {
+        padding: 0.3rem; /* Tighter spacing for extra-small screens */
+    }
+
+    .beast-mode-modal__title {
+        font-size: 0.8rem; /* Smaller title */
+        margin-bottom: 0.2rem;
+    }
+
+    .beast-mode-modal__description {
+        font-size: 0.7rem; /* Reduced content size */
+        max-height: 120px; /* Further restricted height */
+        padding: 0.3rem;
+    }
+
+    .beast-mode-modal__image-wrapper {
+         display: none;
+    }
+
+    .beast-mode-modal__image {
+         display: none;
+    }
+
+    .beast-mode-modal__date {
+        display: none;
+    }
+
+    .beast-mode-modal__btn {
+        font-size: 0.7rem; /* Smallest button font */
+        padding: 0.25rem 0.5rem; /* Compact padding */
+    }
+
+.beast-mode-modal__close {
+    position: absolute;
+    top: 0.1rem;
+    right: 0.8rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.beast-mode-modal__details {
+    padding: 0.3rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-size: 0.3rem;
+    height: 20px;
+}
+
+    .beast-mode-modal__reward {
+        font-size: 0.7rem; /* Reduced reward font */
+        font-weight: bold;
+        margin-bottom: 0.3rem; /* Space optimization */
+
+
+    }
+
+    .beast-mode-modal__description {
+        font-size: 0.75rem; /* Smaller font size for content */
+        line-height: 1.2; /* Tightened line height */
+        max-height: 290px; /* Restrict description height */
+        overflow-y: auto; /* Scroll if necessary */
+        padding: 0.7rem; /* Compact padding */
+    }
+
+
+}
+
+</style>
+
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+<script>
+    // Custom Modal Interactions (Optional)
+    document.addEventListener('DOMContentLoaded', () => {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            modal.addEventListener('show.bs.modal', () => {
+                console.log('Modal shown:', modal.id);
+            });
+        });
+    });
+</script>
+
+<style>
+    /* Card Styles */
+    .event-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .event-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .event-details {
+        text-align: center;
+    }
+
+    .event-name {
+        font-size: 1.2rem;
+        color: #333;
+    }
+
+    .event-topic {
+        font-size: 0.9rem;
+        color: #777;
+    }
+
+    /* Modal Styles */
+    .modal-content {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+        color: white;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+    }
+
+    .modal-body img {
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .modal-footer .btn {
+        border-radius: 5px;
+    }
+</style>
+
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <p class="text-muted fs-md">No events available. Check back soon!</p>
+        </div>
+        {% endif %}
+    </div>
+</main>
+
+<script>
+    // Description Toggle Script
+    document.querySelectorAll('.toggle-description').forEach(button => {
+        button.addEventListener('click', function() {
+            const eventId = this.dataset.eventId;
+            const descriptionEl = document.getElementById(`description-${eventId}`);
+            const isHidden = descriptionEl.style.display === 'none';
+            
+            descriptionEl.style.display = isHidden ? 'block' : 'none';
+            this.textContent = isHidden ? 'Hide Description' : 'Show Description';
+        });
+    });
+
+    // Countdown Timer Script
+    {% for event in current_events %}
+    (function() {
+        const countdownEl = document.getElementById("countdown-{{ event.id }}");
+        const endDate = new Date("{{ event.end_date|date:'Y-m-d H:i:s' }}").getTime();
+        const updateCountdown = setInterval(function() {
+            const now = new Date().getTime();
+            const timeLeft = endDate - now;
+
+            if (timeLeft < 0) {
+                clearInterval(updateCountdown);
+                countdownEl.textContent = "Event Ended";
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }, 1000);
+    })();
+    {% endfor %}
+</script>
+
+<style>
+    /* Panel Style Header */
+    .parallax-header {
+        width: 100%;
+        height: 180px;
+        background: url('/static/images/event-bg.jpeg') no-repeat center center, linear-gradient(135deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+        background-size: cover;
+        border-radius: 12px;
+        margin: 20px auto;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Overlay for subtle gradient */
+    .parallax-overlay {
+        background: rgba(0, 0, 0, 0.5); /* Adjustable transparency */
+        z-index: 1;
+    }
+
+    /* Text Content */
+    .contentz {
+        z-index: 2;
+
+    }
+
+    .parallax-header h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .parallax-header p {
+        font-size: 1rem;
+        margin-bottom: 15px;
+        color: #f0f0f0;
+        text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Buttons */
+    .parallax-header button {
+        font-size: 0.9rem;
+        padding: 5px 15px;
+        transition: all 0.3s ease;
+    }
+
+    .parallax-header .btn-primary {
+        background-color: #ff7b7b;
+        border-color: #ff7b7b;
+    }
+
+    .parallax-header .btn-primary:hover {
+        background-color: #ff5252;
+        border-color: #ff5252;
+    }
+
+    .parallax-header .btn-outline-light:hover {
+        background-color: #fff;
+        color: #3a1c71;
+        border-color: #fff;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .parallax-header {
+            height: 200px;
+        }
+
+        .parallax-header h1 {
+            font-size: 1.5rem;
+        }
+
+        .parallax-header p {
+            font-size: 0.9rem;
+        }
+    }
+
+
+    /* Event Card */
+    .event-card {
+        background: #fff;
+        transition: all 0.3s ease;
+    }
+
+    .event-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Event Image */
+    .event-image-wrapper {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .event-image {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .event-image-wrapper:hover .event-image {
+        transform: scale(1.1);
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .event-image-wrapper:hover .overlay {
+        opacity: 1;
+    }
+
+    .overlay-title {
+        font-size: 1.2rem;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    /* Countdown Timer */
+    .countdown-timer {
+        animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .parallax-header {
+            height: 150px;
+        }
+        .event-card {
+            margin-bottom: 15px;
+        }
+        .event-image {
+            height: 120px;
+        }
+    }
+</style>
+
+
+
+
+
+{% endblock %}

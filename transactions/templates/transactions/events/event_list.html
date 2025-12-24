@@ -1,0 +1,58 @@
+<h1>Active Events</h1>
+<div class="filter-section">
+    <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="investment">Investment</option>
+        <option value="deposit">Deposit</option>
+        <option value="general">General Task</option>
+    </select>
+</div>
+<div id="eventContainer">
+    {% for event in events %}
+        <div class="event-card">
+            <img src="{{ event.image.url }}" alt="{{ event.title }}">
+            <h2>{{ event.title }}</h2>
+            <p>{{ event.description }}</p>
+            <p><strong>Reward:</strong> ${{ event.reward_amount }}</p>
+            <button data-event-id="{{ event.id }}" class="apply-btn">Apply Now</button>
+        </div>
+    {% empty %}
+        <p>No events found.</p>
+    {% endfor %}
+</div>
+<script>
+document.querySelectorAll('.apply-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const eventId = btn.dataset.eventId;
+        fetch(`/events/apply/${eventId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message); // Success message
+                btn.disabled = true; // Disable button after applying
+                btn.textContent = 'Applied';
+            } else if (data.error) {
+                alert(data.error); // Error message
+            }
+        })
+        .catch(err => console.error('Error:', err));
+    });
+});
+
+document.getElementById('categoryFilter').addEventListener('change', (e) => {
+    const category = e.target.value;
+    fetch(`/events/?category=${category}`)
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('eventContainer').innerHTML = html;
+        })
+        .catch(err => console.error('Error:', err));
+});
+</script>
+

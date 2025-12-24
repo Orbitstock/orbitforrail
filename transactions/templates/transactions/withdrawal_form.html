@@ -1,0 +1,348 @@
+{% extends 'core/base.html' %}
+{% block content %}
+{% include "core/messages.html" %}
+{% load static %}
+
+<!-- External Styles and Libraries -->
+<link rel="stylesheet" href="{% static 'assets/frontend/css/styles.css' %}?var=2.1" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+    :root {
+        --primary-color: #6C5CE7;
+        --secondary-color: #FDA7DF;
+        --background-color: #F0F3F8;
+        --text-color: #2D3436;
+        --card-color: #FFFFFF;
+    }
+
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .header-title {
+        color: black;
+        font-weight: 500;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .description-text {
+        color: var(--text-color);
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .content-container {
+        background-color: var(--card-color);
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        margin-top: 2rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        transition: all 0.3s ease;
+    }
+
+    .content-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .title {
+        color: black;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        border: 2px solid #E0E0E0;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: black;
+        box-shadow: 0 0 0 0.2rem rgba(108, 92, 231, 0.25);
+    }
+
+    .form-note-alt {
+        font-size: 0.875rem;
+        color: #7f8c8d;
+        margin-top: 0.5rem;
+    }
+
+    .btn-primary {
+        background-color: black;
+        border-color: black;
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #5649c0;
+        border-color: #5649c0;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+    }
+
+    .animated-title {
+        animation: fadeInDown 1s ease-in-out;
+    }
+
+    .select-wrapper {
+        position: relative;
+    }
+
+    .select-wrapper::after {
+        content: "\25BC";
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: var(--primary-color);
+    }
+
+    .crypto-select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 100%;
+        padding: 6px 10px;
+        font-size: 16px;
+        border: 2px solid #E0E0E0;
+        border-radius: 10px;
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .crypto-select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(108, 92, 231, 0.25);
+    }
+
+    .crypto-select option {
+        padding: 10px;
+    }
+
+    .crypto-info {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .asset-image-container {
+        margin-right: 20px;
+    }
+
+    .asset-image {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        transition: all 0.6s;
+        transform-style: preserve-3d;
+    }
+
+    .asset-image:hover {
+        transform: rotateY(180deg) scale(1.1);
+    }
+
+    .balance-display {
+        flex-grow: 1;
+        text-align: right;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+
+    .form-group {
+        margin-bottom: 2rem;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .pulse {
+        animation: pulse 2s infinite;
+    }
+
+    @media (max-width: 768px) {
+        .content-container {
+            padding: 2rem;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+        }
+
+        .title {
+            font-size: 1.8rem;
+        }
+    }
+</style>
+
+<main id="main-container">
+    <div class="container-xl py-5">
+
+        
+        <div class="content-container">
+            <h2 class="title text-center mb-4">Initiate Crypto Withdrawal</h2>
+            
+            <form method="post" enctype="multipart/form-data" id="withdrawalForm">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="{{ form.payment_method.id_for_label }}" class="form-label">Select Cryptocurrency</label>
+                    <div class="select-wrapper">
+                        <select name="{{ form.payment_method.name }}" id="{{ form.payment_method.id_for_label }}" class="form-control crypto-select">
+                            {% for value, label in form.payment_method.field.choices %}
+                            <option value="{{ value }}">{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="crypto-info">
+                    <div class="asset-image-container">
+                        <img id="asset-image" src="{% static 'assets/images/default.png' %}" alt="Selected Asset" class="asset-image pulse" style="display: none;" />
+                    </div>
+                    <div id="balance-display" class="balance-display d-none">
+                        Available Balance: <span id="balance-amount">0.00</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.amount.id_for_label }}" class="form-label">Withdrawal Amount</label>
+                    <input type="number" name="{{ form.amount.name }}" id="{{ form.amount.id_for_label }}" class="form-control" step="0.01" placeholder="Enter amount to withdraw" />
+                    <small class="form-note-alt">Minimum withdrawal: 10.00 USD</small>
+                    {% if 'amount' in form.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.errors.amount }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.recipient_address.id_for_label }}" class="form-label">Recipient Wallet Address</label>
+                    <input type="text" name="{{ form.recipient_address.name }}" id="{{ form.recipient_address.id_for_label }}" class="form-control" placeholder="Enter the recipient's wallet address" />
+                    <small class="form-note-alt">Double-check for accuracy to ensure successful transaction</small>
+                    {% if 'recipient_address' in form.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.errors.recipient_address }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit"  style="background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;" 
+                                                    class="site-btn blue-btn" 
+                                                    onmouseover="this.style.backgroundColor='#0056b3';" 
+                                                    onmouseout="this.style.backgroundColor='#007bff';">Confirm Withdrawal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script>
+    var paymentMethodSelect = document.getElementById("{{ form.payment_method.id_for_label }}");
+    var balanceDisplay = document.getElementById("balance-display");
+    var assetImage = document.getElementById("asset-image");
+
+    paymentMethodSelect.addEventListener("change", function () {
+        var paymentMethod = paymentMethodSelect.value;
+        balanceDisplay.classList.toggle("d-none", !paymentMethod || paymentMethod === "CASH");
+
+        var bitcoinBalance = "{{ request.user.balance }}";
+        var ethereumBalance = "{{ request.user.balance }}";
+        var usdtTrc20Balance = "{{ request.user.balance }}";
+        var usdtErc20Balance = "{{ request.user.balance }}";
+        var tronBalance = "{{ request.user.account.trons }}";
+        var xrpsBalance = "{{ request.user.account.xrps }}";
+        var bnbsBalance = "{{ request.user.account.bnbs }}";
+        var litecoinsBalance = "{{ request.user.account.litecoins }}";
+        var dogecoinsBalance = "{{ request.user.account.dogecoins }}";
+        var shiba_inuBalance = "{{ request.user.account.shiba_inu }}";
+        var cardanoBalance = "{{ request.user.account.cardano }}";
+
+        // Image URLs
+        var imageUrls = {
+            "USDT_ERC20": "{% static 'images/usdt_erc20.png' %}",
+            "USDT_TRC20": "{% static 'images/usdt_trc20.png' %}",
+            "ETHEREUM": "{% static 'images/ethereum.png' %}",
+            "BITCOIN": "{% static 'images/bitcoin.png' %}",
+            "SOLANA": "{% static 'images/solana.png' %}",
+            "TRON": "{% static 'images/tron.png' %}",
+            "XRPS": "{% static 'images/xrps.png' %}",
+            "BNBS": "{% static 'images/bnbs.png' %}",
+            "LITECOINS": "{% static 'images/litecoins.png' %}",
+            "DOGECOINS": "{% static 'images/dogecoins.png' %}",
+            "SHIBA_INU": "{% static 'images/shiba_inu.png' %}",
+            "CARDANO": "{% static 'images/cardano.png' %}"
+        };
+
+        if (paymentMethod === "USDT_ERC20" || paymentMethod === "USDT_TRC20") {
+            document.getElementById("balance-amount").textContent = usdtTrc20Balance;
+        } else if (paymentMethod === "ETHEREUM") {
+            document.getElementById("balance-amount").textContent = ethereumBalance;
+        } else if (paymentMethod === "BITCOIN") {
+            document.getElementById("balance-amount").textContent = bitcoinBalance;
+        } else if (paymentMethod === "SOLANA") {
+            document.getElementById("balance-amount").textContent = solanaBalance;
+        } else if (paymentMethod === "TRON") {
+            document.getElementById("balance-amount").textContent = tronBalance;
+        } else if (paymentMethod === "XRPS") {
+            document.getElementById("balance-amount").textContent = xrpsBalance;
+        } else if (paymentMethod === "BNBS") {
+            document.getElementById("balance-amount").textContent = bnbsBalance;
+        } else if (paymentMethod === "LITECOINS") {
+            document.getElementById("balance-amount").textContent = litecoinsBalance;
+        } else if (paymentMethod === "DOGECOINS") {
+            document.getElementById("balance-amount").textContent = dogecoinsBalance;
+        } else if (paymentMethod === "SHIBA_INU") {
+            document.getElementById("balance-amount").textContent = shiba_inuBalance;
+        } else if (paymentMethod === "CARDANO") {
+            document.getElementById("balance-amount").textContent = cardanoBalance;
+        }
+
+        // Set the image source based on the selected payment method
+        if (imageUrls[paymentMethod]) {
+            assetImage.src = imageUrls[paymentMethod];
+            assetImage.style.display = "block";
+        } else {
+            // Hide the image if no matching payment method
+            assetImage.style.display = "none";
+        }
+    });
+</script>
+
+{% endblock %}

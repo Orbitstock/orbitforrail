@@ -1,0 +1,150 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Summary   {{ block.super }}{% endblock title %}
+
+{% block content %}
+{% include "core/messages.html" %}
+
+
+<main id="main-container">
+
+
+    
+{% if transaction_history %}
+<div class="content">
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">Transaction History</h3>
+            <div class="block-options">
+                <a href="{% url 'transactions:history_pdf_export' %}?export=pdf" class="btn btn-sm btn-alt-secondary">
+                    <i class="fa fa-download"></i> Download PDF
+                </a>
+            </div>
+        </div>
+        <div class="block-content">
+            <p class="fs-sm text-muted">
+                Your Entire Transaction History.
+            </p>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-vcenter">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Type</th>
+                            <th>Transaction ID</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transaction_history %}
+                        <tr>
+                            <td class="fw-semibold fs-sm">{{ transaction.timestamp|date:"F d, Y" }}</td>
+                            <td class="fs-sm">{{ transaction.timestamp|date:"h:i A" }}</td>
+                            <td class="fs-sm">{{ transaction.get_transaction_type_display }}</td>
+                            <td class="fs-sm">
+                                <a class="fw-semibold" href="javascript:void(0)">{{ transaction.transaction_id }}</a>
+                            </td>
+                            <td class="fs-sm">{{ transaction.amount }}</td>
+                            <td>
+                                {% with status=transaction.get_related_status %}
+                                    {% if transaction.content_type.model == 'withdrawal' %}
+                                        {% if status == 'pending' %}
+                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Pending</span>
+                                        {% elif status == 'completed' %}
+                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Completed</span>
+                                        {% elif status == 'cancelled' %}
+                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Cancelled</span>
+                                        {% else %}
+                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{ status|capfirst }}</span>
+                                        {% endif %}
+                                    {% elif transaction.content_type.model in 'payment,cryptowithdraw' %}
+                                        {% if status == 'PENDING' %}
+                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Pending</span>
+                                        {% elif status == 'COMPLETE' %}
+                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Complete</span>
+                                        {% elif status == 'DECLINED' %}
+                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Declined</span>
+                                        {% else %}
+                                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{ status|capfirst }}</span>
+                                        {% endif %}
+                                    {% elif transaction.content_type.model == 'loanrequest' %}
+                                        <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Requested</span>
+                                    {% else %}
+                                        <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{ transaction.get_status_display }}</span>
+                                    {% endif %}
+                                {% endwith %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% if transaction_paginator.num_pages > 1 %}
+        <div class="block-content block-content-full bg-body-light">
+            <nav aria-label="Transactions Navigation">
+                <ul class="pagination pagination-sm justify-content-end mb-0">
+                    {% if transaction_history.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?transaction_page={{ transaction_history.previous_page_number }}" tabindex="-1" aria-label="Previous">
+                                Prev
+                            </a>
+                        </li>
+                    {% endif %}
+                    
+                    {% for i in transaction_paginator.page_range %}
+                        {% if transaction_history.number == i %}
+                            <li class="page-item active">
+                                <a class="page-link" href="#">{{ i }}</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?transaction_page={{ i }}">{{ i }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if transaction_history.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?transaction_page={{ transaction_history.next_page_number }}" aria-label="Next">
+                                Next
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% else %}
+<p>No transaction history available.</p>
+{% endif %}
+
+
+                            <style>
+                                .table-scroll-container {
+                                max-height: 400px; /* Adjust this value as needed */
+                                overflow-y: auto;
+                                scrollbar-width: none; /* Firefox */
+                                -ms-overflow-style: none; /* Internet Explorer 10+ */
+                            }
+
+                            .table-scroll-container::-webkit-scrollbar {
+                                width: 0;
+                                height: 0;
+                            }
+
+                            @media (max-width: 767px) {
+                                .mobile-hide {
+                                    display: none;
+                                }
+                            }
+                            </style>
+</main>
+
+
+{% endblock content %}

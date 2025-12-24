@@ -1,0 +1,295 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<main id="main-container" class="god-mode-events">
+    <!-- Parallax Header -->
+    <div class="parallax-header bg-gradient position-relative text-white">
+    <div style="background-image: url('https://res.cloudinary.com/dfkuixeji/image/upload/v1732228947/wsa_xt8agm.jpg'); " class="parallax-overlay position-absolute w-100 h-100"></div>
+        <div class="content content-full text-center">
+            <div class="header-content ">
+                <h1 class="display-5 fw-bold">🔥 Event Hub</h1>
+                <p class="fs-md mt-2">Discover, Participate, and Win Exclusive Rewards!</p>
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-primary btn-sm me-2" disabled>Current Events</button>
+                    <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#eventInfoModal">
+                        Event Guidelines
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Guidelines Modal -->
+    <div class="modal fade" id="eventInfoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Event Participation Guidelines</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Events offer exciting rewards</li>
+                        <li>Check event details carefully</li>
+                        <li>Apply before the deadline</li>
+                        <li>Follow event-specific rules</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Content -->
+    <div class="content pt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="h5">📅 Events</h2>
+            <button id="toggle-theme" class="btn btn-sm btn-outline-light">
+                🌗 
+            </button>
+        </div>
+
+        {% if current_events %}
+        <div class="row g-3">
+            {% for event in current_events %}
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="event-card border rounded shadow-sm">
+                    <div class="event-image-wrapper position-relative">
+                        <img src="{{ event.image.url }}" alt="{{ event.name }}" class="event-image">
+                        <div class="overlay d-flex align-items-center justify-content-center">
+                            <h3 class="overlay-title text-center text-white">{{ event.name }}</h3>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <h5 class="fw-semibold">{{ event.topic }}</h5>
+                        <p class="mb-1"><strong>Reward:</strong> ${{ event.reward_amount }}</p>
+                        <p class="mb-1"><strong>Starts:</strong> {{ event.start_date|date:"M d, Y H:i" }}</p>
+                        <p class="mb-2"><strong>Ends:</strong> {{ event.end_date|date:"M d, Y H:i" }}</p>
+                        <div id="countdown-{{ event.id }}" class="countdown-timer text-danger small fw-bold mb-2"></div>
+                        {% if event.id in applied_event_ids %}
+                        <span class="badge bg-success mb-2 w-100 text-center">🎉 Already Applied</span>
+                        {% else %}
+                        <a href="{% url 'transactions:apply_to_event' event.id %}" class="btn btn-primary btn-sm w-100">Apply Now</a>
+                        {% endif %}
+                        <button class="btn btn-outline-secondary btn-sm w-100 mt-2 toggle-description" data-event-id="{{ event.id }}">
+                            Show Description
+                        </button>
+                        <div id="description-{{ event.id }}" class="event-description mt-2" style="display: none;">
+                            <small>{{ event.description|safe }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <p class="text-muted fs-md">No events available. Check back soon!</p>
+        </div>
+        {% endif %}
+    </div>
+</main>
+
+<script>
+    // Description Toggle Script
+    document.querySelectorAll('.toggle-description').forEach(button => {
+        button.addEventListener('click', function() {
+            const eventId = this.dataset.eventId;
+            const descriptionEl = document.getElementById(`description-${eventId}`);
+            const isHidden = descriptionEl.style.display === 'none';
+            
+            descriptionEl.style.display = isHidden ? 'block' : 'none';
+            this.textContent = isHidden ? 'Hide Description' : 'Show Description';
+        });
+    });
+
+    // Countdown Timer Script
+    {% for event in current_events %}
+    (function() {
+        const countdownEl = document.getElementById("countdown-{{ event.id }}");
+        const endDate = new Date("{{ event.end_date|date:'Y-m-d H:i:s' }}").getTime();
+        const updateCountdown = setInterval(function() {
+            const now = new Date().getTime();
+            const timeLeft = endDate - now;
+
+            if (timeLeft < 0) {
+                clearInterval(updateCountdown);
+                countdownEl.textContent = "Event Ended";
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }, 1000);
+    })();
+    {% endfor %}
+</script>
+
+<style>
+    /* Panel Style Header */
+    .parallax-header {
+        width: 100%;
+        height: 180px;
+        background: url('/static/images/event-bg.jpeg') no-repeat center center, linear-gradient(135deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+        background-size: cover;
+        border-radius: 12px;
+        margin: 20px auto;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Overlay for subtle gradient */
+    .parallax-overlay {
+        background: rgba(0, 0, 0, 0.5); /* Adjustable transparency */
+        z-index: 1;
+    }
+
+    /* Text Content */
+    .content {
+        z-index: 2;
+
+    }
+
+    .parallax-header h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .parallax-header p {
+        font-size: 1rem;
+        margin-bottom: 15px;
+        color: #f0f0f0;
+        text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Buttons */
+    .parallax-header button {
+        font-size: 0.9rem;
+        padding: 5px 15px;
+        transition: all 0.3s ease;
+    }
+
+    .parallax-header .btn-primary {
+        background-color: #ff7b7b;
+        border-color: #ff7b7b;
+    }
+
+    .parallax-header .btn-primary:hover {
+        background-color: #ff5252;
+        border-color: #ff5252;
+    }
+
+    .parallax-header .btn-outline-light:hover {
+        background-color: #fff;
+        color: #3a1c71;
+        border-color: #fff;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .parallax-header {
+            height: 200px;
+        }
+
+        .parallax-header h1 {
+            font-size: 1.5rem;
+        }
+
+        .parallax-header p {
+            font-size: 0.9rem;
+        }
+    }
+
+
+    /* Event Card */
+    .event-card {
+        background: #fff;
+        transition: all 0.3s ease;
+    }
+
+    .event-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Event Image */
+    .event-image-wrapper {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .event-image {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .event-image-wrapper:hover .event-image {
+        transform: scale(1.1);
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .event-image-wrapper:hover .overlay {
+        opacity: 1;
+    }
+
+    .overlay-title {
+        font-size: 1.2rem;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    /* Countdown Timer */
+    .countdown-timer {
+        animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .parallax-header {
+            height: 150px;
+        }
+        .event-card {
+            margin-bottom: 15px;
+        }
+        .event-image {
+            height: 120px;
+        }
+    }
+</style>
+
+
+
+
+
+{% endblock %}

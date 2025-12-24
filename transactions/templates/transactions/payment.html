@@ -1,0 +1,267 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Transactions | {{ block.super }}{% endblock title %}
+
+{% block content %}
+{% include "core/messages.html" %}
+<main id="main-container">
+<div class="content">
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">All Deposits</h3>
+            <div class="block-options">
+                <button type="button" class="btn-block-option">
+                    <i class="si si-settings"></i>
+                </button>
+            </div>
+        </div>
+        <div class="block-content">
+            <p class="fs-sm text-muted">
+                Your Entire Deposit History.
+            </p>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-vcenter">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Method</th>
+                            <th>Proof Of Payment</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for withdrawal in recent_payments %}
+                        <tr>
+                            <td class="fw-semibold fs-sm">{{ withdrawal.date|date:"F d, Y" }}</td>
+                            <td class="fs-sm">{{ withdrawal.timestamp|date:"h:i A" }}</td>
+                            <td class="fs-sm">{{ withdrawal.payment_method }}</td>
+                            <td class="text-center">
+                                {% if withdrawal.proof_of_pay %}
+                                <img class="img-avatar img-avatar48 proof-of-pay-link" src="{{ withdrawal.proof_of_pay.url }}" alt="Proof of Payment" data-bs-toggle="tooltip" title="View proof of payment" style="cursor: pointer;" />
+                                {% else %}
+                                <img class="img-avatar img-avatar48 proof-of-pay-link" src="https://cdn-icons-png.flaticon.com/128/9583/9583256.png" alt="No Proof" data-bs-toggle="tooltip" title="No proof of payment" style="cursor: pointer;" />
+                                {% endif %}<br>
+                                <small style="font-size:10px;">Click To View</small>
+                            </td>
+                            <td class="fs-sm">{{ withdrawal.amount }}</td>
+                            <td>
+                                {% if withdrawal.status == 'PENDING' %}
+                                <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Pending</span>
+                                {% elif withdrawal.status == 'COMPLETE' %}
+                                <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">Complete</span>
+                                {% elif withdrawal.status == 'DECLINED' %}
+                                <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-danger-light text-danger">Declined</span>
+                                {% else %}
+                                <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{ withdrawal.status }}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- SweetAlert2 script -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const proofOfPayLinks = document.querySelectorAll(".proof-of-pay-link");
+        proofOfPayLinks.forEach((link) => {
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                const imageUrl = e.target.src;
+                Swal.fire({
+                    html: `
+                        <div class="custom-image-modal">
+                            <div class="image-wrapper">
+                                <img src="${imageUrl}" alt="Proof of Payment">
+                            </div>
+                            <div class="image-caption">
+                                <h3>Proof of Payment</h3>
+                                <p>Transaction details</p>
+                            </div>
+                        </div>
+                    `,
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    customClass: {
+                        container: 'custom-swal-container',
+                        popup: 'custom-swal-popup',
+                        closeButton: 'custom-swal-close'
+                    },
+                    buttonsStyling: false,
+                    background: 'transparent',
+                    backdrop: `
+                        rgba(0,0,0,0.9)
+                        url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,100 100,0 100,100' fill='%23000000' fill-opacity='.1'/%3E%3C/svg%3E")
+                        right bottom
+                        no-repeat
+                    `,
+                    showClass: {
+                        popup: 'animate__animated animate__zoomIn animate__faster'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__zoomOut animate__faster'
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+<style>
+    .custom-swal-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .custom-swal-popup {
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .custom-swal-close {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+        color: #fff;
+        background-color: rgba(255,255,255,0.2);
+        border: 2px solid #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+
+    .custom-swal-close:hover {
+        background-color: rgba(255,255,255,0.4);
+        transform: rotate(90deg);
+    }
+
+    .custom-image-modal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 90vw;
+        max-height: 90vh;
+    }
+
+    .image-wrapper {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease;
+    }
+
+    .image-wrapper:hover {
+        transform: scale(1.02);
+    }
+
+    .image-wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .image-wrapper:hover::after {
+        opacity: 1;
+    }
+
+    .custom-image-modal img {
+        display: block;
+        max-width: 100%;
+        max-height: 70vh;
+        object-fit: contain;
+    }
+
+    .image-caption {
+        margin-top: 20px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .image-caption h3 {
+        font-size: 24px;
+        margin-bottom: 5px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .image-caption p {
+        font-size: 16px;
+        opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+        .custom-image-modal {
+            max-width: 95vw;
+        }
+        .image-caption h3 {
+            font-size: 20px;
+        }
+        .image-caption p {
+            font-size: 14px;
+        }
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+              
+
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+<h1>Your Events</h1>
+<div class="dashboard">
+    {% for app in applications %}
+        <div class="application-card">
+            <h2>{{ app.event.title }}</h2>
+            <p><strong>Status:</strong> {{ app.get_status_display }}</p>
+            <p><strong>Progress:</strong> {{ app.progress }}%</p>
+            <p><strong>Reward:</strong> ${{ app.event.reward_amount }}</p>
+            {% if app.status == 'in_progress' %}
+                <button>Complete Task</button>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>You have not applied for any events.</p>
+    {% endfor %}
+</div>
