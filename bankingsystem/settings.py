@@ -16,7 +16,7 @@ os.environ['SSL_CERT_FILE'] = certifi.where()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://web-production-92643.up.railway.app",
+    "https://web-production-b6be8.up.railway.app",
     "https://www.brightstarfinancefx.com"
 ]
 
